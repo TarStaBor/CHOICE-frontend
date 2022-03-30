@@ -1,4 +1,5 @@
 .addJob {
+  font-family: Gotham;
   margin: 50px auto;
   width: calc(100% - 120px);
   min-height: 600px;
@@ -10,12 +11,11 @@
 .addJob__form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 72px;
-  margin: 40px 36px 0;
+  gap: 40px 72px;
+  margin: 40px 36px;
   max-width: 100%;
   height: 100%;
   text-align: start;
-  border: 1px red solid;
 }
 
 .addJob__input-name {
@@ -29,15 +29,174 @@
 .addJob__input {
   margin: 0;
   padding: 0;
+  padding-left: 15px;
   background: #f2f2e6;
   border: 2px solid #8b8b8b;
   height: 36px;
-  width: calc(100% - 4px);
+  width: calc(100% - 19px);
   border-radius: 36px;
-
-  /* border: none; */
-  color: red;
   font-weight: 500;
   font-size: 20px;
-  /* line-height: 20px; */
+}
+
+/* --------------------- */
+
+.container {
+  width: 100%;
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(2, 25px);
+  row-gap: 25px;
+}
+
+.button-label {
+  display: inline-block;
+  width: 100px;
+  height: 25px;
+  cursor: pointer;
+  color: #292929;
+  border-radius: 16px;
+  background: #efefef;
+  transition: 0.3s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.button-label h1 {
+  margin: 7px 0 0 0;
+  text-align: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 13px;
+}
+.button-label:hover {
+  background: #d6d6d6;
+  color: #101010;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.32);
+}
+.button-label:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0px -1px 0 rgba(0, 0, 0, 0.22);
+}
+
+#intern:checked + .button-label {
+  background: #45ce1b;
+  color: #efefef;
+}
+#intern:checked + .button-label:hover {
+  background: #45ce1b;
+  color: #e2e2e2;
+}
+
+#junior:checked + .button-label {
+  background: #fcce45;
+  color: #fff;
+}
+#junior:checked + .button-label:hover {
+  background: #fcce45;
+  color: #fff;
+}
+
+#middle:checked + .button-label {
+  background: #f25949;
+  color: #efefef;
+}
+#middle:checked + .button-label:hover {
+  background: #f25949;
+  color: #e2e2e2;
+}
+
+#senior:checked + .button-label {
+  background: #44bdb4;
+  color: #efefef;
+}
+#senior:checked + .button-label:hover {
+  background: #44bdb4;
+  color: #e2e2e2;
+}
+
+#lead:checked + .button-label {
+  background: #2528b5;
+  color: #efefef;
+}
+#lead:checked + .button-label:hover {
+  background: #2528b5;
+  color: #e2e2e2;
+}
+
+#director:checked + .button-label {
+  background: #7940b5;
+  color: #efefef;
+}
+#director:checked + .button-label:hover {
+  background: #7940b5;
+  color: #e2e2e2;
+}
+
+.hidden {
+  display: none;
+}
+
+/* @media (max-width: 40em) {
+  .button-label {
+    padding: 0em 1em 3px;
+    margin: 0.25em;
+  }
+} */
+
+/* ------------------- */
+.addJob__logo {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header__logo-button {
+  width: 116px;
+  height: 40px;
+  background-color: #5bc8d7;
+  border: 2px solid #8b8b8b;
+  box-sizing: border-box;
+  border-radius: 36px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.header__logo-preview {
+  width: 150px;
+  height: 150px;
+  border: 1px solid #8b8b8b;
+}
+
+.addJob__textarea {
+  margin: 0;
+  padding: 0;
+  padding-left: 15px;
+  background: #f2f2e6;
+  border: 2px solid #8b8b8b;
+  height: 285px;
+  width: calc(100% - 19px);
+  border-radius: 10px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.header__submit-button {
+  width: 350px;
+  height: 40px;
+  background-color: #5bc8d7;
+  border: 2px solid #8b8b8b;
+  box-sizing: border-box;
+  border-radius: 36px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
 }

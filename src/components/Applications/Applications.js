@@ -1,4 +1,5 @@
 import Header from "../Header/Header";
+import "./Applications.css";
 // import Promo from "../Promo/Promo";
 // import NavTab from "../NavTab/NavTab";
 // import AboutProject from "../AboutProject/AboutProject";
@@ -11,6 +12,9 @@ function Applications() {
   return (
     <>
       <Header />
+      <section className="applications">
+        <h1>Раздел "Все вакансии" в разработке</h1>
+      </section>
     </>
   );
 }

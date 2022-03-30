@@ -12,10 +12,11 @@ function Header() {
 
   return (
     <section className="header">
-      <div className="header__company">
+      <NavLink to="/" className="header__company">
         <img className="header__logo" src={logo} alt="Логотип"></img>
         <h1 className="header__company-name">CHOICE</h1>
-      </div>
+      </NavLink>
+
       <div className="header__nav">
         <NavLink className={activeButton} to="/applications">
           Все вакансии
