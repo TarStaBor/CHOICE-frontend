@@ -25,7 +25,7 @@
   grid-column: 1;
 }
 
-.addJob__specialization {
+.addJob__position {
   grid-row: 2;
   grid-column: 1;
 }
@@ -48,7 +48,7 @@
   grid-column: 1;
 }
 
-.addJob__comment {
+.addJob__note {
   grid-row: 6;
   grid-column: 1;
 }

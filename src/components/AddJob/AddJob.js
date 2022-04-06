@@ -1,166 +1,113 @@
-import React, { useState, useCallback } from "react";
-import axios from "axios";
-// import { useForm } from "react-hook-form";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "../Header/Header";
-// import shirt from "../../images/logo-black-and-white.png";
-import logo from "../../images/logo-black-and-white.png";
-
+import shirt from "../../images/logo-black-and-white.png";
+import * as Api from "../../utils/Api";
 import "./AddJob.css";
 
 function AddJob() {
-  const [company, setCompany] = useState("");
-  const [specialization, setSpecialization] = useState("");
-  const [level, setLevel] = useState("");
-  const [tag, setTag] = useState("");
-  // const [logo, setLogo] = useState(shirt);
-  const [comment, setComment] = useState("");
-  const [todo, setTodo] = useState("");
-  const [why, setWhy] = useState("");
+  const [data, setData] = useState({
+    company: "",
+    position: "",
+    level: "",
+    tag: "",
+    note: "",
+    todo: "",
+    why: "",
+  });
 
-  const [img, setImg] = useState(null);
-  const [avatar, setAvatar] = useState(logo);
+  function handle(e) {
+    const newdata = { ...data };
 
-  const sendFile = useCallback(async () => {
-    try {
-      const data = new FormData();
-      data.append("avatar", img);
-      await axios
-        .post("http://localhost:3000/upload-avatar", data, {
-          headers: {
-            "content-type": "multipart/form-data",
-          },
-        })
-        .then((res) => {
-          setAvatar(res.data.data.path);
-        });
-    } catch (error) {
-      console.error(error);
+    if (e.target.name === "accept-offers") {
+      newdata.level = e.target.id;
+      console.log("1");
+    } else {
+      newdata[e.target.id] = e.target.value;
+      console.log("2");
     }
-  }, [img]);
-
-  // ----------resolve-reject------------
-
-  // const getData = (url) => {
-  //   new Promise((resolve, reject) => {
-  //     fetch(url)
-  //       .then((response) => response.json())
-  //       .then((json) => resolve(json))
-  //       .catch((error) => reject(error));
-  //   });
-  // };
-
-  // function sendFile() {
-  //   getData("https://jsonplaceholder.typicode.com/todos/1")
-  //     .then((data) => console.log(data))
-  //     .catch((error) => console.log(error.message));
-  // }
-
-  // ----------async-await------------
-
-  // const getData = async (url) => {
-  //   const res = await fetch(url);
-  //   const json = await res.json();
-  //   return json;
-  // };
-
-  // function sendFile() {
-  //   const url = "https://jsonplaceholder.typicode.com/todos/1"
-  //   try {
-  //   const data = await getData(url)
-  //   console.log(data);
-  //   }
-  //   catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }
-
-  // ----------------------
-  function handleCompanyChange(e) {
-    setCompany(e.target.value);
-    console.log(company);
+    setData(newdata);
+    console.log(newdata);
   }
 
-  function handleSpecializationChange(e) {
-    setSpecialization(e.target.value);
-    console.log(specialization);
-  }
+  const [logo, setLogo] = useState();
+  const [preview, setPreview] = useState();
+  const fileInputRef = useRef();
 
-  function handleLevelChange(e) {
-    setLevel(e.target.id);
-    console.log(e.target.id);
-  }
+  useEffect(() => {
+    if (logo) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(logo);
+    } else {
+      setPreview(shirt);
+    }
+  }, [logo]);
 
-  function handleTagChange(e) {
-    setTag(e.target.value);
-    console.log(tag);
-  }
-
-  function handleCommentChange(e) {
-    setComment(e.target.value);
-    console.log(comment);
-  }
-
-  function handleTodoChange(e) {
-    setTodo(e.target.value);
-    console.log(todo);
-  }
-
-  function handleWhyChange(e) {
-    setWhy(e.target.value);
-    console.log(why);
-  }
-
-  function Submite(evt) {
+  function Submit(evt) {
     evt.preventDefault();
-    console.log("Компания: " + company);
-    console.log("Специализация: " + specialization);
-    console.log("Уровень: " + level);
-    console.log("Тэг: " + tag);
-    console.log("Логотип: " + avatar);
-    console.log("Комментарий: " + comment);
-    console.log("Что делать: " + todo);
-    console.log("Почему стоит: " + why);
+    let formData = new FormData();
+    formData.append("company", data.company);
+    formData.append("position", data.position);
+    formData.append("level", data.level);
+    formData.append("tag", data.tag);
+    formData.append("logo", logo);
+    formData.append("note", data.note);
+    formData.append("todo", data.todo);
+    formData.append("why", data.why);
 
-    // handleSubmit(values.email, values.password);
+    Api.addJob(formData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      })
+      .finally(() => {});
   }
+
+  function handleLogoChange(e) {
+    const file = e.target.files[0];
+    if (file && file.type.substr(0, 5) === "image") {
+      setLogo(file);
+    } else {
+      console.log("не картинка");
+    }
+  }
+
   return (
     <>
       <Header />
       <section className="addJob">
-        <form className="addJob__form" onSubmit={Submite}>
+        <form className="addJob__form" onSubmit={Submit}>
           <div className="addJob__company">
             <h2 className="addJob__input-name">Название компании</h2>
             <input
               className="addJob__input"
               type="text"
               name="company"
-              onChange={handleCompanyChange}
+              id="company"
+              onChange={(e) => handle(e)}
               minLength="2"
               maxLength="30"
               required
               autoComplete="off"
-              // disabled={blockInput && "disabled"}
             />
-            {/* <p className={`addJob__error-text ${!errors.email && `addJob__error-text_type_disabled`}`}>
-            {errors.email ? errors.email : "⁣"}
-          </p> */}
           </div>
-          <div className="addJob__specialization">
+          <div className="addJob__position">
             <h2 className="addJob__input-name">Специализация</h2>
             <input
               className="addJob__input"
               type="text"
-              name="specialization"
-              onChange={handleSpecializationChange}
+              name="position"
+              id="position"
+              onChange={(e) => handle(e)}
               minLength="2"
               maxLength="30"
               required
               autoComplete="off"
-              // disabled={blockInput && "disabled"}
             />
-            {/* <p className={`addJob__error-text ${!errors.email && `addJob__error-text_type_disabled`}`}>
-            {errors.email ? errors.email : "⁣"}
-          </p> */}
           </div>
           <div className="addJob__level">
             <h2 className="addJob__input-name">Уровень</h2>
@@ -170,7 +117,7 @@ function AddJob() {
                 id="intern"
                 type="radio"
                 name="accept-offers"
-                onChange={handleLevelChange}
+                onChange={(e) => handle(e)}
               />
               <label className="addJob__button-label" htmlFor="intern">
                 <h1>INTERN</h1>
@@ -180,7 +127,7 @@ function AddJob() {
                 id="junior"
                 type="radio"
                 name="accept-offers"
-                onChange={handleLevelChange}
+                onChange={(e) => handle(e)}
               />
               <label className="addJob__button-label" htmlFor="junior">
                 <h1>JUNIOR</h1>
@@ -190,7 +137,7 @@ function AddJob() {
                 id="middle"
                 type="radio"
                 name="accept-offers"
-                onChange={handleLevelChange}
+                onChange={(e) => handle(e)}
               />
               <label className="addJob__button-label" htmlFor="middle">
                 <h1>MIDDLE</h1>
@@ -200,7 +147,7 @@ function AddJob() {
                 id="senior"
                 type="radio"
                 name="accept-offers"
-                onChange={handleLevelChange}
+                onChange={(e) => handle(e)}
               />
               <label className="addJob__button-label" htmlFor="senior">
                 <h1>SENIOR</h1>
@@ -210,7 +157,7 @@ function AddJob() {
                 id="lead"
                 type="radio"
                 name="accept-offers"
-                onChange={handleLevelChange}
+                onChange={(e) => handle(e)}
               />
               <label className="addJob__button-label" htmlFor="lead">
                 <h1>LEAD</h1>
@@ -220,7 +167,7 @@ function AddJob() {
                 id="director"
                 type="radio"
                 name="accept-offers"
-                onChange={handleLevelChange}
+                onChange={(e) => handle(e)}
               />
               <label className="addJob__button-label" htmlFor="director">
                 <h1>DIRECTOR</h1>
@@ -233,78 +180,58 @@ function AddJob() {
               className="addJob__input"
               type="text"
               name="tag"
-              onChange={handleTagChange}
+              id="tag"
+              onChange={(e) => handle(e)}
               minLength="2"
               maxLength="30"
               required
               autoComplete="off"
-              // disabled={blockInput && "disabled"}
             />
-            {/* <p className={`addJob__error-text ${!errors.email && `addJob__error-text_type_disabled`}`}>
-            {errors.email ? errors.email : "⁣"}
-          </p> */}
           </div>
           <div className="addJob__logo">
-            {/* <button className="addJob__logo-button">Логотип</button> */}
             <label className="addJob__logo-button-label">
               <input
                 type="file"
+                accept="image/*"
+                ref={fileInputRef}
                 className="addJob__logo-button"
-                // name="logo"
-                // accept="image/*"
+                name="logo"
                 required
-                onChange={(e) => {
-                  setImg(e.target.files[0]);
-                  sendFile();
-                }}
+                onChange={handleLogoChange}
               ></input>
               <div className="addJob__logo-button-text">Логотип</div>
             </label>
-            {/* <img className="addJob__logo-preview" src={logo} alt="Логотип"></img> */}
-            {avatar ? (
-              <img className="addJob__logo-preview" src={avatar} alt="Логотип" />
-            ) : (
-              <img className="addJob__logo-preview" src={img} alt="Логотип" />
-            )}
-            <button type="button" className="addJob__logo-button-label" onClick={sendFile}>
-              Просмотр
-            </button>
+            <img className="addJob__logo-preview" src={preview} alt="Логотип" />
           </div>
-          {/* ----------------- */}
-          <div className="addJob__comment">
+
+          <div className="addJob__note">
             <h2 className="addJob__input-name">Комментарий</h2>
             <input
               className="addJob__input"
               type="text"
-              name="comment"
-              onChange={handleCommentChange}
+              name="note"
+              id="note"
+              onChange={(e) => handle(e)}
               minLength="2"
               maxLength="60"
               required
               autoComplete="off"
-              // disabled={blockInput && "disabled"}
             />
-            {/* <p className={`addJob__error-text ${!errors.email && `addJob__error-text_type_disabled`}`}>
-            {errors.email ? errors.email : "⁣"}
-          </p> */}
           </div>
-          {/* ----------------- */}
+
           <div className="addJob__todo">
             <h2 className="addJob__input-name">Что делать:</h2>
             <textarea
               className="addJob__textarea"
               type="text"
               name="todo"
-              onChange={handleTodoChange}
+              id="todo"
+              onChange={(e) => handle(e)}
               minLength="2"
               maxLength="120"
               required
               autoComplete="off"
-              // disabled={blockInput && "disabled"}
             />
-            {/* <p className={`addJob__error-text ${!errors.email && `addJob__error-text_type_disabled`}`}>
-            {errors.email ? errors.email : "⁣"}
-          </p> */}
           </div>
           <div className="addJob__why">
             <h2 className="addJob__input-name">Почему стоит откликнуться:</h2>
@@ -312,16 +239,13 @@ function AddJob() {
               className="addJob__textarea"
               type="text"
               name="why"
-              onChange={handleWhyChange}
+              id="why"
+              onChange={(e) => handle(e)}
               minLength="2"
               maxLength="120"
               required
               autoComplete="off"
-              // disabled={blockInput && "disabled"}
             />
-            {/* <p className={`addJob__error-text ${!errors.email && `addJob__error-text_type_disabled`}`}>
-            {errors.email ? errors.email : "⁣"}
-          </p> */}
           </div>
           {/* ---------------- */}
           <div className="addJob__submit">
