@@ -35,12 +35,13 @@ function AddJob() {
 
   // Валидация загруженного логотипа
   function handleLogoChange(e) {
-    console.log("мы тут");
     const file = e.target.files[0];
     if (file && file.type.substr(0, 5) === "image") {
       setLogo(file);
     } else {
       console.log("не картинка");
+      setPreview(shirt);
+      setLogo("");
     }
     e.target.value = null;
   }
@@ -158,7 +159,7 @@ function AddJob() {
             <AddTags tags={tags} setTags={setTags} />
           </div>
           <div className="addJob__logo">
-            <label className="addJob__logo-button-label">
+            <label className="addJob__logo-button-label link-opacity">
               <input
                 type="file"
                 accept="image/*"
@@ -224,8 +225,10 @@ function AddJob() {
           <div className="addJob__submit">
             <button
               type="submit"
-              className={`addJob__submit-button ${
-                (!isValid || !logo || !tags.length) && "addJob__submit-button_type_disabled"
+              className={` ${
+                !isValid || !logo || !tags.length
+                  ? "addJob__submit-button addJob__submit-button_type_disabled"
+                  : "addJob__submit-button link-opacity"
               }`}
               disabled={(!isValid || !logo || !tags.length) && "disabled"}
             >

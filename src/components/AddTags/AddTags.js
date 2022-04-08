@@ -24,7 +24,6 @@ function AddTags(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userInput);
     addTask(userInput);
     setUserInput("");
   };
