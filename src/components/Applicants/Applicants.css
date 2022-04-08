@@ -1,4 +1,20 @@
 .applicants {
-  margin: 320px auto;
+  font-family: Gotham;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 50px auto;
+  width: calc(100% - 120px);
+  min-height: 300px;
+  background-color: #fff;
+  border-radius: 36px;
+  border: 3px solid #8b8b8b;
+  transition: 0.3s;
   text-align: center;
+}
+
+.applicants__repair {
+  width: 100px;
+  height: 100px;
 }
