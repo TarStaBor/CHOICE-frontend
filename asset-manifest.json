@@ -1,7 +1,8 @@
 {
   "files": {
-    "main.css": "/CHOICE-frontend/static/css/main.991a2ca8.css",
-    "main.js": "/CHOICE-frontend/static/js/main.eb485ab6.js",
+    "main.css": "/CHOICE-frontend/static/css/main.7bf54c24.css",
+    "main.js": "/CHOICE-frontend/static/js/main.4fdf6996.js",
+    "static/media/repair.png": "/CHOICE-frontend/static/media/repair.69f57a31961dd8c53da7.png",
     "static/media/Gotham-BlackItalic.eot": "/CHOICE-frontend/static/media/Gotham-BlackItalic.87b2fe7f18ebe2095fb3.eot",
     "static/media/Gotham-BlackItalic.ttf": "/CHOICE-frontend/static/media/Gotham-BlackItalic.273a16a6992e826a52eb.ttf",
     "static/media/Gotham-XLightItalic.eot": "/CHOICE-frontend/static/media/Gotham-XLightItalic.2c1eca81e6218e82a4db.eot",
@@ -69,12 +70,14 @@
     "static/media/Gotham-Ultra.woff2": "/CHOICE-frontend/static/media/Gotham-Ultra.2bb4580b9d35b0233567.woff2",
     "static/media/Gotham-Bold.woff2": "/CHOICE-frontend/static/media/Gotham-Bold.0d0bf56e1e7f61d4cc10.woff2",
     "index.html": "/CHOICE-frontend/index.html",
+    "static/media/find-arrow.svg": "/CHOICE-frontend/static/media/find-arrow.bd21412b26f9e3fbb633.svg",
     "static/media/cross.svg": "/CHOICE-frontend/static/media/cross.c5ef0db812c95811e8016967d01bff12.svg",
-    "main.991a2ca8.css.map": "/CHOICE-frontend/static/css/main.991a2ca8.css.map",
-    "main.eb485ab6.js.map": "/CHOICE-frontend/static/js/main.eb485ab6.js.map"
+    "static/media/magnifier.svg": "/CHOICE-frontend/static/media/magnifier.907501ee9be4b8e57a174164c080f8a6.svg",
+    "main.7bf54c24.css.map": "/CHOICE-frontend/static/css/main.7bf54c24.css.map",
+    "main.4fdf6996.js.map": "/CHOICE-frontend/static/js/main.4fdf6996.js.map"
   },
   "entrypoints": [
-    "static/css/main.991a2ca8.css",
-    "static/js/main.eb485ab6.js"
+    "static/css/main.7bf54c24.css",
+    "static/js/main.4fdf6996.js"
   ]
 }
