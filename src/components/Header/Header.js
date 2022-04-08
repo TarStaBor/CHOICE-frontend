@@ -8,7 +8,7 @@ function Header() {
   // const pathName = window.location.pathname;
 
   const activeButton = ({ isActive }) =>
-    isActive ? "header__link link-opacity header__link_active" : "header__link link-opacity";
+    isActive ? "header__link link-opacity header__link_type_active" : "header__link link-opacity";
 
   return (
     <section className="header">

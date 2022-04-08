@@ -6,9 +6,8 @@
   background-color: #fff;
   border-radius: 36px;
   border: 3px solid #8b8b8b;
+  transition: 0.3s;
 }
-
-/* ----------------- */
 
 .addJob__form {
   display: grid;
@@ -18,6 +17,7 @@
   max-width: 100%;
   height: 100%;
   text-align: start;
+  transition: 0.3s;
 }
 
 .addJob__company {
@@ -38,6 +38,8 @@
 .addJob__tag {
   grid-row: 4;
   grid-column: 1;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .addJob__logo {
@@ -70,14 +72,13 @@
   grid-column: 2;
 }
 
-/* ----------------- */
-
 .addJob__input-name {
   margin: 0 0 10px;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
+  transition: 0.3s;
 }
 
 .addJob__input {
@@ -91,9 +92,13 @@
   border-radius: 36px;
   font-weight: 500;
   font-size: 20px;
+  line-height: 20px;
+  transition: 0.3s;
 }
 
-/* --------------------- */
+.addJob__input_type_error {
+  color: red;
+}
 
 .addJob__container {
   width: 100%;
@@ -102,6 +107,7 @@
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(2, 25px);
   row-gap: 25px;
+  transition: 0.3s;
 }
 
 .addJob__button-label {
@@ -118,6 +124,7 @@
   -ms-user-select: none;
   user-select: none;
 }
+
 .addJob__button-label h1 {
   margin: 7px 0 0 0;
   text-align: center;
@@ -126,11 +133,13 @@
   font-size: 13px;
   line-height: 13px;
 }
+
 .addJob__button-label:hover {
   background: #d6d6d6;
   color: #101010;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.32);
 }
+
 .addJob__button-label:active {
   transform: translateY(2px);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0px -1px 0 rgba(0, 0, 0, 0.22);
@@ -140,6 +149,7 @@
   background: #45ce1b;
   color: #efefef;
 }
+
 #intern:checked + .addJob__button-label:hover {
   background: #45ce1b;
   color: #e2e2e2;
@@ -149,6 +159,7 @@
   background: #fcce45;
   color: #fff;
 }
+
 #junior:checked + .addJob__button-label:hover {
   background: #fcce45;
   color: #fff;
@@ -167,6 +178,7 @@
   background: #44bdb4;
   color: #efefef;
 }
+
 #senior:checked + .addJob__button-label:hover {
   background: #44bdb4;
   color: #e2e2e2;
@@ -176,6 +188,7 @@
   background: #2528b5;
   color: #efefef;
 }
+
 #lead:checked + .addJob__button-label:hover {
   background: #2528b5;
   color: #e2e2e2;
@@ -185,6 +198,7 @@
   background: #7940b5;
   color: #efefef;
 }
+
 #director:checked + .addJob__button-label:hover {
   background: #7940b5;
   color: #e2e2e2;
@@ -193,8 +207,6 @@
 .addJob__hidden {
   display: none;
 }
-
-/* ------------------- */
 
 .addJob__logo-button-label {
   width: 116px;
@@ -208,7 +220,7 @@
   font-size: 20px;
   line-height: 20px;
   text-align: center;
-  cursor: pointer;
+  transition: 0.3s;
 }
 
 .addJob__logo-button {
@@ -222,13 +234,18 @@
 .addJob__logo-preview {
   width: 150px;
   height: 150px;
-  /* border: 1px solid #8b8b8b; */
   box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+  transition: 0.3s;
+}
+
+.addJob__logo-preview_type_delete {
+  cursor: pointer;
 }
 
 .addJob__textarea {
   margin: 0;
   padding: 0;
+  resize: vertical;
   padding-left: 15px;
   background: #f2f2e6;
   border: 2px solid #8b8b8b;
@@ -252,4 +269,172 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
+  transition: 0.3s;
+}
+
+.addJob__submit-button_type_disabled {
+  background-color: #f8f8f8;
+  color: #c2c2c2;
+  transition: 0.3s;
+}
+
+/* --------------2-------------------- */
+/* --------------2-------------------- */
+/* ---------------2------------------- */
+/* --------------2-------------------- */
+
+@media screen and (max-width: 1279px) {
+  .addJob {
+    width: calc(100% - 60px);
+  }
+  
+  .addJob__form {
+    grid-template-columns: 1fr;
+    gap: 20px 0;
+    margin: 34px 26px;
+  }
+     
+  .addJob__todo {
+    grid-row: 7;
+    grid-column: 1;
+  }
+  
+  .addJob__why {
+    grid-row: 8;
+    grid-column: 1;
+  }
+  
+  .addJob__submit {
+    grid-row: 9;
+    grid-column: 1;
+  }
+  
+  .addJob__input-name {
+    font-size: 18px;
+    line-height: 18px;
+  }
+  
+  .addJob__input {
+
+    padding-left: 20px;
+    width: calc(100% - 25px);
+    border-radius: 36px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+  }
+ 
+  .addJob__container {
+    width: 100%;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(6, 100px);
+    grid-template-rows: repeat(1, 25px);
+    row-gap: 0;
+  }
+   
+  .addJob__textarea {
+    width: calc(100% - 20px);
+  }
+}
+
+/* --------------3-------------------- */
+/* ---------------3------------------- */
+/* ----------------3------------------ */
+/* -----------------3----------------- */
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+
+  .addJob {
+    margin: 25px auto;
+    width: calc(100% - 18px);
+    border-radius: 18px;
+    border: 2px solid #8b8b8b;
+  }
+ 
+  .addJob__form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px 0;
+    margin: 16px 10px;
+  }
+  
+  .addJob__todo {
+    grid-row: 7;
+    grid-column: 1;
+  }
+  
+  .addJob__why {
+    grid-row: 8;
+    grid-column: 1;
+  }
+  
+  .addJob__submit {
+    justify-self:auto;
+    grid-row: 9;
+    grid-column: 1;
+  }
+
+  .addJob__input-name {
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  .addJob__input {
+    margin: 0;
+    padding: 0;
+    padding-left: 13px;
+    border: 1px solid #8b8b8b;
+    height: 28px;
+    width: calc(100% - 15px);
+    border-radius: 36px;
+    font-size: 14px;
+    line-height: 14px;
+  }
+  
+  .addJob__container {
+    width: 100%;
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: repeat(2, 100px);
+    grid-template-rows: repeat(3, 25px);
+    row-gap: 10px;
+  }
+    
+  .addJob__logo {
+flex-direction: column;
+  }
+
+  .addJob__logo-button-label {
+    height: 30px;
+    border: 1px solid #8b8b8b;
+    font-size: 16px;
+    line-height: 16px;
+  }
+  
+  .addJob__logo-button-text {
+    padding-top: 6px;
+  }
+  
+  .addJob__logo-preview {
+    margin-top: 10px;
+    width: 130px;
+    height: 130px;
+  }
+
+  .addJob__textarea {
+    border: 1px solid #8b8b8b;
+    min-height: 150px;
+    width: calc(100% - 17px);
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .addJob__submit-button {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #8b8b8b;
+    font-size: 16px;
+    line-height: 16px;
+  }
 }

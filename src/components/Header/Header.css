@@ -19,11 +19,13 @@
   height: 51px;
   text-decoration: none;
   color: #fff;
+  transition: 0.3s;
 }
 
 .header__logo {
   width: 60px;
   height: 51px;
+  transition: 0.3s;
 }
 
 .header__company-name {
@@ -34,6 +36,7 @@
   font-size: 24px;
   line-height: 24px;
   text-align: center;
+  transition: 0.3s;
 }
 
 .header__nav {
@@ -43,6 +46,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  transition: 0.3s;
 }
 
 .header__link {
@@ -61,11 +65,13 @@
   font-size: 12px;
   line-height: 20px;
   text-align: center;
+  transition: 0.3s;
 }
 
-.header__link_active {
+.header__link_type_active {
   background-color: #43b599;
   font-weight: bold;
+  transition: 0.3s;
 }
 
 .header__link:last-of-type {
