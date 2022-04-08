@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/CHOICE-frontend/static/css/main.991a2ca8.css",
-    "main.js": "/CHOICE-frontend/static/js/main.100a7bbe.js",
+    "main.js": "/CHOICE-frontend/static/js/main.c41739e2.js",
     "static/media/Gotham-BlackItalic.eot": "/CHOICE-frontend/static/media/Gotham-BlackItalic.87b2fe7f18ebe2095fb3.eot",
     "static/media/Gotham-BlackItalic.ttf": "/CHOICE-frontend/static/media/Gotham-BlackItalic.273a16a6992e826a52eb.ttf",
     "static/media/Gotham-XLightItalic.eot": "/CHOICE-frontend/static/media/Gotham-XLightItalic.2c1eca81e6218e82a4db.eot",
@@ -69,12 +69,12 @@
     "static/media/Gotham-Ultra.woff2": "/CHOICE-frontend/static/media/Gotham-Ultra.2bb4580b9d35b0233567.woff2",
     "static/media/Gotham-Bold.woff2": "/CHOICE-frontend/static/media/Gotham-Bold.0d0bf56e1e7f61d4cc10.woff2",
     "index.html": "/CHOICE-frontend/index.html",
-    "static/media/cross.svg": "/CHOICE-frontend/static/media/cross.9b8626f65cf3ea6e78c1b15aed735bc9.svg",
+    "static/media/cross.svg": "/CHOICE-frontend/static/media/cross.c5ef0db812c95811e8016967d01bff12.svg",
     "main.991a2ca8.css.map": "/CHOICE-frontend/static/css/main.991a2ca8.css.map",
-    "main.100a7bbe.js.map": "/CHOICE-frontend/static/js/main.100a7bbe.js.map"
+    "main.c41739e2.js.map": "/CHOICE-frontend/static/js/main.c41739e2.js.map"
   },
   "entrypoints": [
     "static/css/main.991a2ca8.css",
-    "static/js/main.100a7bbe.js"
+    "static/js/main.c41739e2.js"
   ]
 }
