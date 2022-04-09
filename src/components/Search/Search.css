@@ -1,6 +1,6 @@
 .search {
     font-family: Gotham;
-    margin: 50px auto 0;
+    margin: 50px auto 50px;
     width: calc(100% - 120px);
     height: 72px;
     color: #443B3B;
@@ -15,7 +15,6 @@
     background-color: #fff;
     border: 3px #8B8B8B solid;
     border-radius: 36px;
-
   }
  
   .search__magnifier {
@@ -59,7 +58,7 @@
   
   @media screen and (min-width: 320px) and (max-width: 767px) {
     .search {
-        margin: 25px auto 0;
+        margin: 25px auto 15px;
         width: calc(100% - 18px);
         height: 38px;
       }
@@ -73,8 +72,8 @@
      
       .search__magnifier {
         margin-left: 12px;
-        min-width: 14px;
-        min-height: 9px;
+        min-width: 12px;
+        min-height: 8px;
       }
       
       .search__search-input {
