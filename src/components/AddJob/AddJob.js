@@ -196,6 +196,7 @@ function AddJob() {
           <div className="addJob__todo">
             <h2 className="addJob__input-name">Что делать:</h2>
             <textarea
+              wrap="virtual"
               className={`addJob__textarea ${errors.todo && "addJob__input_type_error"}`}
               type="text"
               name="todo"
@@ -210,6 +211,7 @@ function AddJob() {
           <div className="addJob__why">
             <h2 className="addJob__input-name">Почему стоит откликнуться:</h2>
             <textarea
+              wraw
               className={`addJob__textarea ${errors.why && "addJob__input_type_error"}`}
               type="text"
               name="why"

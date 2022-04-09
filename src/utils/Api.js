@@ -2,14 +2,15 @@ import axios from "axios";
 export const BASE_URL = "http://localhost:3000";
 
 // метод обработки ответа сервера
-// async function getResponseData(result) {
-//   const res = await result.json();
-//   if (result.ok) {
-//     return res;
-//   } else {
-//     return Promise.reject(res);
-//   }
-// }
+async function getResponseData(result) {
+  console.log(result);
+  const res = await result.json();
+  if (result.ok) {
+    return res;
+  } else {
+    return Promise.reject(res);
+  }
+}
 
 // export const addJob = (data) => {
 //   // for (let key of data.keys()) {
@@ -55,11 +56,38 @@ export const addJob = async (data) => {
         },
       })
       .then((res) => {
-        console.log(res);
+        return getResponseData(res);
       });
   } catch (error) {
     console.error(error);
   }
+};
+
+// export const getJobs = async () => {
+//   try {
+//     await axios.get(`${BASE_URL}/jobs`).then((res) => {
+//       console.log(res);
+//       return res;
+//     });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+export const getJobs = () => {
+  return fetch(`${BASE_URL}/jobs`, {
+    method: "GET",
+    // credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return getResponseData(response);
+    })
+    .then((data) => {
+      return data;
+    });
 };
 
 // //Авторизация
