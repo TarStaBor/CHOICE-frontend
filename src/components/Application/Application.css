@@ -157,7 +157,7 @@
     transition: 0.3s;
 }
 
-  .application__label {
+  .application__level {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -172,6 +172,43 @@
     font-size: 13px;
     transition: 0.3s;
   }
+
+  .application__level_type_intern {
+    background: #45ce1b;
+  }
+ 
+  .application__level_type_junior {
+    background: #fcce45;
+  }
+
+  .application__level_type_middle {
+    background: #f25949;
+  }
+ 
+  .application__level_type_senior {
+    background: #44bdb4;
+  }
+
+  .application__level_type_lead {
+    background: #2528b5;
+  }
+
+  .application__level_type_director {
+    background: #7940b5;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   .application__tag {
     display: flex;
@@ -221,7 +258,7 @@
         height: 80px;
       }
     
-      .application__label {
+      .application__level {
         width: 80px;
         font-size: 10px;
         line-height: 10px; 

@@ -1,9 +1,12 @@
 // import React, { useState } from "react";
 import "./Application.css";
 import applicantsLogo from "../../images/applicants.svg";
+import levelStyle from "../../utils/LevelStyle";
 
 function Application(props) {
   const { company, level, logo, note, position, tag, todo, why, _id, applicants } = props.job;
+  const levelColor = levelStyle(level);
+
   return (
     <>
       <section className="application">
@@ -20,11 +23,11 @@ function Application(props) {
               <h2 className="application__note">{note}</h2>
               <h2 className="application__name">{company}</h2>
               <div className="application__tags">
-                <h1 className="application__label">{level.toUpperCase()}</h1>
+                <h1 className={`application__level ${levelColor}`}>{level.toUpperCase()}</h1>
                 {tag.map((t, i) => {
                   return (
                     <div key={i} className="application__tag">
-                      {t}
+                      {t.toUpperCase()}
                     </div>
                   );
                 })}
