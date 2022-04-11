@@ -27,6 +27,9 @@ function Header() {
         <NavLink className={activeButton} to="/add-job">
           Новая вакансия
         </NavLink>
+        <NavLink className={activeButton} to="/applicant">
+          Форма заявки
+        </NavLink>
       </div>
     </section>
   );

@@ -90,6 +90,21 @@ export const getJobs = () => {
     });
 };
 
+export const delJob = (_id) => {
+  return fetch(`${BASE_URL}/jobs/${_id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return getResponseData(response);
+    })
+    .then((data) => {
+      return data;
+    });
+};
+
 // //Авторизация
 
 // export const authorize = (email, password) => {

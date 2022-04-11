@@ -10,11 +10,8 @@ function Applicants() {
   return (
     <>
       <Header />
-      <Search searchValue={searchValue} setSearchValue={setSearchValue} />
-      <section className="applicants">
-        <h1>Раздел "Отклики" в разработке</h1>
-        <img className="applicants__repair" src={repair} alt="repair"></img>
-      </section>
+
+      <section className="applicants"></section>
     </>
   );
 }

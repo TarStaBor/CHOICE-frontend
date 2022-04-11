@@ -10,6 +10,8 @@ export default function levelStyle(level) {
       ? "application__level_type_senior"
       : level === "lead"
       ? "application__level_type_lead"
-      : "application__level_type_director";
+      : level === "lead"
+      ? "application__level_type_director"
+      : "";
   return levelStyle;
 }

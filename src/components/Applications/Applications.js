@@ -19,12 +19,25 @@ function Applications() {
       .finally(() => {});
   }, []);
 
+  function delJob(_id) {
+    console.log("сейчас будет удаление");
+    Api.delJob(_id)
+      .then((res) => {
+        console.log(res);
+        setData(data.filter((card) => card._id !== _id));
+      })
+      .catch((err) => {
+        console.log(err.message);
+      })
+      .finally(() => {});
+  }
+
   return (
     <>
       <Header />
       <Search searchValue={searchValue} setSearchValue={setSearchValue} />
       {data.map((job) => {
-        return <Application key={job._id} job={job} />;
+        return <Application key={job._id} job={job} delJob={delJob} />;
       })}
     </>
   );
