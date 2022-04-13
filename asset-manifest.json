@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/CHOICE-frontend/static/css/main.f9ac6ce1.css",
-    "main.js": "/CHOICE-frontend/static/js/main.b65a5619.js",
+    "main.css": "/CHOICE-frontend/static/css/main.7ae96605.css",
+    "main.js": "/CHOICE-frontend/static/js/main.6bbe5415.js",
     "static/media/repair.png": "/CHOICE-frontend/static/media/repair.69f57a31961dd8c53da7.png",
     "static/media/Gotham-BlackItalic.eot": "/CHOICE-frontend/static/media/Gotham-BlackItalic.87b2fe7f18ebe2095fb3.eot",
     "static/media/Gotham-BlackItalic.ttf": "/CHOICE-frontend/static/media/Gotham-BlackItalic.273a16a6992e826a52eb.ttf",
@@ -40,7 +40,6 @@
     "static/media/Gotham-BlackItalic.woff": "/CHOICE-frontend/static/media/Gotham-BlackItalic.9956e409cdfe9029986b.woff",
     "static/media/Gotham-BookItalic.woff": "/CHOICE-frontend/static/media/Gotham-BookItalic.57c95afc367ff9b927b5.woff",
     "static/media/Gotham-MediumItalic.woff": "/CHOICE-frontend/static/media/Gotham-MediumItalic.aeab7fc20d15af97ac6f.woff",
-    "static/media/FuryLion.png": "/CHOICE-frontend/static/media/FuryLion.f56f2c37330035e8b262.png",
     "static/media/Gotham-XLightItalic.woff": "/CHOICE-frontend/static/media/Gotham-XLightItalic.79798f62a905911ad7a6.woff",
     "static/media/Gotham-UltraItalic.woff": "/CHOICE-frontend/static/media/Gotham-UltraItalic.47b2c2f9d45bbd7aa24b.woff",
     "static/media/Gotham-ThinItalic.woff": "/CHOICE-frontend/static/media/Gotham-ThinItalic.39643b6bc334fe676568.woff",
@@ -73,13 +72,14 @@
     "static/media/applicants.svg": "/CHOICE-frontend/static/media/applicants.1680c3df6ca68e7e77be47b2adcdaf32.svg",
     "index.html": "/CHOICE-frontend/index.html",
     "static/media/find-arrow.svg": "/CHOICE-frontend/static/media/find-arrow.bd21412b26f9e3fbb633.svg",
+    "static/media/delete.svg": "/CHOICE-frontend/static/media/delete.304e03456f5bcf21295d92b62ca0379e.svg",
     "static/media/cross.svg": "/CHOICE-frontend/static/media/cross.c5ef0db812c95811e8016967d01bff12.svg",
     "static/media/magnifier.svg": "/CHOICE-frontend/static/media/magnifier.907501ee9be4b8e57a174164c080f8a6.svg",
-    "main.f9ac6ce1.css.map": "/CHOICE-frontend/static/css/main.f9ac6ce1.css.map",
-    "main.b65a5619.js.map": "/CHOICE-frontend/static/js/main.b65a5619.js.map"
+    "main.7ae96605.css.map": "/CHOICE-frontend/static/css/main.7ae96605.css.map",
+    "main.6bbe5415.js.map": "/CHOICE-frontend/static/js/main.6bbe5415.js.map"
   },
   "entrypoints": [
-    "static/css/main.f9ac6ce1.css",
-    "static/js/main.b65a5619.js"
+    "static/css/main.7ae96605.css",
+    "static/js/main.6bbe5415.js"
   ]
 }
