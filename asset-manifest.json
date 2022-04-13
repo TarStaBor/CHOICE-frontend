@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/CHOICE-frontend/static/css/main.7ae96605.css",
-    "main.js": "/CHOICE-frontend/static/js/main.6bbe5415.js",
+    "main.css": "/CHOICE-frontend/static/css/main.1c7a437d.css",
+    "main.js": "/CHOICE-frontend/static/js/main.d66cc22f.js",
     "static/media/repair.png": "/CHOICE-frontend/static/media/repair.69f57a31961dd8c53da7.png",
     "static/media/Gotham-BlackItalic.eot": "/CHOICE-frontend/static/media/Gotham-BlackItalic.87b2fe7f18ebe2095fb3.eot",
     "static/media/Gotham-BlackItalic.ttf": "/CHOICE-frontend/static/media/Gotham-BlackItalic.273a16a6992e826a52eb.ttf",
@@ -75,11 +75,11 @@
     "static/media/delete.svg": "/CHOICE-frontend/static/media/delete.304e03456f5bcf21295d92b62ca0379e.svg",
     "static/media/cross.svg": "/CHOICE-frontend/static/media/cross.c5ef0db812c95811e8016967d01bff12.svg",
     "static/media/magnifier.svg": "/CHOICE-frontend/static/media/magnifier.907501ee9be4b8e57a174164c080f8a6.svg",
-    "main.7ae96605.css.map": "/CHOICE-frontend/static/css/main.7ae96605.css.map",
-    "main.6bbe5415.js.map": "/CHOICE-frontend/static/js/main.6bbe5415.js.map"
+    "main.1c7a437d.css.map": "/CHOICE-frontend/static/css/main.1c7a437d.css.map",
+    "main.d66cc22f.js.map": "/CHOICE-frontend/static/js/main.d66cc22f.js.map"
   },
   "entrypoints": [
-    "static/css/main.7ae96605.css",
-    "static/js/main.6bbe5415.js"
+    "static/css/main.1c7a437d.css",
+    "static/js/main.d66cc22f.js"
   ]
 }
