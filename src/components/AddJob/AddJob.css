@@ -287,35 +287,34 @@
   .addJob {
     width: calc(100% - 60px);
   }
-  
+
   .addJob__form {
     grid-template-columns: 1fr;
     gap: 20px 0;
     margin: 34px 26px;
   }
-     
+
   .addJob__todo {
     grid-row: 7;
     grid-column: 1;
   }
-  
+
   .addJob__why {
     grid-row: 8;
     grid-column: 1;
   }
-  
+
   .addJob__submit {
     grid-row: 9;
     grid-column: 1;
   }
-  
+
   .addJob__input-name {
     font-size: 18px;
     line-height: 18px;
   }
-  
-  .addJob__input {
 
+  .addJob__input {
     padding-left: 20px;
     width: calc(100% - 25px);
     border-radius: 36px;
@@ -323,7 +322,7 @@
     font-size: 18px;
     line-height: 18px;
   }
- 
+
   .addJob__container {
     width: 100%;
     display: grid;
@@ -332,7 +331,7 @@
     grid-template-rows: repeat(1, 25px);
     row-gap: 0;
   }
-   
+
   .addJob__textarea {
     width: calc(100% - 20px);
   }
@@ -344,33 +343,32 @@
 /* -----------------3----------------- */
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
-
   .addJob {
     margin: 25px auto;
     width: calc(100% - 18px);
     border-radius: 18px;
     border: 2px solid #8b8b8b;
   }
- 
+
   .addJob__form {
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px 0;
     margin: 16px 10px;
   }
-  
+
   .addJob__todo {
     grid-row: 7;
     grid-column: 1;
   }
-  
+
   .addJob__why {
     grid-row: 8;
     grid-column: 1;
   }
-  
+
   .addJob__submit {
-    justify-self:auto;
+    justify-self: auto;
     grid-row: 9;
     grid-column: 1;
   }
@@ -391,7 +389,7 @@
     font-size: 14px;
     line-height: 14px;
   }
-  
+
   .addJob__container {
     width: 100%;
     display: grid;
@@ -400,9 +398,9 @@
     grid-template-rows: repeat(3, 25px);
     row-gap: 10px;
   }
-    
+
   .addJob__logo {
-flex-direction: column;
+    flex-direction: column;
   }
 
   .addJob__logo-button-label {
@@ -411,11 +409,11 @@ flex-direction: column;
     font-size: 16px;
     line-height: 16px;
   }
-  
+
   .addJob__logo-button-text {
     padding-top: 6px;
   }
-  
+
   .addJob__logo-preview {
     margin-top: 10px;
     width: 130px;

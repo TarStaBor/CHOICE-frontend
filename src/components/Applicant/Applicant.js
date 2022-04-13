@@ -33,7 +33,7 @@ function Applicant() {
                 name="logo"
                 // onChange={handleLogoChange}
               ></input>
-              <div className="addJob__logo-button-text">Загрузить</div>
+              Загрузить
             </label>
           </div>
           <div className="applicant__link">
@@ -41,26 +41,27 @@ function Applicant() {
             <input type="text" className="applicant__link-input"></input>
           </div>
           <div className="applicant__policy">
-            <input className="applicant__policy" type="checkbox" id="policy" />
-            <label className="applicant__policy_type_agree" htmlFor="policy">
-              Согласен с
+            <input className="applicant__policy-input" type="checkbox" id="html" />
+            <label className="applicant__policy-label" htmlFor="html">
+              <span>Согласен с </span>
               <a href="#" className="applicant__policy_type_link">
                 политикой обработки персональных данных
               </a>
             </label>
           </div>
-
-          <button
-            type="submit"
-            className={` ${
-              !isValid
-                ? "applicant__submit-button applicant__submit-button_type_disabled"
-                : "applicant__submit-button link-opacity"
-            }`}
-            disabled={!isValid && "disabled"}
-          >
-            Откликнуться
-          </button>
+          <div className="applicant__submit">
+            <button
+              type="submit"
+              className={` ${
+                !isValid
+                  ? "applicant__submit-button applicant__submit-button_type_disabled"
+                  : "applicant__submit-button link-opacity"
+              }`}
+              disabled={!isValid && "disabled"}
+            >
+              Откликнуться
+            </button>
+          </div>
         </form>
       </div>
     </>
