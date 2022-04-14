@@ -90,6 +90,22 @@ export const getJobs = () => {
     });
 };
 
+export const getJobById = (_id) => {
+  return fetch(`${BASE_URL}/jobs/${_id}`, {
+    method: "GET",
+    // credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return getResponseData(response);
+    })
+    .then((data) => {
+      return data;
+    });
+};
+
 export const delJob = (_id) => {
   return fetch(`${BASE_URL}/jobs/${_id}`, {
     method: "DELETE",

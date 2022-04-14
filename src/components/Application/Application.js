@@ -4,6 +4,7 @@ import applicantsLogo from "../../images/applicants.svg";
 import deleteLogo from "../../images/delete.svg";
 import levelStyle from "../../utils/LevelStyle";
 import copy from "../../images/copy.png";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 function Application(props) {
   const { company, level, logo, note, position, tag, todo, why, _id, applicants } = props.job;
@@ -11,22 +12,17 @@ function Application(props) {
 
   const levelColor = levelStyle(level);
 
-  function copyJob() {}
-
   return (
     <>
       <section className="application">
         <div className="application__sections">
           <div className="application__header">
             <h2 className="application__id">ID: {_id}</h2>
-            <div
-              className="application__copy-button"
-              onClick={() => {
-                copyJob(_id);
-              }}
-            >
-              <img className="application__copy-logo link-opacity" src={copy} alt="Удалить"></img>
-            </div>
+            <CopyToClipboard text={`http://localhost:3005/applicant/${_id}`}>
+              <div className="application__copy-button">
+                <img className="application__copy-logo link-opacity" src={copy} alt="Скопировать ссылку"></img>
+              </div>
+            </CopyToClipboard>
             <div
               className="application__delete-button"
               onClick={() => {

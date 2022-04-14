@@ -11,8 +11,8 @@
 .applicant__sections {
   box-sizing: border-box;
   width: 100%;
-  margin: 80px 100px;
-  padding: 50px 50px;
+  margin: 70px 100px;
+  padding: 40px 50px;
   display: grid;
   justify-content: space-between;
   align-content: center;
@@ -40,14 +40,14 @@
   font-weight: 700;
   font-size: 34px;
   line-height: 34px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   transition: 0.3s;
 }
 
 .applicant__logo {
-  width: 250px;
-  height: 250px;
-  margin-bottom: 40px;
+  width: 230px;
+  height: 230px;
+  margin-bottom: 30px;
   transition: 0.3s;
 }
 
@@ -56,7 +56,7 @@
   font-weight: 500;
   font-size: 28px;
   line-height: 28px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   transition: 0.3s;
 }
 
@@ -76,7 +76,7 @@
   align-items: center;
   justify-content: center;
   color: #fff;
-  height: 50px;
+  height: 40px;
   padding: 0 20px 0 20px;
   min-width: 200px;
   border-radius: 25px;
@@ -84,7 +84,7 @@
   font-weight: 600;
   font-size: 24px;
   line-height: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   transition: 0.3s;
 }
 
@@ -119,7 +119,7 @@
   justify-content: center;
   background: #fff;
   border: 3px solid #8b8b8b;
-  height: 50px;
+  height: 40px;
   padding: 0 10px 0 10px;
   width: 200px;
   border-radius: 25px;
@@ -177,6 +177,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.applicant__check {
+  width: 40px;
+  height: 40px;
 }
 
 .applicant__link {
@@ -243,7 +248,7 @@
 .applicant__policy-label:before {
   content: "";
   -webkit-appearance: none;
-  border: 2px solid #0079bf;
+  border: 2px solid #5bc8d7;
   box-sizing: border-box;
   border-radius: 6px;
   padding: 10px;
@@ -307,7 +312,7 @@
     column-gap: 60px;
     align-content: space-around;
     padding: 40px 40px;
-    margin: 80px 60px;
+    margin: 70px 60px;
   }
 
   .applicant__company {
@@ -339,6 +344,14 @@
     grid-column: 2;
     justify-content: flex-end;
     margin-bottom: 50px;
+  }
+
+  .applicant__level {
+    height: 50px;
+  }
+
+  .applicant__tag {
+    height: 50px;
   }
 
   .applicant__resume {
@@ -450,14 +463,14 @@
   .applicant__resume {
     grid-row: 3;
     grid-column: 1;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-bottom: 20px;
   }
 
   .applicant__resume-title {
     font-size: 13px;
     line-height: 13px;
-    margin-right: 0;
+    margin-right: 20px;
   }
 
   .applicant__resume-button-label {
@@ -467,6 +480,11 @@
     border-radius: 16px;
     font-size: 12px;
     line-height: 12px;
+  }
+
+  .applicant__check {
+    width: 20px;
+    height: 20px;
   }
 
   .applicant__link {

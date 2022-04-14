@@ -10,7 +10,7 @@ export function Validation() {
   const handleChange = (event) => {
     const target = event.target;
     const name = target.name;
-    const value = target.value;
+    const value = target.type === "checkbox" ? target.checked : target.value;
     setValues({ ...values, [name]: value });
     setErrors({ ...errors, [name]: target.validationMessage });
     setIsValid(target.closest("form").checkValidity());
