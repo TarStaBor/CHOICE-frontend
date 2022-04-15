@@ -62,12 +62,25 @@ function Applicant() {
   function Submit(evt) {
     evt.preventDefault();
     let formData = new FormData();
+    let date = new Date().toLocaleString();
     formData.append("resume", resume);
     formData.append("link", link);
+    formData.append("date", date);
+    formData.append("company", data.company);
+    formData.append("jobId", _id);
 
     for (let key of formData.keys()) {
       console.log(key, formData.get(key));
     }
+
+    Api.addApplicant(formData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      })
+      .finally(() => {});
   }
 
   return (

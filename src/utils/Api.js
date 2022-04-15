@@ -3,7 +3,7 @@ export const BASE_URL = "http://localhost:3000";
 
 // метод обработки ответа сервера
 async function getResponseData(result) {
-  console.log(result);
+  // console.log(result);
   const res = await result.json();
   if (result.ok) {
     return res;
@@ -49,14 +49,50 @@ export const addJob = async (data) => {
   try {
     // const data = { formData };
 
-    await axios
+    return await axios
       .post(`${BASE_URL}/jobs`, data, {
         headers: {
           "content-type": "multipart/form-data",
         },
       })
       .then((res) => {
-        return getResponseData(res);
+        return res.data;
+      });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// // Пробный через fetch
+// export const addJob = (data) => {
+//   return fetch(`${BASE_URL}/jobs`, {
+//     method: "POST",
+//     headers: {
+//       "content-type": "multipart/form-data",
+//     },
+//     body: data,
+//   })
+//     .then((response) => {
+//       console.log(response.data);
+//       return getResponseData(response);
+//     })
+//     .then((data) => {
+//       return data;
+//     });
+// };
+
+export const addApplicant = async (data) => {
+  try {
+    // const data = { formData };
+
+    await axios
+      .post(`${BASE_URL}/applicants`, data, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        return res;
       });
   } catch (error) {
     console.error(error);
@@ -109,6 +145,21 @@ export const getJobById = (_id) => {
 export const delJob = (_id) => {
   return fetch(`${BASE_URL}/jobs/${_id}`, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return getResponseData(response);
+    })
+    .then((data) => {
+      return data;
+    });
+};
+
+export const getApplicantsCount = (jobId) => {
+  return fetch(`${BASE_URL}/applicants/${jobId}`, {
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
     },

@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Header from "../Header/Header";
 import shirt from "../../images/logo-black-and-white.png";
-
-import * as Api from "../../utils/Api";
 import "./AddJob.css";
 import { Validation } from "../../utils/Validation";
 import AddTags from "../AddTags/AddTags";
 
-function AddJob() {
+function AddJob(props) {
+  const { handleCreateJob } = props;
   const { values, handleChange, errors, isValid } = Validation();
   const [level, setLevel] = useState("intern");
   const [logo, setLogo] = useState();
@@ -68,15 +67,7 @@ function AddJob() {
     // for (let key of formData.keys()) {
     //   console.log(key, formData.get(key));
     // }
-
-    Api.addJob(formData)
-      .then((res) => {
-        // console.log(res);
-      })
-      .catch((err) => {
-        // console.log(err.message);
-      })
-      .finally(() => {});
+    handleCreateJob(formData);
   }
 
   return (

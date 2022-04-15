@@ -1,14 +1,27 @@
-// import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Application.css";
 import applicantsLogo from "../../images/applicants.svg";
 import deleteLogo from "../../images/delete.svg";
 import levelStyle from "../../utils/LevelStyle";
 import copy from "../../images/copy.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import * as Api from "../../utils/Api";
 
 function Application(props) {
-  const { company, level, logo, note, position, tag, todo, why, _id, applicants } = props.job;
+  const { company, level, logo, note, position, tag, todo, why, _id } = props.job;
   const delJob = props.delJob;
+  const [applicantsCount, setApplicantsCount] = useState("0");
+
+  useEffect(() => {
+    Api.getApplicantsCount(_id)
+      .then((res) => {
+        setApplicantsCount(res);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      })
+      .finally(() => {});
+  }, [_id]);
 
   const levelColor = levelStyle(level);
 
@@ -38,7 +51,7 @@ function Application(props) {
               <img className="application__logo" src={`http://${logo}`} alt="Лого компании"></img>
               <div className="application__applicants">
                 <img className="application__applicants-logo" src={applicantsLogo} alt="Отозвалось"></img>
-                <p className="application__applicants-count">{applicants}</p>
+                <p className="application__applicants-count">{applicantsCount}</p>
               </div>
               <h2 className="application__note">{note}</h2>
               <h2 className="application__name">{company}</h2>
