@@ -81,7 +81,7 @@ export const addJob = async (data) => {
 //     });
 // };
 
-export const addApplicant = async (data) => {
+export const addResponse = async (data) => {
   try {
     // const data = { formData };
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Applicants.css";
 import Header from "../Header/Header";
 import Search from "../Search/Search";
-import repair from "../../images/repair.png";
+import Applicant from "../Applicant/Applicant";
 
 function Applicants() {
   const [searchValue, setSearchValue] = useState("");
@@ -10,8 +10,8 @@ function Applicants() {
   return (
     <>
       <Header />
-
-      <section className="applicants"></section>
+      <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+      <Applicant />
     </>
   );
 }

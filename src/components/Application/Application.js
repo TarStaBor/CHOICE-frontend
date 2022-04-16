@@ -31,7 +31,7 @@ function Application(props) {
         <div className="application__sections">
           <div className="application__header">
             <h2 className="application__id">ID: {_id}</h2>
-            <CopyToClipboard text={`http://localhost:3005/applicant/${_id}`}>
+            <CopyToClipboard text={`http://localhost:3005/response/${_id}`}>
               <div className="application__copy-button">
                 <img className="application__copy-logo link-opacity" src={copy} alt="Скопировать ссылку"></img>
               </div>

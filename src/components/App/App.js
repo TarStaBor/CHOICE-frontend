@@ -6,7 +6,7 @@ import Main from "../Main/Main";
 import Applications from "../Applications/Applications";
 import Applicants from "../Applicants/Applicants";
 import AddJob from "../AddJob/AddJob";
-import Applicant from "../Applicant/Applicant";
+import Response from "../Response/Response";
 import * as Api from "../../utils/Api";
 
 function App() {
@@ -57,7 +57,7 @@ function App() {
         <Route path="/applications" element={<Applications data={data} setData={setData} delJob={delJob} />} />
         <Route path="/applicants" element={<Applicants />} />
         <Route path="/add-job" element={<AddJob handleCreateJob={handleCreateJob} />} />
-        <Route path="/applicant/:_id" element={<Applicant />} />
+        <Route path="/response/:_id" element={<Response />} />
       </Routes>
     </section>
   );
