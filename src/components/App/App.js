@@ -11,13 +11,25 @@ import * as Api from "../../utils/Api";
 
 function App() {
   const [data, setData] = useState([]);
+  const [applicantsData, setApplicantsData] = useState([]);
   const navigate = useNavigate();
-
   //Получение всех вакансий
   useEffect(() => {
     Api.getJobs()
       .then((res) => {
         setData(res);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      })
+      .finally(() => {});
+  }, []);
+
+  //Получение всех откликов
+  useEffect(() => {
+    Api.getApplicants()
+      .then((res) => {
+        setApplicantsData(res);
       })
       .catch((err) => {
         console.log(err.message);
@@ -55,7 +67,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/applications" element={<Applications data={data} setData={setData} delJob={delJob} />} />
-        <Route path="/applicants" element={<Applicants />} />
+        <Route
+          path="/applicants"
+          element={<Applicants applicantsData={applicantsData} setApplicantsData={setApplicantsData} />}
+        />
         <Route path="/add-job" element={<AddJob handleCreateJob={handleCreateJob} />} />
         <Route path="/response/:_id" element={<Response />} />
       </Routes>
