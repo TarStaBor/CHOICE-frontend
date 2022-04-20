@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./Applicant.css";
-import applicantsLogo from "../../images/applicants.svg";
 import deleteLogo from "../../images/delete.svg";
-import levelStyle from "../../utils/LevelStyle";
 import copy from "../../images/copy.png";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import * as Api from "../../utils/Api";
 
 function Applicant(props) {
   const { comment, company, date, job, link, resume, _id } = props.applicant;
-
+  const delApplicant = props.delApplicant;
   function handleDownloadFile() {
-    Api.downloadFile(resume, _id, date)
+    Api.downloadFile(resume, _id, company, job)
       .then((res) => {
         console.log(res);
       })
@@ -24,9 +22,6 @@ function Applicant(props) {
   return (
     <>
       <section className="applicant">
-        {/* <a href={`http://${resume}`} download="sdsd">
-          Download
-        </a> */}
         <div className="applicant__sections">
           <div className="applicant__card">
             <div className="applicant__id">
@@ -44,22 +39,23 @@ function Applicant(props) {
               <div className="applicant__comment-field">{comment}</div>
             </div>
             <div className="applicant__download">
-              <label className="applicant__download-button link-opacity" onClick={handleDownloadFile}>
-                {/* <input
-                    type="file"
-                    accept=".doc, .docx, .pdf, .ppt, .pptx, .jpeg, .jpg, .png, .zip, .7z"
-                    ref={fileInputRef}
-                    className="response__resume-button"
-                    name="logo"
-                    onChange={handleResumeChange}
-                  ></input> */}
+              <button
+                className={`${
+                  resume
+                    ? "applicant__download-button link-opacity"
+                    : "applicant__download-button applicant__download-button_type_disabled"
+                }`}
+                onClick={handleDownloadFile}
+                disabled={resume ? "" : "disabled"}
+              >
                 Скачать CV
-              </label>
+              </button>
             </div>
 
             <CopyToClipboard text={link}>
               <div className="applicant__link">
                 <h2 className="applicant__title">Ссылка:</h2>
+
                 <div className="applicant__link-control">
                   <div className="applicant__field">{link}</div>
                   <div className="applicant__copy-button">
@@ -71,9 +67,9 @@ function Applicant(props) {
           </div>
           <div
             className="applicant__delete-button"
-            //   onClick={() => {
-            //     delJob(_id);
-            //   }}
+            onClick={() => {
+              delApplicant(_id);
+            }}
           >
             <img className="applicant__delete-logo" src={deleteLogo} alt="Удалить"></img>
           </div>

@@ -1,18 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
-import Header from "../Header/Header";
-import shirt from "../../images/logo-black-and-white.png";
 import "./AddJob.css";
 import { Validation } from "../../utils/Validation";
+import Header from "../Header/Header";
 import AddTags from "../AddTags/AddTags";
+import Footer from "../Footer/Footer";
+import shirt from "../../images/logo-black-and-white.png";
 
 function AddJob(props) {
   const { handleCreateJob } = props;
+  // Валидация
   const { values, handleChange, errors, isValid } = Validation();
+  // Стейт уровня соискателя
   const [level, setLevel] = useState("intern");
+  // Стейт файла логотипа компании
   const [logo, setLogo] = useState();
+  // Стейт предварительного просмотра логотипа компании
   const [preview, setPreview] = useState();
   const fileInputRef = useRef();
+  // Стейт массива тэгов.
   const [tags, setTags] = useState([]);
+  console.log(values.tags);
 
   // Отображение логотипа при загрузке файла
   useEffect(() => {
@@ -27,11 +34,6 @@ function AddJob(props) {
     }
   }, [logo]);
 
-  function handleRemoveLogo(e) {
-    setPreview(shirt);
-    setLogo("");
-  }
-
   // Валидация загруженного логотипа
   function handleLogoChange(e) {
     const file = e.target.files[0];
@@ -45,7 +47,14 @@ function AddJob(props) {
     e.target.value = null;
   }
 
-  function handle(e) {
+  // Функция удаления логотипа
+  function handleRemoveLogo() {
+    setPreview(shirt);
+    setLogo("");
+  }
+
+  // Функция изменения уровня соискателя
+  function handleChangeLevel(e) {
     setLevel(e.target.id);
   }
 
@@ -63,10 +72,6 @@ function AddJob(props) {
     formData.append("note", values.note);
     formData.append("todo", values.todo);
     formData.append("why", values.why);
-
-    // for (let key of formData.keys()) {
-    //   console.log(key, formData.get(key));
-    // }
     handleCreateJob(formData);
   }
 
@@ -76,7 +81,7 @@ function AddJob(props) {
       <section className="addJob">
         <form className="addJob__form" onSubmit={Submit}>
           <div className="addJob__company">
-            <h2 className="addJob__input-name">Название компании</h2>
+            <p className="addJob__input-name">Название компании</p>
             <input
               className={`addJob__input ${errors.company && "addJob__input_type_error"}`}
               type="text"
@@ -88,9 +93,10 @@ function AddJob(props) {
               required
               autoComplete="off"
             />
+            <span className="addJob__error-message">{errors.company}</span>
           </div>
           <div className="addJob__position">
-            <h2 className="addJob__input-name">Специализация</h2>
+            <p className="addJob__input-name">Специализация</p>
             <input
               className={`addJob__input ${errors.position && "addJob__input_type_error"}`}
               type="text"
@@ -102,46 +108,41 @@ function AddJob(props) {
               required
               autoComplete="off"
             />
+            <span className="addJob__error-message">{errors.position}</span>
           </div>
           <div className="addJob__level">
-            <h2 className="addJob__input-name">Уровень</h2>
+            <p className="addJob__input-name">Уровень</p>
             <div className="addJob__container">
               <input
                 className="addJob__hidden"
                 id="intern"
                 type="radio"
-                name="accept-offers"
-                onChange={handle}
+                name="level"
+                onChange={handleChangeLevel}
                 defaultChecked
               />
               <label className="addJob__button-label" htmlFor="intern">
-                <h1>INTERN</h1>
+                <p>INTERN</p>
               </label>
-              <input className="addJob__hidden" id="junior" type="radio" name="accept-offers" onChange={handle} />
+              <input className="addJob__hidden" id="junior" type="radio" name="level" onChange={handleChangeLevel} />
               <label className="addJob__button-label" htmlFor="junior">
-                <h1>JUNIOR</h1>
+                <p>JUNIOR</p>
               </label>
-              <input className="addJob__hidden" id="middle" type="radio" name="accept-offers" onChange={handle} />
+              <input className="addJob__hidden" id="middle" type="radio" name="level" onChange={handleChangeLevel} />
               <label className="addJob__button-label" htmlFor="middle">
-                <h1>MIDDLE</h1>
+                <p>MIDDLE</p>
               </label>
-              <input className="addJob__hidden" id="senior" type="radio" name="accept-offers" onChange={handle} />
+              <input className="addJob__hidden" id="senior" type="radio" name="level" onChange={handleChangeLevel} />
               <label className="addJob__button-label" htmlFor="senior">
-                <h1>SENIOR</h1>
+                <p>SENIOR</p>
               </label>
-              <input className="addJob__hidden" id="lead" type="radio" name="accept-offers" onChange={handle} />
+              <input className="addJob__hidden" id="lead" type="radio" name="level" onChange={handleChangeLevel} />
               <label className="addJob__button-label" htmlFor="lead">
-                <h1>LEAD</h1>
+                <p>LEAD</p>
               </label>
-              <input
-                className="addJob__hidden"
-                id="director"
-                type="radio"
-                name="accept-offers"
-                onChange={handleChange}
-              />
+              <input className="addJob__hidden" id="director" type="radio" name="level" onChange={handleChangeLevel} />
               <label className="addJob__button-label" htmlFor="director">
-                <h1>DIRECTOR</h1>
+                <p>DIRECTOR</p>
               </label>
             </div>
           </div>
@@ -159,7 +160,7 @@ function AddJob(props) {
                 name="logo"
                 onChange={handleLogoChange}
               ></input>
-              <div className="addJob__logo-button-text">Логотип</div>
+              Логотип
             </label>
             <img
               className={!logo ? "addJob__logo-preview" : "addJob__logo-preview addJob__logo-preview_type_delete"}
@@ -170,7 +171,7 @@ function AddJob(props) {
           </div>
 
           <div className="addJob__note">
-            <h2 className="addJob__input-name">Комментарий</h2>
+            <p className="addJob__input-name">Комментарий</p>
             <input
               className={`addJob__input ${errors.note && "addJob__input_type_error"}`}
               type="text"
@@ -182,10 +183,11 @@ function AddJob(props) {
               required
               autoComplete="off"
             />
+            <span className="addJob__error-message">{errors.note}</span>
           </div>
 
           <div className="addJob__todo">
-            <h2 className="addJob__input-name">Что делать:</h2>
+            <p className="addJob__input-name">Что делать:</p>
             <textarea
               wrap="virtual"
               className={`addJob__textarea ${errors.todo && "addJob__input_type_error"}`}
@@ -198,9 +200,10 @@ function AddJob(props) {
               required
               autoComplete="off"
             />
+            <span className="addJob__error-message addJob__error-message_type_textarea">{errors.todo}</span>
           </div>
           <div className="addJob__why">
-            <h2 className="addJob__input-name">Почему стоит откликнуться:</h2>
+            <p className="addJob__input-name">Почему стоит откликнуться:</p>
             <textarea
               className={`addJob__textarea ${errors.why && "addJob__input_type_error"}`}
               type="text"
@@ -212,8 +215,8 @@ function AddJob(props) {
               required
               autoComplete="off"
             />
+            <span className="addJob__error-message addJob__error-message_type_textarea">{errors.why}</span>
           </div>
-          {/* ---------------- */}
           <div className="addJob__submit">
             <button
               type="submit"
@@ -229,6 +232,7 @@ function AddJob(props) {
           </div>
         </form>
       </section>
+      <Footer />
     </>
   );
 }

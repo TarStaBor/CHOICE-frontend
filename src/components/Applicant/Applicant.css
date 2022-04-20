@@ -1,5 +1,4 @@
 .applicant {
-  font-family: Gotham;
   width: calc(100% - 120px);
   margin: 0 auto;
   transition: 0.3s;
@@ -124,6 +123,12 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
+  transition: 0.3s;
+}
+
+.applicant__download-button_type_disabled {
+  background-color: #f8f8f8;
+  color: #8b8b8b;
   transition: 0.3s;
 }
 

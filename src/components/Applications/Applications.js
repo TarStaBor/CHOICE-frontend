@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import Search from "../Search/Search";
 import Application from "../Application/Application";
 import "./Applications.css";
+import Footer from "../Footer/Footer";
 
 function Applications(props) {
   const { data, delJob } = props;
@@ -12,11 +13,14 @@ function Applications(props) {
     <>
       <Header />
       <Search searchValue={searchValue} setSearchValue={setSearchValue} />
-      {data
-        .map((job) => {
-          return <Application key={job._id} job={job} delJob={delJob} />;
-        })
-        .reverse()}
+      <div className="applications">
+        {data
+          .map((job) => {
+            return <Application key={job._id} job={job} delJob={delJob} />;
+          })
+          .reverse()}
+      </div>
+      <Footer />
     </>
   );
 }

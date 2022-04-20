@@ -1,43 +1,29 @@
 .addJob {
-  font-family: Gotham;
-  margin: 50px auto;
-  width: calc(100% - 120px);
-  min-height: 600px;
+  box-sizing: border-box;
+  margin: 50px 60px;
   background-color: #fff;
-  border-radius: 36px;
   border: 3px solid #8b8b8b;
+  border-radius: 36px;
   transition: 0.3s;
 }
 
 .addJob__form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px 72px;
   margin: 40px 36px;
-  max-width: 100%;
-  height: 100%;
-  text-align: start;
+  gap: 40px 72px;
   transition: 0.3s;
 }
 
 .addJob__company {
-  grid-row: 1;
-  grid-column: 1;
+  position: relative;
 }
 
 .addJob__position {
-  grid-row: 2;
-  grid-column: 1;
-}
-
-.addJob__level {
-  grid-row: 3;
-  grid-column: 1;
+  position: relative;
 }
 
 .addJob__tag {
-  grid-row: 4;
-  grid-column: 1;
   display: flex;
   flex-wrap: wrap;
 }
@@ -46,35 +32,31 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  grid-row: 5;
-  grid-column: 1;
 }
 
 .addJob__note {
-  grid-row: 6;
-  grid-column: 1;
+  position: relative;
 }
 
 .addJob__todo {
-  grid-row: 1/4;
+  position: relative;
   grid-column: 2;
+  grid-row: 1/4;
 }
 
 .addJob__why {
-  grid-row: 4/6;
+  position: relative;
   grid-column: 2;
+  grid-row: 4/6;
 }
 
 .addJob__submit {
   align-self: end;
   justify-self: center;
-  grid-row: 6/7;
-  grid-column: 2;
 }
 
 .addJob__input-name {
   margin: 0 0 10px;
-  font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
@@ -82,17 +64,17 @@
 }
 
 .addJob__input {
-  margin: 0;
-  padding: 0;
-  padding-left: 15px;
-  background: #f2f2e6;
-  border: 2px solid #8b8b8b;
-  height: 36px;
-  width: calc(100% - 19px);
-  border-radius: 36px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  padding: 0 15px;
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
+  background: #f2f2e6;
+  border: 2px solid #8b8b8b;
+  border-radius: 20px;
+
   transition: 0.3s;
 }
 
@@ -100,43 +82,52 @@
   color: red;
 }
 
+.addJob__error-message {
+  position: absolute;
+  left: 0;
+  top: 80px;
+  font-size: 14px;
+  line-height: 10px;
+  color: red;
+  transition: 0.3s;
+}
+
+.addJob__error-message_type_textarea {
+  top: 265px;
+}
+
 .addJob__container {
-  width: 100%;
   display: grid;
   justify-content: space-between;
   grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(2, 25px);
   row-gap: 25px;
   transition: 0.3s;
 }
 
 .addJob__button-label {
   display: inline-block;
-  width: 100px;
   height: 25px;
   cursor: pointer;
   color: #292929;
-  border-radius: 16px;
   background: #efefef;
+  border-radius: 13px;
+
   transition: 0.3s;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
-.addJob__button-label h1 {
+.addJob__button-label p {
   margin: 7px 0 0 0;
   text-align: center;
-  font-style: normal;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 13px;
   line-height: 13px;
 }
 
 .addJob__button-label:hover {
-  background: #d6d6d6;
   color: #101010;
+  background: #d6d6d6;
+
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.32);
 }
 
@@ -146,62 +137,62 @@
 }
 
 #intern:checked + .addJob__button-label {
-  background: #45ce1b;
   color: #efefef;
+  background: #45ce1b;
 }
 
 #intern:checked + .addJob__button-label:hover {
-  background: #45ce1b;
   color: #e2e2e2;
+  background: #45ce1b;
 }
 
 #junior:checked + .addJob__button-label {
-  background: #fcce45;
   color: #fff;
+  background: #fcce45;
 }
 
 #junior:checked + .addJob__button-label:hover {
-  background: #fcce45;
   color: #fff;
+  background: #fcce45;
 }
 
 #middle:checked + .addJob__button-label {
-  background: #f25949;
   color: #efefef;
+  background: #f25949;
 }
 #middle:checked + .addJob__button-label:hover {
-  background: #f25949;
   color: #e2e2e2;
+  background: #f25949;
 }
 
 #senior:checked + .addJob__button-label {
-  background: #44bdb4;
   color: #efefef;
+  background: #44bdb4;
 }
 
 #senior:checked + .addJob__button-label:hover {
-  background: #44bdb4;
   color: #e2e2e2;
+  background: #44bdb4;
 }
 
 #lead:checked + .addJob__button-label {
-  background: #2528b5;
   color: #efefef;
+  background: #2528b5;
 }
 
 #lead:checked + .addJob__button-label:hover {
-  background: #2528b5;
   color: #e2e2e2;
+  background: #2528b5;
 }
 
 #director:checked + .addJob__button-label {
-  background: #7940b5;
   color: #efefef;
+  background: #7940b5;
 }
 
 #director:checked + .addJob__button-label:hover {
-  background: #7940b5;
   color: #e2e2e2;
+  background: #7940b5;
 }
 
 .addJob__hidden {
@@ -209,26 +200,23 @@
 }
 
 .addJob__logo-button-label {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 116px;
   height: 40px;
-  background-color: #5bc8d7;
-  border: 2px solid #8b8b8b;
-  box-sizing: border-box;
-  border-radius: 36px;
-  font-style: normal;
   font-weight: 500;
   font-size: 20px;
-  line-height: 20px;
   text-align: center;
+  background-color: #5bc8d7;
+  border: 2px solid #8b8b8b;
+  border-radius: 20px;
   transition: 0.3s;
 }
 
 .addJob__logo-button {
   display: none;
-}
-
-.addJob__logo-button-text {
-  padding-top: 7px;
 }
 
 .addJob__logo-preview {
@@ -243,55 +231,47 @@
 }
 
 .addJob__textarea {
-  margin: 0;
-  padding: 0;
-  resize: vertical;
-  padding-left: 15px;
-  background: #f2f2e6;
-  border: 2px solid #8b8b8b;
-  min-height: 220px;
-  width: calc(100% - 19px);
-  border-radius: 10px;
-  font-style: normal;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 224px;
+  padding: 0 15px;
+  resize: none;
   font-weight: 500;
   font-size: 16px;
   line-height: 25px;
+  background: #f2f2e6;
+  border: 2px solid #8b8b8b;
+  border-radius: 10px;
+  transition: 0.3s;
 }
 
 .addJob__submit-button {
+  box-sizing: border-box;
   width: 350px;
   height: 40px;
-  background-color: #5bc8d7;
-  border: 2px solid #8b8b8b;
-  box-sizing: border-box;
-  border-radius: 36px;
-  font-style: normal;
   font-weight: 500;
   font-size: 20px;
-  line-height: 20px;
+  background-color: #5bc8d7;
+  border: 2px solid #8b8b8b;
+  border-radius: 36px;
   transition: 0.3s;
 }
 
 .addJob__submit-button_type_disabled {
-  background-color: #f8f8f8;
   color: #c2c2c2;
+  background-color: #f8f8f8;
   transition: 0.3s;
 }
 
-/* --------------2-------------------- */
-/* --------------2-------------------- */
-/* ---------------2------------------- */
-/* --------------2-------------------- */
-
 @media screen and (max-width: 1279px) {
   .addJob {
-    width: calc(100% - 60px);
+    margin: 50px 30px;
   }
 
   .addJob__form {
-    grid-template-columns: 1fr;
-    gap: 20px 0;
+    grid-template-columns: none;
     margin: 34px 26px;
+    gap: 20px 0;
   }
 
   .addJob__todo {
@@ -306,7 +286,6 @@
 
   .addJob__submit {
     grid-row: 9;
-    grid-column: 1;
   }
 
   .addJob__input-name {
@@ -316,61 +295,38 @@
 
   .addJob__input {
     padding-left: 20px;
-    width: calc(100% - 25px);
-    border-radius: 36px;
-    font-weight: 500;
     font-size: 18px;
     line-height: 18px;
   }
 
-  .addJob__container {
-    width: 100%;
-    display: grid;
-    justify-content: space-between;
-    grid-template-columns: repeat(6, 100px);
-    grid-template-rows: repeat(1, 25px);
-    row-gap: 0;
+  .addJob__error-message {
+    top: 73px;
   }
 
-  .addJob__textarea {
-    width: calc(100% - 20px);
+  .addJob__error-message_type_textarea {
+    top: 257px;
+  }
+
+  .addJob__container {
+    grid-template-columns: repeat(6, 100px);
+    row-gap: 0;
   }
 }
 
-/* --------------3-------------------- */
-/* ---------------3------------------- */
-/* ----------------3------------------ */
-/* -----------------3----------------- */
-
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .addJob {
-    margin: 25px auto;
-    width: calc(100% - 18px);
-    border-radius: 18px;
+    margin: 25px 9px;
     border: 2px solid #8b8b8b;
+    border-radius: 18px;
   }
 
   .addJob__form {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px 0;
     margin: 16px 10px;
-  }
-
-  .addJob__todo {
-    grid-row: 7;
-    grid-column: 1;
-  }
-
-  .addJob__why {
-    grid-row: 8;
-    grid-column: 1;
+    gap: 10px 0;
   }
 
   .addJob__submit {
-    justify-self: auto;
-    grid-row: 9;
-    grid-column: 1;
+    width: 100%;
   }
 
   .addJob__input-name {
@@ -379,23 +335,16 @@
   }
 
   .addJob__input {
-    margin: 0;
-    padding: 0;
-    padding-left: 13px;
-    border: 1px solid #8b8b8b;
     height: 28px;
-    width: calc(100% - 15px);
-    border-radius: 36px;
+    padding-left: 13px;
     font-size: 14px;
     line-height: 14px;
+    border: 1px solid #8b8b8b;
   }
 
   .addJob__container {
-    width: 100%;
-    display: grid;
     justify-content: space-around;
     grid-template-columns: repeat(2, 100px);
-    grid-template-rows: repeat(3, 25px);
     row-gap: 10px;
   }
 
@@ -405,34 +354,38 @@
 
   .addJob__logo-button-label {
     height: 30px;
-    border: 1px solid #8b8b8b;
     font-size: 16px;
-    line-height: 16px;
-  }
-
-  .addJob__logo-button-text {
-    padding-top: 6px;
+    border: 1px solid #8b8b8b;
   }
 
   .addJob__logo-preview {
-    margin-top: 10px;
     width: 130px;
     height: 130px;
+    margin-top: 10px;
   }
 
   .addJob__textarea {
-    border: 1px solid #8b8b8b;
     min-height: 150px;
-    width: calc(100% - 17px);
     font-size: 14px;
     line-height: 18px;
+    border: 1px solid #8b8b8b;
+  }
+
+  .addJob__error-message {
+    top: 54px;
+    font-size: 8px;
+    line-height: 8px;
+    color: red;
+  }
+
+  .addJob__error-message_type_textarea {
+    top: 175px;
   }
 
   .addJob__submit-button {
     width: 100%;
     height: 30px;
-    border: 1px solid #8b8b8b;
     font-size: 16px;
-    line-height: 16px;
+    border: 1px solid #8b8b8b;
   }
 }

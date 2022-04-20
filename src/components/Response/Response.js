@@ -11,7 +11,7 @@ function Response() {
   const { _id } = useParams();
   const { values, handleChange, errors, isValid } = Validation();
   const fileInputRef = useRef();
-  const [resume, setResume] = useState();
+  const [resume, setResume] = useState("");
   const [link, setLink] = useState("");
 
   const [fileIsValid, setFileIsValid] = useState(false);
@@ -28,10 +28,13 @@ function Response() {
       .finally(() => {});
   }, [_id]);
 
-  // Валидация загруженного логотипа
+  // Валидация загруженного резюме
   function handleResumeChange(e) {
+    console.log(e);
     const file = e.target.files[0];
-    console.log(file);
+    console.log(e.target.files[0].type);
+    const extention = file.name.split(".").pop();
+    console.log(extention);
     if (
       (file && file.type === "application/msword") ||
       (file && file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") ||
@@ -40,8 +43,9 @@ function Response() {
       (file && file.type === "application/vnd.openxmlformats-officedocument.presentationml.presentation") ||
       (file && file.type === "image/jpeg") ||
       (file && file.type === "image/png") ||
-      (file && file.type === "application/zip") ||
-      (file && file.type === "application/x-7z-compressed")
+      (file && (file.type === "application/zip" || extention === "zip")) ||
+      (file && (file.type === "application/x-7z-compressed" || extention === "7z")) ||
+      (file && (file.type === "application/vnd.rar" || extention === "rar"))
     ) {
       setResume(file);
       setFileIsValid(true);
@@ -109,7 +113,7 @@ function Response() {
                 <label className="response__resume-button-label link-opacity">
                   <input
                     type="file"
-                    accept=".doc, .docx, .pdf, .ppt, .pptx, .jpeg, .jpg, .png, .zip, .7z"
+                    accept=".doc, .docx, .pdf, .ppt, .pptx, .jpeg, .jpg, .png, .zip, .7z, .rar"
                     ref={fileInputRef}
                     className="response__resume-button"
                     name="logo"

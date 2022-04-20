@@ -1,6 +1,6 @@
 .response {
   font-family: Gotham;
-  min-height: 100%;
+  min-height: 100vh;
   background: linear-gradient(90deg, #fcd162 0%, #fa7969 49.89%, rgba(149, 94, 200, 0.99) 100%);
   display: flex;
   justify-content: center;

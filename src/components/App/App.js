@@ -12,6 +12,7 @@ import * as Api from "../../utils/Api";
 function App() {
   const [data, setData] = useState([]);
   const [applicantsData, setApplicantsData] = useState([]);
+  console.log(applicantsData.length);
   const navigate = useNavigate();
   //Получение всех вакансий
   useEffect(() => {
@@ -23,7 +24,7 @@ function App() {
         console.log(err.message);
       })
       .finally(() => {});
-  }, []);
+  }, [navigate]);
 
   //Получение всех откликов
   useEffect(() => {
@@ -35,7 +36,7 @@ function App() {
         console.log(err.message);
       })
       .finally(() => {});
-  }, []);
+  }, [navigate]);
 
   function delJob(_id, company) {
     Api.delJob(_id, company)
@@ -48,13 +49,26 @@ function App() {
       })
       .finally(() => {});
   }
+
+  function delApplicant(_id) {
+    Api.delApplicant(_id)
+      .then((res) => {
+        console.log(res);
+        setApplicantsData(applicantsData.filter((card) => card._id !== _id));
+      })
+      .catch((err) => {
+        console.log(err.message);
+      })
+      .finally(() => {});
+  }
+
   function handleCreateJob(formData) {
     Api.addJob(formData)
       .then((res) => {
         console.log(res);
         setData([...data, res]);
-        // console.log(data);
         navigate("/applications", { replace: false });
+        window.scrollTo(0, 0);
       })
       .catch((err) => {
         console.log(err.message);
@@ -69,7 +83,13 @@ function App() {
         <Route path="/applications" element={<Applications data={data} setData={setData} delJob={delJob} />} />
         <Route
           path="/applicants"
-          element={<Applicants applicantsData={applicantsData} setApplicantsData={setApplicantsData} />}
+          element={
+            <Applicants
+              applicantsData={applicantsData}
+              setApplicantsData={setApplicantsData}
+              delApplicant={delApplicant}
+            />
+          }
         />
         <Route path="/add-job" element={<AddJob handleCreateJob={handleCreateJob} />} />
         <Route path="/response/:_id" element={<Response />} />

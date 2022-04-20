@@ -4,44 +4,44 @@ import cross from "../../images/cross.svg";
 
 function AddTags(props) {
   const { tags, setTags } = props;
-
-  const addTask = (userInput) => {
-    if (userInput) {
-      setTags([...tags, userInput]);
-    }
-  };
-
-  const removeTask = (removeTag) => {
-    setTags([...tags.filter((tag) => tag !== removeTag)]);
-  };
-
-  // -------------------TodoForm--------------
+  //Стейт содержимого инпута
   const [userInput, setUserInput] = useState("");
 
-  const handleChange = (e) => {
+  // Функция обновления стейта содержимого инпута
+  function handleChange(e) {
     setUserInput(e.currentTarget.value);
-  };
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addTask(userInput);
-    setUserInput("");
-  };
+  // Функция удаления тэга
+  function handleRemoveTag(removeTag) {
+    setTags([...tags.filter((tag) => tag !== removeTag)]);
+  }
 
-  const handleKeyPress = (e) => {
+  // Функция добавления тэга по нажатию на Enter
+  function handleKeyPress(e) {
     if (e.key === "Enter") {
       handleSubmit(e);
     }
-  };
+  }
+
+  // Функция добавления тэга
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (userInput) {
+      setTags([...tags, userInput]);
+    }
+    setUserInput("");
+  }
+
   return (
     <>
       <div className="addTags">
-        <h2 className="addTags__input-name">Тэг</h2>
+        <p className="addTags__input-name">Тэг</p>
         <img className="addTags__tag-add link-opacity" src={cross} alt="add_tag" onClick={handleSubmit}></img>
         {tags.map((tag, i) => {
           return (
             <div key={i} className="addTags__tag-item">
-              <div className="addTags__tag" onClick={() => removeTask(tag)}>
+              <div className="addTags__tag" onClick={() => handleRemoveTag(tag)}>
                 {tag}
               </div>
             </div>

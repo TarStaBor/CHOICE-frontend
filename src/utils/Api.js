@@ -12,8 +12,8 @@ async function getResponseData(result) {
 }
 
 // Скачать файл
-export const downloadFile = (resume, _id, date) => {
-  return fetch(`http://${resume}`, {
+export const downloadFile = (resume, _id, company, job) => {
+  return fetch(`${BASE_URL}/resumes/${company}/${job}/${_id}/${resume}`, {
     method: "GET",
   })
     .then((response) => response.blob())
@@ -41,11 +41,11 @@ export const downloadFile = (resume, _id, date) => {
           ? ".zip"
           : blob.type === "application/x-7z-compressed"
           ? ".7z"
-          : blob.type === "application/vnd.rar"
+          : blob.type === "application/vnd.rar" || blob.type === "application/x-rar-compressed"
           ? ".rar"
           : "txt";
       console.log(extension);
-      link.setAttribute("download", `${_id} от ${date.slice(0, -10)}${extension}`);
+      link.setAttribute("download", `${resume}${extension}`);
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
@@ -158,6 +158,22 @@ export const addResponse = async (data) => {
 export const getApplicantsCount = (jobId) => {
   return fetch(`${BASE_URL}/applicants/${jobId}`, {
     method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return getResponseData(response);
+    })
+    .then((data) => {
+      return data;
+    });
+};
+
+// Удалить отклик
+export const delApplicant = (_id) => {
+  return fetch(`${BASE_URL}/applicants/${_id}`, {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
