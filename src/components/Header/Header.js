@@ -1,12 +1,8 @@
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 import logo from "../../images/logo.png";
-// import Navigation from "../Navigation/Navigation";
 
 function Header() {
-  // const { loggedIn } = props;
-  // const pathName = window.location.pathname;
-
   const activeButton = ({ isActive }) =>
     isActive ? "header__link link-opacity header__link_type_active" : "header__link link-opacity";
 
