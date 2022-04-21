@@ -1,11 +1,10 @@
 .main {
-  font-family: Gotham;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  margin: 0 auto;
   min-height: calc(100vh - 174px);
+  font-family: Gotham;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {

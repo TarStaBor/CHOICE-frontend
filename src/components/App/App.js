@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
 import { useNavigate } from "react-router";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
 import Main from "../Main/Main";
 import Applications from "../Applications/Applications";
 import Applicants from "../Applicants/Applicants";
 import AddJob from "../AddJob/AddJob";
 import Response from "../Response/Response";
-import * as Api from "../../utils/Api";
 import Error from "../Error/Error";
+import * as Api from "../../utils/Api";
 
 function App() {
+  // Стейт вакансий
   const [data, setData] = useState([]);
+  // Стейт откликов
   const [applicantsData, setApplicantsData] = useState([]);
-  console.log(applicantsData.length);
   const navigate = useNavigate();
-  //Получение всех вакансий
+
+  // Получение всех вакансий
   useEffect(() => {
     Api.getJobs()
       .then((res) => {
@@ -27,7 +29,7 @@ function App() {
       .finally(() => {});
   }, [navigate]);
 
-  //Получение всех откликов
+  // Получение всех откликов
   useEffect(() => {
     Api.getApplicants()
       .then((res) => {
@@ -39,6 +41,7 @@ function App() {
       .finally(() => {});
   }, [navigate]);
 
+  // Функция удаления вакансиии
   function delJob(_id, company) {
     Api.delJob(_id, company)
       .then((res) => {
@@ -51,6 +54,7 @@ function App() {
       .finally(() => {});
   }
 
+  // Функция удаления отклика
   function delApplicant(_id) {
     Api.delApplicant(_id)
       .then((res) => {
@@ -63,6 +67,7 @@ function App() {
       .finally(() => {});
   }
 
+  // Функция создания вакансии
   function handleCreateJob(formData) {
     Api.addJob(formData)
       .then((res) => {
@@ -78,7 +83,7 @@ function App() {
   }
 
   return (
-    <section className="root">
+    <section className="app">
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/applications" element={<Applications data={data} setData={setData} delJob={delJob} />} />
