@@ -1,29 +1,25 @@
 .applicant {
-  width: calc(100% - 120px);
-  margin: 0 auto;
+  font-family: Gotham;
+  margin: 0 60px;
   transition: 0.3s;
 }
 
 .applicant__sections {
   position: relative;
-  background-color: #fff;
-  border-radius: 36px;
-  border: 3px solid #8b8b8b;
-  text-align: center;
-  color: #443b3b;
-  padding: 20px;
-  transition: 0.3s;
   margin-bottom: 10px;
+  padding: 20px;
+  color: #443b3b;
+  background-color: #fff;
+  border: 3px solid #8b8b8b;
+  border-radius: 36px;
 }
 
 .applicant__card {
   display: grid;
   grid-template-columns: minmax(min-content, max-content) minmax(min-content, max-content) 1fr;
-  grid-template-rows: 2;
   column-gap: 25px;
   row-gap: 20px;
-  align-content: center;
-  padding: 13px 13px;
+  padding: 13px;
   background-color: #f2f2e6;
   border: 1px solid #8b8b8b;
   border-radius: 18px;
@@ -31,18 +27,14 @@
 }
 
 .applicant__id {
-  grid-row: 1;
-  grid-column: 1;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  transition: 0.3s;
 }
 
 .applicant__title {
   white-space: nowrap;
   margin: 0;
-  font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
@@ -50,131 +42,114 @@
 }
 
 .applicant__field {
+  box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-  background: #ffffff;
-  border: 1px solid #8b8b8b;
-  box-sizing: border-box;
-  border-radius: 5px;
+  height: 20px;
   margin-left: 10px;
-  text-align: start;
   padding: 2px 10px;
-  transition: 0.3s;
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
-  height: 20px;
+  background: #ffffff;
+  border: 1px solid #8b8b8b;
+  border-radius: 5px;
+  transition: 0.3s;
 }
 
 .applicant__date {
-  grid-row: 1;
-  grid-column: 2;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  transition: 0.3s;
 }
 
 .applicant__comment {
   grid-row: 1/3;
-  grid-column: 3;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  transition: 0.3s;
 }
 
 .applicant__comment-field {
-  width: 100%;
-  background: #ffffff;
-  border: 1px solid #8b8b8b;
   box-sizing: border-box;
-  border-radius: 5px;
-  margin-left: 10px;
-  text-align: start;
-  padding: 0 10px;
+  width: 100%;
   height: 100%;
-  transition: 0.3s;
-  font-style: normal;
+  margin-left: 10px;
+  padding: 10px 10px;
   font-weight: 500;
   font-size: 16px;
+  text-align: start;
   line-height: 16px;
+  background: #ffffff;
+  border: 1px solid #8b8b8b;
+  border-radius: 5px;
 }
 
 .applicant__download {
   grid-row: 2;
   grid-column: 1;
-  transition: 0.3s;
 }
 
 .applicant__download-button {
   box-sizing: border-box;
-  width: 120px;
-  height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #5bc8d7;
-  border: 1px solid #8b8b8b;
-  border-radius: 10px;
-  font-style: normal;
+  width: 120px;
+  height: 20px;
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
+  background-color: #5bc8d7;
+  border: 1px solid #8b8b8b;
+  border-radius: 10px;
   transition: 0.3s;
 }
 
 .applicant__download-button_type_disabled {
-  background-color: #f8f8f8;
   color: #8b8b8b;
-  transition: 0.3s;
+  background-color: #f8f8f8;
 }
 
 .applicant__link {
-  max-width: 185px;
   grid-row: 2;
   grid-column: 2;
   display: flex;
   justify-content: start;
   align-items: flex-start;
+  max-width: 340px;
   transition: 0.3s;
 }
 
 .applicant__link-control {
-  width: 100%;
   display: flex;
+  width: 100%;
+  transition: 0.3s;
 }
 .applicant__copy-button {
+  width: 20px;
+  height: 20px;
   margin-left: 10px;
-  visibility: hidden;
-  max-height: 20px;
-  max-width: 20px;
-  transition: 0.3s;
 }
 
 .applicant__copy-logo {
-  visibility: visible;
-  max-height: 20px;
-  max-width: 20px;
-  transition: 0.3s;
-  transition: 0.3s;
+  width: 20px;
+  height: 20px;
 }
 
 .applicant__delete-button {
   position: absolute;
   right: -40px;
   top: calc(50% - 10px);
-  visibility: hidden;
-  max-height: 20px;
-  max-width: 20px;
+  width: 20px;
+  height: 20px;
+  transition: 0.3s;
 }
 
 .applicant__delete-logo {
-  visibility: visible;
-  max-height: 20px;
-  max-width: 20px;
+  width: 20px;
+  height: 20px;
   transform: rotate(-45deg);
   opacity: 0.4;
   transition: opacity 1s;
@@ -185,48 +160,22 @@
   opacity: 1;
 }
 
-/* --------------2-------------------- */
-/* --------------2-------------------- */
-/* ---------------2------------------- */
-/* --------------2-------------------- */
-
 @media screen and (max-width: 1279px) {
   .applicant {
-    width: calc(100% - 60px);
+    margin: 0 30px;
   }
 
   .applicant__card {
-    display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 3;
   }
 
   .applicant__comment {
     grid-row: 3;
     grid-column: 1/3;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    transition: 0.3s;
-  }
-
-  .applicant__comment-field {
-    width: 100%;
-    background: #ffffff;
-    border: 1px solid #8b8b8b;
-    box-sizing: border-box;
-    border-radius: 5px;
-    margin-left: 10px;
-    text-align: start;
-    padding: 0 10px;
-    height: 100%;
-    transition: 0.3s;
   }
 
   .applicant__link {
     max-width: 220px;
-    grid-row: 2;
-    grid-column: 2;
   }
 
   .applicant__delete-button {
@@ -234,26 +183,19 @@
   }
 }
 
-/* --------------3-------------------- */
-/* ---------------3------------------- */
-/* ----------------3------------------ */
-/* -----------------3----------------- */
-
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .applicant {
-    width: calc(100% - 18px);
+    margin: 0 9px;
   }
 
   .applicant__sections {
-    border-radius: 18px;
-    border: 2px solid #8b8b8b;
     padding: 12px;
+    border: 2px solid #8b8b8b;
+    border-radius: 18px;
   }
 
   .applicant__card {
     grid-template-columns: 1fr;
-    grid-template-rows: 5;
-    column-gap: 0;
     row-gap: 10px;
     padding: 10px;
     border-radius: 10px;
@@ -261,26 +203,22 @@
 
   .applicant__id {
     width: calc(100% - 30px);
-    grid-row: 1;
-    grid-column: 1;
     align-items: center;
   }
 
   .applicant__title {
+    margin-right: 10px;
     font-size: 14px;
     line-height: 14px;
-    margin-right: 10px;
   }
 
   .applicant__field {
+    margin: 0;
     font-size: 14px;
     line-height: 14px;
-    margin: 0;
   }
 
   .applicant__date {
-    grid-row: 2;
-    grid-column: 1;
     align-items: center;
   }
 
@@ -291,15 +229,15 @@
   }
 
   .applicant__comment-field {
+    padding: 5px;
     margin: 10px 0 0;
+    min-height: 20px;
     font-size: 14px;
     line-height: 20px;
-    min-height: 20px;
   }
 
   .applicant__download {
     grid-row: 3;
-    grid-column: 1;
     justify-self: center;
   }
 
@@ -311,7 +249,6 @@
 
   .applicant__link {
     max-width: 236px;
-
     grid-row: 4;
     grid-column: 1;
     flex-direction: column;

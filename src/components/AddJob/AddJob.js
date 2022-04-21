@@ -66,7 +66,7 @@ function AddJob(props) {
     formData.append("position", values.position);
     formData.append("level", level);
     for (let i = 0; i < tags.length; i++) {
-      formData.append("tag", tags[i]);
+      formData.append("tags", tags[i]);
     }
     formData.append("logo", logo);
     formData.append("note", values.note);
@@ -122,27 +122,27 @@ function AddJob(props) {
                 defaultChecked
               />
               <label className="addJob__button-label" htmlFor="intern">
-                <p>INTERN</p>
+                <p className="addJob__button-label-text">INTERN</p>
               </label>
               <input className="addJob__hidden" id="junior" type="radio" name="level" onChange={handleChangeLevel} />
               <label className="addJob__button-label" htmlFor="junior">
-                <p>JUNIOR</p>
+                <p className="addJob__button-label-text">JUNIOR</p>
               </label>
               <input className="addJob__hidden" id="middle" type="radio" name="level" onChange={handleChangeLevel} />
               <label className="addJob__button-label" htmlFor="middle">
-                <p>MIDDLE</p>
+                <p className="addJob__button-label-text">MIDDLE</p>
               </label>
               <input className="addJob__hidden" id="senior" type="radio" name="level" onChange={handleChangeLevel} />
               <label className="addJob__button-label" htmlFor="senior">
-                <p>SENIOR</p>
+                <p className="addJob__button-label-text">SENIOR</p>
               </label>
               <input className="addJob__hidden" id="lead" type="radio" name="level" onChange={handleChangeLevel} />
               <label className="addJob__button-label" htmlFor="lead">
-                <p>LEAD</p>
+                <p className="addJob__button-label-text">LEAD</p>
               </label>
               <input className="addJob__hidden" id="director" type="radio" name="level" onChange={handleChangeLevel} />
               <label className="addJob__button-label" htmlFor="director">
-                <p>DIRECTOR</p>
+                <p className="addJob__button-label-text">DIRECTOR</p>
               </label>
             </div>
           </div>

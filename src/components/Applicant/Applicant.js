@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import "./Applicant.css";
 import deleteLogo from "../../images/delete.svg";
 import copy from "../../images/copy.png";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import * as Api from "../../utils/Api";
 
 function Applicant(props) {
   const { comment, company, date, job, link, resume, _id } = props.applicant;
   const delApplicant = props.delApplicant;
+
+  // Функция скачивания файла резюме
   function handleDownloadFile() {
     Api.downloadFile(resume, _id, company, job)
       .then((res) => {
@@ -25,17 +27,17 @@ function Applicant(props) {
         <div className="applicant__sections">
           <div className="applicant__card">
             <div className="applicant__id">
-              <h2 className="applicant__title">ID:</h2>
+              <p className="applicant__title">ID:</p>
               <div className="applicant__field">{_id}</div>
             </div>
 
             <div className="applicant__date">
-              <h2 className="applicant__title">Дата отклика:</h2>
+              <p className="applicant__title">Дата отклика:</p>
               <div className="applicant__field">{date}</div>
             </div>
 
             <div className="applicant__comment">
-              <h2 className="applicant__title">Комментарий:</h2>
+              <p className="applicant__title">Комментарий:</p>
               <div className="applicant__comment-field">{comment}</div>
             </div>
             <div className="applicant__download">
@@ -54,7 +56,7 @@ function Applicant(props) {
 
             <CopyToClipboard text={link}>
               <div className="applicant__link">
-                <h2 className="applicant__title">Ссылка:</h2>
+                <p className="applicant__title">Ссылка:</p>
 
                 <div className="applicant__link-control">
                   <div className="applicant__field">{link}</div>

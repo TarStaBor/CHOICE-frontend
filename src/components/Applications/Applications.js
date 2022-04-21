@@ -7,8 +7,9 @@ import Footer from "../Footer/Footer";
 
 function Applications(props) {
   const { data, delJob } = props;
+  // Стейт содержимого инпута
   const [searchValue, setSearchValue] = useState("");
-  // console.log(data);
+
   return (
     <>
       <Header />

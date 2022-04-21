@@ -6,7 +6,7 @@ import Applicant from "../Applicant/Applicant";
 import Footer from "../Footer/Footer";
 
 function Applicants(props) {
-  const { applicantsData, setApplicantsData, delApplicant } = props;
+  const { applicantsData, delApplicant } = props;
   const [searchValue, setSearchValue] = useState("");
 
   return (

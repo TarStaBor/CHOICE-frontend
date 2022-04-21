@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import "./Application.css";
 import applicantsLogo from "../../images/applicants.svg";
 import deleteLogo from "../../images/delete.svg";
-import levelStyle from "../../utils/LevelStyle";
 import copy from "../../images/copy.png";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import * as Api from "../../utils/Api";
+import { FRONT_URL } from "../../utils/Constants";
+import levelStyle from "../../utils/LevelStyle";
 
 function Application(props) {
-  const { company, level, logo, note, position, tag, todo, why, _id } = props.job;
+  const { company, level, logo, note, position, tags, todo, why, _id } = props.job;
   const delJob = props.delJob;
+
+  // Стейт количества откликов на вакансию
   const [applicantsCount, setApplicantsCount] = useState("0");
 
+  // Эффект обновления количества откликов
   useEffect(() => {
     Api.getApplicantsCount(_id)
       .then((res) => {
@@ -23,6 +27,7 @@ function Application(props) {
       .finally(() => {});
   }, [_id]);
 
+  // Определение цвета уровня соискателя
   const levelColor = levelStyle(level);
 
   return (
@@ -30,8 +35,8 @@ function Application(props) {
       <section className="application">
         <div className="application__sections">
           <div className="application__header">
-            <h2 className="application__id">ID: {_id}</h2>
-            <CopyToClipboard text={`http://localhost:3005/response/${_id}`}>
+            <p className="application__id">ID: {_id}</p>
+            <CopyToClipboard text={`${FRONT_URL}/response/${_id}`}>
               <div className="application__copy-button">
                 <img className="application__copy-logo link-opacity" src={copy} alt="Скопировать ссылку"></img>
               </div>
@@ -47,20 +52,20 @@ function Application(props) {
           </div>
           <div className="application__company">
             <div className="application__container">
-              <h2 className="application__position">{position}</h2>
+              <p className="application__position">{position}</p>
               <img className="application__logo" src={`http://${logo}`} alt="Лого компании"></img>
               <div className="application__applicants">
                 <img className="application__applicants-logo" src={applicantsLogo} alt="Отозвалось"></img>
                 <p className="application__applicants-count">{applicantsCount}</p>
               </div>
-              <h2 className="application__note">{note}</h2>
-              <h2 className="application__name">{company}</h2>
+              <p className="application__note">{note}</p>
+              <p className="application__name">{company}</p>
               <div className="application__tags">
-                <h1 className={`application__level ${levelColor}`}>{level.toUpperCase()}</h1>
-                {tag.map((t, i) => {
+                <p className={`application__level ${levelColor}`}>{level.toUpperCase()}</p>
+                {tags.map((tag, i) => {
                   return (
                     <div key={i} className="application__tag">
-                      {t.toUpperCase()}
+                      {tag.toUpperCase()}
                     </div>
                   );
                 })}
@@ -68,12 +73,12 @@ function Application(props) {
             </div>
           </div>
           <div className="application__todo">
-            <h2 className="application__title">Что делать:</h2>
+            <p className="application__title">Что делать:</p>
             <p className="application__subtitle">{todo}</p>
           </div>
           <div className="application__why">
-            <h2 className="application__title">Почему стоит откликнуться:</h2>
-            <h2 className="application__subtitle">{why}</h2>
+            <p className="application__title">Почему стоит откликнуться:</p>
+            <p className="application__subtitle">{why}</p>
           </div>
         </div>
       </section>

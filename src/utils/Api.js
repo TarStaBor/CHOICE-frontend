@@ -1,5 +1,5 @@
 import axios from "axios";
-export const BASE_URL = "http://localhost:3000";
+import { BASE_URL } from "./Constants";
 
 // метод обработки ответа сервера
 async function getResponseData(result) {

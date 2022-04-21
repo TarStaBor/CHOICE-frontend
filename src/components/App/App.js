@@ -8,6 +8,7 @@ import Applicants from "../Applicants/Applicants";
 import AddJob from "../AddJob/AddJob";
 import Response from "../Response/Response";
 import * as Api from "../../utils/Api";
+import Error from "../Error/Error";
 
 function App() {
   const [data, setData] = useState([]);
@@ -83,16 +84,11 @@ function App() {
         <Route path="/applications" element={<Applications data={data} setData={setData} delJob={delJob} />} />
         <Route
           path="/applicants"
-          element={
-            <Applicants
-              applicantsData={applicantsData}
-              setApplicantsData={setApplicantsData}
-              delApplicant={delApplicant}
-            />
-          }
+          element={<Applicants applicantsData={applicantsData} delApplicant={delApplicant} />}
         />
         <Route path="/add-job" element={<AddJob handleCreateJob={handleCreateJob} />} />
         <Route path="/response/:_id" element={<Response />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </section>
   );

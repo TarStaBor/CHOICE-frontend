@@ -99,10 +99,10 @@ function Response() {
             </div>
             <div className="response__tags">
               <div className={`response__level ${levelStyle(data.level)}`}>{data.level.toUpperCase()}</div>
-              {data.tag.map((t, i) => {
+              {data.tags.map((tag, i) => {
                 return (
                   <div key={i} className="response__tag">
-                    {t.toUpperCase()}
+                    {tag.toUpperCase()}
                   </div>
                 );
               })}
