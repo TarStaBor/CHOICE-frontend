@@ -170,6 +170,27 @@ export const getApplicantsCount = (jobId) => {
     });
 };
 
+// изменить комментарий отклика
+export const patchApplicantComment = (comment, _id) => {
+  return fetch(`${BASE_URL}/applicants/${_id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      comment,
+    }),
+  })
+    .then((response) => {
+      return getResponseData(response);
+    })
+    .then((res) => {
+      if (res) {
+        return res;
+      }
+    });
+};
+
 // Удалить отклик
 export const delApplicant = (_id) => {
   return fetch(`${BASE_URL}/applicants/${_id}`, {
@@ -214,29 +235,6 @@ export const delApplicant = (_id) => {
 //       authorization: `Bearer ${localStorage.getItem("token")}`,
 //       "Content-Type": "application/json",
 //     },
-//   })
-//     .then((response) => {
-//       return getResponseData(response);
-//     })
-//     .then((res) => {
-//       if (res) {
-//         return res;
-//       }
-//     });
-// };
-
-// // изменить данные пользователя (PATCH)
-// export const patchUserInfo = (name, email) => {
-//   return fetch(`${BASE_URL}/users/me`, {
-//     method: "PATCH",
-//     headers: {
-//       authorization: `Bearer ${localStorage.getItem("token")}`,
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//       name,
-//       email,
-//     }),
 //   })
 //     .then((response) => {
 //       return getResponseData(response);

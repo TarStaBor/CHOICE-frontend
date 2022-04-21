@@ -21,6 +21,19 @@ function Applicant(props) {
       .finally(() => {});
   }
 
+  function handleCommentChange(e) {
+    if (e.target.textContent !== comment) {
+      Api.patchApplicantComment(e.target.textContent, _id)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        })
+        .finally(() => {});
+    }
+  }
+
   return (
     <>
       <section className="applicant">
@@ -38,7 +51,14 @@ function Applicant(props) {
 
             <div className="applicant__comment">
               <p className="applicant__title">Комментарий:</p>
-              <div className="applicant__comment-field">{comment}</div>
+              <div
+                contentEditable="true"
+                className="applicant__comment-field"
+                onBlur={handleCommentChange}
+                suppressContentEditableWarning={true}
+              >
+                {comment}
+              </div>
             </div>
             <div className="applicant__download">
               <button

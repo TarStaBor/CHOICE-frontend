@@ -72,6 +72,7 @@
 }
 
 .applicant__comment-field {
+  white-space: pre-wrap;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
