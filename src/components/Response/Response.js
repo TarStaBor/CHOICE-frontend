@@ -4,23 +4,31 @@ import "./Response.css";
 import check from "../../images/check-mark.svg";
 import levelStyle from "../../utils/LevelStyle";
 import { Validation } from "../../utils/Validation";
+import fileFormatValidation from "../../utils/FileFormatValidation";
+import SuccessfulSending from "../SuccessfulSending/SuccessfulSending";
 import * as Api from "../../utils/Api";
 
 function Response() {
-  const [data, setData] = useState();
-  const { _id } = useParams();
   const { values, handleChange, errors, isValid } = Validation();
-  const fileInputRef = useRef();
+  // Стейт данных отклика
+  const [data, setData] = useState();
+  // Стейт файла резюме
   const [resume, setResume] = useState("");
+  // Стейт ссылки на резюме
   const [link, setLink] = useState("");
-
+  // Стейт валидности файла
   const [fileIsValid, setFileIsValid] = useState(false);
 
+  const [isSuccessfulSending, setIsSuccessfulSending] = useState(false);
+
+  const fileInputRef = useRef();
+  const { _id } = useParams();
+
+  // Эффект получения данных о вакансии
   useEffect(() => {
     Api.getJobById(_id)
       .then((res) => {
         setData(res);
-        console.log(res);
       })
       .catch((err) => {
         console.log(err.message);
@@ -30,23 +38,9 @@ function Response() {
 
   // Валидация загруженного резюме
   function handleResumeChange(e) {
-    console.log(e);
     const file = e.target.files[0];
-    console.log(e.target.files[0].type);
     const extention = file.name.split(".").pop();
-    console.log(extention);
-    if (
-      (file && file.type === "application/msword") ||
-      (file && file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") ||
-      (file && file.type === "application/pdf") ||
-      (file && file.type === "application/vnd.ms-powerpoint") ||
-      (file && file.type === "application/vnd.openxmlformats-officedocument.presentationml.presentation") ||
-      (file && file.type === "image/jpeg") ||
-      (file && file.type === "image/png") ||
-      (file && (file.type === "application/zip" || extention === "zip")) ||
-      (file && (file.type === "application/x-7z-compressed" || extention === "7z")) ||
-      (file && (file.type === "application/vnd.rar" || extention === "rar"))
-    ) {
+    if (fileFormatValidation(file.type, extention)) {
       setResume(file);
       setFileIsValid(true);
     } else {
@@ -79,9 +73,11 @@ function Response() {
 
     Api.addResponse(formData)
       .then((res) => {
+        setIsSuccessfulSending(true);
         console.log(res);
       })
       .catch((err) => {
+        setIsSuccessfulSending(false);
         console.log(err.message);
       })
       .finally(() => {});
@@ -110,7 +106,7 @@ function Response() {
             <div className="response__resume">
               <div className="response__resume-title">Добавьте файл с резюме</div>
               {!fileIsValid ? (
-                <label className="response__resume-button-label link-opacity">
+                <label className="response__resume-button-label  link-opacity">
                   <input
                     type="file"
                     accept=".doc, .docx, .pdf, .ppt, .pptx, .jpeg, .jpg, .png, .zip, .7z, .rar"
@@ -129,7 +125,7 @@ function Response() {
               <div className="response__link-title">Или оставьте на него ссылку</div>
               <input
                 type="url"
-                className="response__link-input"
+                className={`response__link-input ${errors.link && "response__link-input_type_error"}`}
                 name="link"
                 id="link"
                 onChange={handleLinkChange}
@@ -137,6 +133,7 @@ function Response() {
                 maxLength="100"
                 autoComplete="off"
               ></input>
+              <span className="response__error-message">{errors.link}</span>
             </div>
             <div className="response__policy">
               <input
@@ -158,11 +155,15 @@ function Response() {
               <button
                 type="submit"
                 className={` ${
-                  (isValid && link.length !== 0) || (isValid && values.policy && resume)
+                  isValid && !isSuccessfulSending && (link.length !== 0 || (values.policy && resume))
                     ? "response__submit-button link-opacity"
                     : "response__submit-button response__submit-button_type_disabled"
                 }`}
-                disabled={(isValid && link.length !== 0) || (isValid && !!values.policy && !!resume) ? "" : "disabled"}
+                disabled={
+                  isValid && !isSuccessfulSending && (link.length !== 0 || (!!values.policy && !!resume))
+                    ? ""
+                    : "disabled"
+                }
               >
                 Откликнуться
               </button>
@@ -170,6 +171,7 @@ function Response() {
           </form>
         </div>
       )}
+      <SuccessfulSending isSuccessfulSending={isSuccessfulSending} />
     </>
   );
 }

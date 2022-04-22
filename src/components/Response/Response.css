@@ -185,6 +185,7 @@
 }
 
 .response__link {
+  position: relative;
   grid-row: 2;
   grid-column: 2;
   align-self: center;
@@ -215,6 +216,20 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
+  transition: 0.3s;
+}
+
+.response__link-input_type_error {
+  color: red;
+}
+
+.response__error-message {
+  position: absolute;
+  left: 0;
+  top: 90px;
+  font-size: 14px;
+  line-height: 10px;
+  color: red;
   transition: 0.3s;
 }
 
@@ -378,6 +393,10 @@
     width: 500px;
   }
 
+  .response__error-message {
+    top: 80px;
+  }
+
   .response__link-title {
     margin-bottom: 10px;
   }
@@ -511,6 +530,12 @@
     border-radius: 15px;
     font-size: 14px;
     line-height: 14px;
+  }
+
+  .response__error-message {
+    font-size: 12px;
+    line-height: 12px;
+    top: 58px;
   }
 
   .response__policy {
