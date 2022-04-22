@@ -2,11 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import "./Response.css";
 import check from "../../images/check-mark.svg";
+import information from "../../images/information.svg";
 import levelStyle from "../../utils/LevelStyle";
 import { Validation } from "../../utils/Validation";
 import fileFormatValidation from "../../utils/FileFormatValidation";
 import SuccessfulSending from "../SuccessfulSending/SuccessfulSending";
 import Modal from "../Modal/Modal";
+import { FORMATS } from "../../utils/Constants";
 import * as Api from "../../utils/Api";
 
 function Response() {
@@ -77,9 +79,9 @@ function Response() {
     formData.append("company", data.company);
     formData.append("jobId", _id);
 
-    for (let key of formData.keys()) {
-      console.log(key, formData.get(key));
-    }
+    // for (let key of formData.keys()) {
+    //   console.log(key, formData.get(key));
+    // }
 
     Api.addResponse(formData)
       .then((res) => {
@@ -115,10 +117,14 @@ function Response() {
             </div>
             <div className="response__resume">
               <div className="response__resume-title">
-                Добавьте файл с резюме{" "}
-                <span onMouseOver={handleModalOpen} onMouseOut={handleModalOpen} className="response__modal">
-                  &#128712;
-                </span>
+                Добавьте файл с резюме
+                <img
+                  src={information}
+                  onMouseOver={handleModalOpen}
+                  onMouseOut={handleModalOpen}
+                  className="response__modal"
+                  alt=""
+                />
                 <Modal isModal={isModal} setIsModal={setIsModal} />
               </div>
               {!fileIsValid ? (
@@ -126,7 +132,7 @@ function Response() {
                   <label className="response__resume-button-label  link-opacity">
                     <input
                       type="file"
-                      accept=".doc, .docx, .pdf, .ppt, .pptx, .jpeg, .jpg, .png, .zip, .7z, .rar"
+                      accept={FORMATS}
                       ref={fileInputRef}
                       className="response__resume-button"
                       name="logo"
@@ -154,6 +160,7 @@ function Response() {
               ></input>
               <span className="response__error-message">{errors.link}</span>
             </div>
+
             <div className="response__policy">
               <input
                 type="checkbox"
@@ -163,12 +170,16 @@ function Response() {
                 onChange={handleChange}
                 required
               />
-              <label className="response__policy-label" htmlFor="policy">
-                <span>Согласен с </span>
-                <a href="#" className="response__policy_type_link">
+
+              <label className="response__policy-label" htmlFor="policy"></label>
+
+              <div className="response__policy-text">
+                <span className="response__policy-text_type_text">Согласен с </span>
+
+                <a href="#" className="response__policy-text_type_link">
                   политикой обработки персональных данных
                 </a>
-              </label>
+              </div>
             </div>
             <div className="response__submit">
               <button
