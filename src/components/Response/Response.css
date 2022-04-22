@@ -132,6 +132,7 @@
 }
 
 .response__resume {
+  position: relative;
   grid-row: 1;
   grid-column: 2;
   align-self: center;
@@ -149,6 +150,10 @@
   line-height: 20px;
   margin-bottom: 20px;
   transition: 0.3s;
+}
+.response__modal {
+  color: #5bc8d7;
+  cursor: pointer;
 }
 
 .response__resume-button-label {
@@ -224,6 +229,16 @@
 }
 
 .response__error-message {
+  position: absolute;
+  left: 0;
+  top: 90px;
+  font-size: 14px;
+  line-height: 10px;
+  color: red;
+  transition: 0.3s;
+}
+
+.response__fileValidError-message {
   position: absolute;
   left: 0;
   top: 90px;
@@ -397,6 +412,11 @@
     top: 80px;
   }
 
+  .response__fileValidError-message {
+    left: 310px;
+    top: 50px;
+  }
+
   .response__link-title {
     margin-bottom: 10px;
   }
@@ -489,7 +509,7 @@
   .response__resume-title {
     font-size: 13px;
     line-height: 13px;
-    margin-right: 20px;
+    margin-right: 5px;
   }
 
   .response__resume-button-label {
@@ -515,10 +535,6 @@
   .response__link-title {
     font-size: 14px;
     line-height: 14px;
-    margin-bottom: 20px;
-  }
-
-  .response__link-title {
     margin-bottom: 10px;
   }
 
@@ -536,6 +552,13 @@
     font-size: 12px;
     line-height: 12px;
     top: 58px;
+  }
+
+  .response__fileValidError-message {
+    left: 0px;
+    top: 25px;
+    font-size: 12px;
+    line-height: 12px;
   }
 
   .response__policy {

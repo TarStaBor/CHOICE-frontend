@@ -6,6 +6,7 @@ import levelStyle from "../../utils/LevelStyle";
 import { Validation } from "../../utils/Validation";
 import fileFormatValidation from "../../utils/FileFormatValidation";
 import SuccessfulSending from "../SuccessfulSending/SuccessfulSending";
+import Modal from "../Modal/Modal";
 import * as Api from "../../utils/Api";
 
 function Response() {
@@ -18,8 +19,12 @@ function Response() {
   const [link, setLink] = useState("");
   // Стейт валидности файла
   const [fileIsValid, setFileIsValid] = useState(false);
-
+  // Стейт статуса отображения модального окна с форматами файлов
+  const [isModal, setIsModal] = useState(false);
+  // Стейт статуса успешной отправки отклика
   const [isSuccessfulSending, setIsSuccessfulSending] = useState(false);
+  // Стейт сообщения невалидного типа файла
+  const [filTypeError, setFilTypeError] = useState("");
 
   const fileInputRef = useRef();
   const { _id } = useParams();
@@ -44,7 +49,7 @@ function Response() {
       setResume(file);
       setFileIsValid(true);
     } else {
-      console.log("не проходит по формату");
+      setFilTypeError(`Файл формата ${extention} не подходит!`);
       setFileIsValid(false);
     }
     e.target.value = null;
@@ -54,6 +59,11 @@ function Response() {
   function handleLinkChange(e) {
     handleChange(e);
     setLink(e.target.value);
+  }
+
+  // Функция отображения модального окна с допустимыми форматами файла
+  function handleModalOpen() {
+    setIsModal(!isModal);
   }
 
   // Отправка данных формы
@@ -104,19 +114,28 @@ function Response() {
               })}
             </div>
             <div className="response__resume">
-              <div className="response__resume-title">Добавьте файл с резюме</div>
+              <div className="response__resume-title">
+                Добавьте файл с резюме{" "}
+                <span onMouseOver={handleModalOpen} onMouseOut={handleModalOpen} className="response__modal">
+                  &#128712;
+                </span>
+                <Modal isModal={isModal} setIsModal={setIsModal} />
+              </div>
               {!fileIsValid ? (
-                <label className="response__resume-button-label  link-opacity">
-                  <input
-                    type="file"
-                    accept=".doc, .docx, .pdf, .ppt, .pptx, .jpeg, .jpg, .png, .zip, .7z, .rar"
-                    ref={fileInputRef}
-                    className="response__resume-button"
-                    name="logo"
-                    onChange={handleResumeChange}
-                  ></input>
-                  Загрузить
-                </label>
+                <>
+                  <label className="response__resume-button-label  link-opacity">
+                    <input
+                      type="file"
+                      accept=".doc, .docx, .pdf, .ppt, .pptx, .jpeg, .jpg, .png, .zip, .7z, .rar"
+                      ref={fileInputRef}
+                      className="response__resume-button"
+                      name="logo"
+                      onChange={handleResumeChange}
+                    ></input>
+                    Загрузить
+                  </label>
+                  <span className="response__fileValidError-message">{filTypeError}</span>
+                </>
               ) : (
                 <img className="response__check" src={check} alt="Файл загружен"></img>
               )}
