@@ -4,7 +4,6 @@ import "./Applicant.css";
 import deleteLogo from "../../images/delete.svg";
 import copy from "../../images/copy.png";
 import * as Api from "../../utils/Api";
-import Preloader from "../Preloader/Preloader";
 
 function Applicant(props) {
   const { comment, company, date, job, link, resume, _id } = props.applicant;

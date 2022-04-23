@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 import Preloader from "../Preloader/Preloader";
 
 function Applicants(props) {
-  const { data, filterApplicantsData, delApplicant, isPreloader, setPreloader } = props;
+  const { data, delApplicant, isPreloader, setPreloader } = props;
   const [searchValue, setSearchValue] = useState("");
   return (
     <>
