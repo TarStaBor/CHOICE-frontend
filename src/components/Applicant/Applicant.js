@@ -4,25 +4,32 @@ import "./Applicant.css";
 import deleteLogo from "../../images/delete.svg";
 import copy from "../../images/copy.png";
 import * as Api from "../../utils/Api";
+import Preloader from "../Preloader/Preloader";
 
 function Applicant(props) {
   const { comment, company, date, job, link, resume, _id } = props.applicant;
   const delApplicant = props.delApplicant;
+  const setPreloader = props.setPreloader;
 
   // Функция скачивания файла резюме
   function handleDownloadFile() {
+    setPreloader(true);
     Api.downloadFile(resume, _id, company, job)
+
       .then((res) => {
         console.log(res);
       })
       .catch((err) => {
         console.log(err.message);
       })
-      .finally(() => {});
+      .finally(() => {
+        setPreloader(false);
+      });
   }
 
   function handleCommentChange(e) {
     if (e.target.textContent !== comment) {
+      setPreloader(true);
       Api.patchApplicantComment(e.target.textContent, _id)
         .then((res) => {
           console.log(res);
@@ -30,7 +37,9 @@ function Applicant(props) {
         .catch((err) => {
           console.log(err.message);
         })
-        .finally(() => {});
+        .finally(() => {
+          setPreloader(false);
+        });
     }
   }
 

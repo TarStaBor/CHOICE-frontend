@@ -124,6 +124,7 @@
   justify-self: center;
   align-items: center;
   height: 22px;
+  cursor: pointer;
 }
 
 .application__applicants-logo {

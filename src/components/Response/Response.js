@@ -10,8 +10,10 @@ import SuccessfulSending from "../SuccessfulSending/SuccessfulSending";
 import Modal from "../Modal/Modal";
 import { FORMATS } from "../../utils/Constants";
 import * as Api from "../../utils/Api";
+import Preloader from "../Preloader/Preloader";
 
-function Response() {
+function Response(props) {
+  const { isPreloader, setPreloader } = props;
   const { values, handleChange, errors, isValid } = Validation();
   // Стейт данных отклика
   const [data, setData] = useState();
@@ -33,6 +35,7 @@ function Response() {
 
   // Эффект получения данных о вакансии
   useEffect(() => {
+    setPreloader(true);
     Api.getJobById(_id)
       .then((res) => {
         setData(res);
@@ -40,7 +43,9 @@ function Response() {
       .catch((err) => {
         console.log(err.message);
       })
-      .finally(() => {});
+      .finally(() => {
+        setPreloader(false);
+      });
   }, [_id]);
 
   // Валидация загруженного резюме
@@ -71,6 +76,7 @@ function Response() {
   // Отправка данных формы
   function Submit(evt) {
     evt.preventDefault();
+    setPreloader(true);
     let formData = new FormData();
     let date = new Date().toLocaleString();
     formData.append("resume", resume);
@@ -84,6 +90,7 @@ function Response() {
     // }
 
     Api.addResponse(formData)
+
       .then((res) => {
         setIsSuccessfulSending(true);
         console.log(res);
@@ -92,11 +99,14 @@ function Response() {
         setIsSuccessfulSending(false);
         console.log(err.message);
       })
-      .finally(() => {});
+      .finally(() => {
+        setPreloader(false);
+      });
   }
 
   return (
     <>
+      {isPreloader && <Preloader />}
       {data && (
         <div className="response">
           <form className="response__sections" onSubmit={Submit}>

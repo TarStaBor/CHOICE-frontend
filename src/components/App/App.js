@@ -14,11 +14,18 @@ function App() {
   // Стейт вакансий
   const [data, setData] = useState([]);
   // Стейт откликов
-  const [applicantsData, setApplicantsData] = useState([]);
+  const [applicantsData, setApplicantsData] = useState();
+  // Стейт отфильтрованных откликов
+  const [filterApplicantsData, setFilterApplicantsData] = useState();
+
+  // Стейт прелодера
+  const [preloader, setPreloader] = React.useState(true);
+
   const navigate = useNavigate();
 
   // Получение всех вакансий
   useEffect(() => {
+    setPreloader(true);
     Api.getJobs()
       .then((res) => {
         setData(res);
@@ -26,11 +33,14 @@ function App() {
       .catch((err) => {
         console.log(err.message);
       })
-      .finally(() => {});
-  }, [navigate]);
+      .finally(() => {
+        setPreloader(false);
+      });
+  }, []);
 
   // Получение всех откликов
   useEffect(() => {
+    setPreloader(true);
     Api.getApplicants()
       .then((res) => {
         setApplicantsData(res);
@@ -38,11 +48,31 @@ function App() {
       .catch((err) => {
         console.log(err.message);
       })
-      .finally(() => {});
-  }, [navigate]);
+      .finally(() => {
+        setPreloader(false);
+      });
+  }, []);
+
+  // Функция получения отфильтрованных откликов
+  function getFilterApplicants(_id) {
+    setPreloader(true);
+    Api.getApplicantsCount(_id)
+      .then((res) => {
+        console.log(res);
+        setFilterApplicantsData(res);
+        navigate("/applicants", { replace: false });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      })
+      .finally(() => {
+        setPreloader(false);
+      });
+  }
 
   // Функция удаления вакансиии
   function delJob(_id, company) {
+    setPreloader(true);
     Api.delJob(_id, company)
       .then((res) => {
         console.log(res);
@@ -51,24 +81,31 @@ function App() {
       .catch((err) => {
         console.log(err.message);
       })
-      .finally(() => {});
+      .finally(() => {
+        setPreloader(false);
+      });
   }
 
   // Функция удаления отклика
   function delApplicant(_id) {
+    setPreloader(true);
     Api.delApplicant(_id)
       .then((res) => {
         console.log(res);
         setApplicantsData(applicantsData.filter((card) => card._id !== _id));
+        setFilterApplicantsData(filterApplicantsData.filter((card) => card._id !== _id));
       })
       .catch((err) => {
         console.log(err.message);
       })
-      .finally(() => {});
+      .finally(() => {
+        setPreloader(false);
+      });
   }
 
   // Функция создания вакансии
   function handleCreateJob(formData) {
+    setPreloader(true);
     Api.addJob(formData)
       .then((res) => {
         console.log(res);
@@ -79,20 +116,42 @@ function App() {
       .catch((err) => {
         console.log(err.message);
       })
-      .finally(() => {});
+      .finally(() => {
+        setPreloader(false);
+      });
   }
 
   return (
     <section className="app">
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/applications" element={<Applications data={data} setData={setData} delJob={delJob} />} />
+        <Route
+          path="/applications"
+          element={
+            <Applications
+              data={data}
+              setData={setData}
+              delJob={delJob}
+              getFilterApplicants={getFilterApplicants}
+              setFilterApplicantsData={setFilterApplicantsData}
+              isPreloader={preloader}
+              setPreloader={setPreloader}
+            />
+          }
+        />
         <Route
           path="/applicants"
-          element={<Applicants applicantsData={applicantsData} delApplicant={delApplicant} />}
+          element={
+            <Applicants
+              data={filterApplicantsData ? filterApplicantsData : applicantsData}
+              delApplicant={delApplicant}
+              isPreloader={preloader}
+              setPreloader={setPreloader}
+            />
+          }
         />
         <Route path="/add-job" element={<AddJob handleCreateJob={handleCreateJob} />} />
-        <Route path="/response/:_id" element={<Response />} />
+        <Route path="/response/:_id" element={<Response isPreloader={preloader} setPreloader={setPreloader} />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </section>

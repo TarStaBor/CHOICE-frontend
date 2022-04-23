@@ -137,6 +137,22 @@ export const getApplicants = () => {
     });
 };
 
+// // Получить отфильтрованные отклики
+// export const getFilterApplicants = (_id) => {
+//   return fetch(`${BASE_URL}/applicants`, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   })
+//     .then((response) => {
+//       return getResponseData(response);
+//     })
+//     .then((data) => {
+//       return data;
+//     });
+// };
+
 // Добавить отклик
 export const addResponse = async (data) => {
   try {

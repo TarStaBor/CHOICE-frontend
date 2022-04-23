@@ -11,21 +11,32 @@ import levelStyle from "../../utils/LevelStyle";
 function Application(props) {
   const { company, level, logo, note, position, tags, todo, why, _id } = props.job;
   const delJob = props.delJob;
+  const setPreloader = props.setPreloader;
+  const getFilterApplicants = props.getFilterApplicants;
 
   // Стейт количества откликов на вакансию
   const [applicantsCount, setApplicantsCount] = useState("0");
 
   // Эффект обновления количества откликов
   useEffect(() => {
+    setPreloader(true);
     Api.getApplicantsCount(_id)
       .then((res) => {
-        setApplicantsCount(res);
+        console.log(res);
+        setApplicantsCount(res.length);
       })
       .catch((err) => {
         console.log(err.message);
       })
-      .finally(() => {});
+      .finally(() => {
+        setPreloader(false);
+      });
   }, [_id]);
+
+  // Функция фильтрации откликов
+  function handleFilter() {
+    getFilterApplicants(_id);
+  }
 
   // Определение цвета уровня соискателя
   const levelColor = levelStyle(level);
@@ -54,7 +65,7 @@ function Application(props) {
             <div className="application__container">
               <p className="application__position">{position}</p>
               <img className="application__logo" src={`http://${logo}`} alt="Лого компании"></img>
-              <div className="application__applicants">
+              <div className="application__applicants link-opacity" onClick={handleFilter}>
                 <img className="application__applicants-logo" src={applicantsLogo} alt="Отозвалось"></img>
                 <p className="application__applicants-count">{applicantsCount}</p>
               </div>
