@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "../Header/Header";
 import Search from "../Search/Search";
 import Application from "../Application/Application";
@@ -7,19 +7,14 @@ import Footer from "../Footer/Footer";
 import Preloader from "../Preloader/Preloader";
 
 function Applications(props) {
-  const { data, delJob, getFilterApplicants, setFilterApplicantsData, isPreloader, setPreloader } = props;
+  const { data, delJob, getFilterApplicants, isPreloader, setPreloader, loggedIn } = props;
   // Стейт содержимого инпута
   const [searchValue, setSearchValue] = useState("");
-
-  // Эффект очистки филтрованных откликов при уходе со страницы
-  useEffect(() => {
-    return setFilterApplicantsData();
-  }, []);
 
   return (
     <>
       {isPreloader && <Preloader />}
-      <Header />
+      <Header loggedIn={loggedIn} />
       <Search searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className="applications">
         {data

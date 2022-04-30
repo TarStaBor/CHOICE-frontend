@@ -1,0 +1,184 @@
+.register {
+  font-family: Inter, Arial, sans-serif;
+  width: 100%;
+  height: 100vh;
+  color: #fff;
+  background-color: #202020;
+  display: flex;
+  flex-direction: column;
+}
+
+.register__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 70px auto;
+  width: 396px;
+  height: 100%;
+  text-align: start;
+}
+
+.register__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: 107px;
+}
+
+.register__logo {
+  width: 38px;
+  height: 38px;
+  user-select: none;
+}
+
+.register__title {
+  margin: 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  user-select: none;
+}
+
+.register__container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.register__text {
+  margin: 0 0 10px 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #8b8b8b;
+}
+
+.register__input {
+  padding-left: 15px;
+  height: 46px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  background-color: #2f2f2f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  caret-color: #fff;
+}
+
+.register__input_type_error {
+  color: #ee3465;
+}
+
+.register__error-text {
+  margin: 10px 0 0 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+}
+
+.register__error-text_type_disabled {
+  user-select: none;
+}
+
+.register__submit {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  user-select: none;
+}
+.register__submitError {
+  position: absolute;
+  width: 100%;
+  margin: 0;
+  top: -20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 13px;
+  color: #ee3465;
+}
+
+.register__submit-button {
+  height: 45px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  background-color: #228cbb;
+  color: #fff;
+  border-radius: 3px;
+  border: none;
+}
+
+.register__submit-button_type_disable {
+  background-color: #f8f8f8;
+  color: #c2c2c2;
+}
+
+.register__reg-question {
+  margin: 16px auto 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #8b8b8b;
+}
+
+.register__link {
+  margin-left: 6px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  background-color: #202020;
+  color: #228cbb;
+  border: none;
+  text-decoration: none;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .register__form {
+    margin: 30px auto;
+    width: 260px;
+  }
+  .register__header {
+    min-height: 117px;
+    align-items: center;
+  }
+
+  .register__submit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .register__submit-button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .register__reg-question {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .register__link {
+    margin-left: 7px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

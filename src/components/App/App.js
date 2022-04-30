@@ -1,65 +1,153 @@
 import React, { useState, useEffect } from "react";
+import { CurrentUserContext } from "../../contexts/Context";
 import { useNavigate } from "react-router";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { ProtectedRoute } from "../HOC/ProtectedRoute";
 import "./App.css";
 import Main from "../Main/Main";
 import Applications from "../Applications/Applications";
 import Applicants from "../Applicants/Applicants";
 import AddJob from "../AddJob/AddJob";
 import Response from "../Response/Response";
+import Profile from "../Profile/Profile";
+import Register from "../Register/Register";
+import Login from "../Login/Login";
 import Error from "../Error/Error";
 import * as Api from "../../utils/Api";
 
 function App() {
+  // Стейт  регистрации
+  const [loggedIn, setLoggedIn] = useState(false);
+  // Стейт актуального пользователя
+  const [currentUser, setCurrentUser] = useState({});
   // Стейт вакансий
   const [data, setData] = useState([]);
   // Стейт откликов
-  const [applicantsData, setApplicantsData] = useState();
+  const [applicantsData, setApplicantsData] = useState([]);
   // Стейт отфильтрованных откликов
-  const [filterApplicantsData, setFilterApplicantsData] = useState();
+  const [filterApplicantsData, setFilterApplicantsData] = useState([]);
+
+  // Стейт блокировки инпута
+  const [blockInput, setBlockInput] = useState(false);
+
+  // Стейт сообщения с ошибкой при обращении к MainApi
+  const [errorMesage, setErrorMesage] = useState("");
 
   // Стейт прелодера
-  const [preloader, setPreloader] = React.useState(true);
+  const [isFilter, setIsFilter] = useState(false);
+
+  // Стейт прелодера
+  const [preloader, setPreloader] = useState(true);
 
   const navigate = useNavigate();
 
-  // Получение всех вакансий
+  // Эффект проверки авторизации на сайте
   useEffect(() => {
-    setPreloader(true);
-    Api.getJobs()
-      .then((res) => {
-        setData(res);
+    Api.getUserInfo(localStorage.token)
+      .then(() => {
+        setLoggedIn(true);
       })
       .catch((err) => {
-        console.log(err.message);
-      })
-      .finally(() => {
-        setPreloader(false);
+        setLoggedIn(false);
+        console.log(err);
       });
   }, []);
 
+  // Получение всех вакансий
+  useEffect(() => {
+    if (loggedIn) {
+      setPreloader(true);
+      Api.getJobs()
+        .then((res) => {
+          setData(res);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        })
+        .finally(() => {
+          setPreloader(false);
+        });
+    }
+  }, [loggedIn]);
+
   // Получение всех откликов
   useEffect(() => {
+    if (loggedIn) {
+      setPreloader(true);
+      Api.getApplicants()
+        .then((res) => {
+          setApplicantsData(res);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        })
+        .finally(() => {
+          setPreloader(false);
+        });
+    }
+  }, [loggedIn]);
+
+  // Функция запроса к АПИ на регистрацию
+  function registration(name, email, password) {
     setPreloader(true);
-    Api.getApplicants()
+    setBlockInput(true);
+    Api.register(name, email, password)
       .then((res) => {
-        setApplicantsData(res);
+        if (email === res.email) {
+          authorization(email, password);
+          navigate("/movies", { replace: false });
+        }
       })
       .catch((err) => {
-        console.log(err.message);
+        setErrorMesage(err.message);
       })
       .finally(() => {
         setPreloader(false);
+        setBlockInput(false);
       });
-  }, []);
+  }
+
+  // Функция запроса к АПИ на авторизацию
+  function authorization(email, password) {
+    setPreloader(true);
+    setBlockInput(true);
+    Api.authorize(email, password)
+      .then((data) => {
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          setLoggedIn(true);
+          navigate("/movies", { replace: false });
+        }
+      })
+      .catch((err) => {
+        setErrorMesage(err.message);
+      })
+      .finally(() => {
+        setPreloader(false);
+        setBlockInput(false);
+      });
+  }
+
+  // Эффект получения информации о пользователе
+  useEffect(() => {
+    if (loggedIn) {
+      Api.getUserInfo()
+        .then((userData) => {
+          setCurrentUser(userData);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [loggedIn]);
 
   // Функция получения отфильтрованных откликов
   function getFilterApplicants(_id) {
     setPreloader(true);
     Api.getApplicantsCount(_id)
       .then((res) => {
-        console.log(res);
         setFilterApplicantsData(res);
+        setIsFilter(true);
         navigate("/applicants", { replace: false });
       })
       .catch((err) => {
@@ -121,40 +209,152 @@ function App() {
       });
   }
 
+  function handleCommentChange(text, _id) {
+    setPreloader(true);
+    Api.patchApplicantComment(text, _id)
+
+      .then((res) => {
+        setApplicantsData(
+          applicantsData.map((item) => {
+            if (item._id === _id) {
+              item.comment = res;
+              return item;
+            } else {
+              return item;
+            }
+          })
+        );
+        console.log(applicantsData);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      })
+      .finally(() => {
+        setPreloader(false);
+      });
+  }
+
+  // Функция очистки localStorage при выходе
+  function handleloggedOutClick(evt) {
+    evt.preventDefault();
+    localStorage.removeItem("filterCards");
+    localStorage.removeItem("moviesTumbler");
+    localStorage.removeItem("savedMoviesTumbler");
+    localStorage.removeItem("moviesInputValue");
+    localStorage.removeItem("savedMoviesInputValue");
+    localStorage.removeItem("token");
+    setLoggedIn(false);
+    navigate("/", { replace: false });
+  }
+
   return (
-    <section className="app">
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route
-          path="/applications"
-          element={
-            <Applications
-              data={data}
-              setData={setData}
-              delJob={delJob}
-              getFilterApplicants={getFilterApplicants}
-              setFilterApplicantsData={setFilterApplicantsData}
-              isPreloader={preloader}
-              setPreloader={setPreloader}
+    <CurrentUserContext.Provider value={currentUser}>
+      <section className="app">
+        <Routes>
+          <Route path="/" element={<Main loggedIn={loggedIn} />} />
+          <Route
+            path="/applications"
+            element={
+              <ProtectedRoute loggedIn={loggedIn}>
+                <Applications
+                  data={data}
+                  setData={setData}
+                  delJob={delJob}
+                  getFilterApplicants={getFilterApplicants}
+                  isPreloader={preloader}
+                  setPreloader={setPreloader}
+                  handleCommentChange={handleCommentChange}
+                  loggedIn={loggedIn}
+                />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/applicants"
+            element={
+              <ProtectedRoute loggedIn={loggedIn}>
+                <Applicants
+                  data={isFilter ? filterApplicantsData : applicantsData}
+                  delApplicant={delApplicant}
+                  setFilterApplicantsData={setFilterApplicantsData}
+                  isPreloader={preloader}
+                  setPreloader={setPreloader}
+                  setIsFilter={setIsFilter}
+                  handleCommentChange={handleCommentChange}
+                  loggedIn={loggedIn}
+                />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/add-job"
+            element={
+              <ProtectedRoute loggedIn={loggedIn}>
+                <AddJob handleCreateJob={handleCreateJob} loggedIn={loggedIn} />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute loggedIn={loggedIn}>
+                <Profile
+                  // setEdit={setEdit}
+                  // handleUpdateUser={handleUpdateUser}
+                  handleloggedOutClick={handleloggedOutClick}
+                  // setSuccessEditProfile={setSuccessEditProfile}
+                  // edit={edit}
+                  errorMesage={errorMesage}
+                  loggedIn={loggedIn}
+                  isPreloader={preloader}
+                  blockInput={blockInput}
+                  // successEditProfile={successEditProfile}
+                />
+              </ProtectedRoute>
+            }
+          />
+
+          {loggedIn ? (
+            <Route path="/signup" element={<Navigate replace to="/" />} />
+          ) : (
+            <Route
+              exact
+              path="/signup"
+              element={
+                <Register
+                  errorMesage={errorMesage}
+                  handleSubmit={registration}
+                  // isPreloader={preloader}
+                  blockInput={blockInput}
+                />
+              }
             />
-          }
-        />
-        <Route
-          path="/applicants"
-          element={
-            <Applicants
-              data={filterApplicantsData ? filterApplicantsData : applicantsData}
-              delApplicant={delApplicant}
-              isPreloader={preloader}
-              setPreloader={setPreloader}
+          )}
+
+          {loggedIn ? (
+            <Route path="/signin" element={<Navigate replace to="/" />} />
+          ) : (
+            <Route
+              exact
+              path="/signin"
+              element={
+                <Login
+                  errorMesage={errorMesage}
+                  handleSubmit={authorization}
+                  // isPreloader={preloader}
+                  blockInput={blockInput}
+                />
+              }
             />
-          }
-        />
-        <Route path="/add-job" element={<AddJob handleCreateJob={handleCreateJob} />} />
-        <Route path="/response/:_id" element={<Response isPreloader={preloader} setPreloader={setPreloader} />} />
-        <Route path="*" element={<Error />} />
-      </Routes>
-    </section>
+          )}
+
+          <Route path="/response/:_id" element={<Response isPreloader={preloader} setPreloader={setPreloader} />} />
+
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </section>
+    </CurrentUserContext.Provider>
   );
 }
 

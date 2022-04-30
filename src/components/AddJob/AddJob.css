@@ -18,45 +18,77 @@
 
 .addJob__company {
   position: relative;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 .addJob__position {
   position: relative;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.addJob__level {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 .addJob__tag {
   display: flex;
   flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 .addJob__logo {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 .addJob__note {
   position: relative;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 .addJob__todo {
   position: relative;
   grid-column: 2;
   grid-row: 1/4;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 .addJob__why {
   position: relative;
   grid-column: 2;
   grid-row: 4/6;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 .addJob__submit {
   align-self: end;
   justify-self: center;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 .addJob__input-name {
+  display: inline-block;
   margin: 0 0 10px;
   font-weight: 500;
   font-size: 20px;
@@ -79,14 +111,12 @@
   transition: 0.3s;
 }
 
-.addJob__input_type_error {
+.addJob__input_error {
   color: red;
 }
 
 .addJob__error-message {
   position: absolute;
-  left: 0;
-  top: 80px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 14px;
   line-height: 10px;
@@ -94,7 +124,13 @@
   transition: 0.3s;
 }
 
+.addJob__error-message_type_text {
+  left: 0;
+  top: 80px;
+}
+
 .addJob__error-message_type_textarea {
+  left: 0;
   top: 265px;
 }
 
@@ -228,7 +264,7 @@
   transition: 0.3s;
 }
 
-.addJob__logo-preview_type_delete {
+.addJob__logo-preview_delete {
   cursor: pointer;
 }
 
@@ -259,7 +295,7 @@
   transition: 0.3s;
 }
 
-.addJob__submit-button_type_disabled {
+.addJob__submit-button_disabled {
   color: #c2c2c2;
   background-color: #f8f8f8;
   transition: 0.3s;
@@ -301,7 +337,7 @@
     line-height: 18px;
   }
 
-  .addJob__error-message {
+  .addJob__error-message_type_text {
     top: 73px;
   }
 
@@ -318,7 +354,7 @@
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .addJob {
     margin: 25px 9px;
-    border: 2px solid #8b8b8b;
+    border-width: 2px;
     border-radius: 18px;
   }
 
@@ -341,7 +377,7 @@
     padding-left: 13px;
     font-size: 14px;
     line-height: 14px;
-    border: 1px solid #8b8b8b;
+    border-width: 1px;
   }
 
   .addJob__container {
@@ -357,7 +393,7 @@
   .addJob__logo-button-label {
     height: 30px;
     font-size: 16px;
-    border: 1px solid #8b8b8b;
+    border-width: 1px;
   }
 
   .addJob__logo-preview {
@@ -370,24 +406,26 @@
     min-height: 150px;
     font-size: 14px;
     line-height: 18px;
-    border: 1px solid #8b8b8b;
+    border-width: 1px;
   }
 
   .addJob__error-message {
-    top: 54px;
     font-size: 8px;
     line-height: 8px;
-    color: red;
+  }
+
+  .addJob__error-message_type_text {
+    top: 57px;
   }
 
   .addJob__error-message_type_textarea {
-    top: 175px;
+    top: 178px;
   }
 
   .addJob__submit-button {
     width: 100%;
     height: 30px;
     font-size: 16px;
-    border: 1px solid #8b8b8b;
+    border-width: 1px;
   }
 }

@@ -5,6 +5,7 @@ import applicantsLogo from "../../images/applicants.svg";
 import deleteLogo from "../../images/delete.svg";
 import copy from "../../images/copy.png";
 import * as Api from "../../utils/Api";
+import AskPopup from "../AskPopup/AskPopup";
 import { FRONT_URL } from "../../utils/Constants";
 import levelStyle from "../../utils/LevelStyle";
 
@@ -16,13 +17,15 @@ function Application(props) {
 
   // Стейт количества откликов на вакансию
   const [applicantsCount, setApplicantsCount] = useState("0");
+  // Стейт открытия попапа с вопросом об удалении
+  const [isAskPopup, setIsAskPopup] = useState(false);
 
   // Эффект обновления количества откликов
   useEffect(() => {
     setPreloader(true);
     Api.getApplicantsCount(_id)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setApplicantsCount(res.length);
       })
       .catch((err) => {
@@ -35,14 +38,21 @@ function Application(props) {
 
   // Функция фильтрации откликов
   function handleFilter() {
+    console.log("фильтруем по " + _id);
     getFilterApplicants(_id);
   }
 
   // Определение цвета уровня соискателя
   const levelColor = levelStyle(level);
 
+  //
+  function handleOpenPopup() {
+    setIsAskPopup(true);
+  }
+
   return (
     <>
+      {isAskPopup && <AskPopup delJob={delJob} _id={_id} setIsAskPopup={setIsAskPopup} />}
       <section className="application">
         <div className="application__sections">
           <div className="application__header">
@@ -52,12 +62,7 @@ function Application(props) {
                 <img className="application__copy-logo link-opacity" src={copy} alt="Скопировать ссылку"></img>
               </div>
             </CopyToClipboard>
-            <div
-              className="application__delete-button"
-              onClick={() => {
-                delJob(_id);
-              }}
-            >
+            <div className="application__delete-button" onClick={handleOpenPopup}>
               <img className="application__delete-logo link-opacity" src={deleteLogo} alt="Удалить"></img>
             </div>
           </div>

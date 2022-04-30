@@ -108,7 +108,7 @@
   transition: 0.3s;
 }
 
-.applicant__download-button_type_disabled {
+.applicant__download-button_disabled {
   color: #8b8b8b;
   background-color: #f8f8f8;
 }
@@ -191,7 +191,7 @@
 
   .applicant__sections {
     padding: 12px;
-    border: 2px solid #8b8b8b;
+    border-width: 2px;
     border-radius: 18px;
   }
 

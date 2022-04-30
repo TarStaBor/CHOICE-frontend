@@ -10,7 +10,7 @@ function Error() {
       <div className="error__container">
         <div className="error__info">
           <h2 className="error__title">40 </h2>
-          <span className="error__title error__four">4</span>
+          <span className="error__title error__title_broken">4</span>
           <h3 className="error__subtitle">Страница не найдена</h3>
         </div>
         <button className="error__exit-button link-opacity" onClick={goBack}>

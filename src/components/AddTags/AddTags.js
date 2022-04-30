@@ -36,7 +36,9 @@ function AddTags(props) {
   return (
     <>
       <div className="addTags">
-        <p className="addTags__input-name">Тэг</p>
+        <label className="addJob__input-name" htmlFor="tag">
+          Тэг
+        </label>
         <img className="addTags__tag-add link-opacity" src={cross} alt="add_tag" onClick={handleSubmit}></img>
         {tags.map((tag, i) => {
           return (

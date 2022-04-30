@@ -1,7 +1,7 @@
 @import url("./vendor/normalize.css");
 @import url("./fonts/gotham/stylesheet.css");
 @import url("./components/Link-opacity/Link-opacity.css");
-
+@import url("./components/Level/Level.css");
 body {
   /* height: 100vh; */
   /* display: block; */

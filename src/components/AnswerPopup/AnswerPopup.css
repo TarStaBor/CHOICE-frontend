@@ -1,4 +1,4 @@
-.successfulSending {
+.answerPopup {
   position: fixed;
   left: 0;
   top: 0;
@@ -11,6 +11,7 @@
   align-items: center;
   margin: 0 auto;
   font-family: Gotham;
+  text-align: center;
   color: #292929;
   background: linear-gradient(
     90deg,
@@ -22,13 +23,13 @@
   transition: visibility 1s, opacity 0.5s linear;
 }
 
-.successfulSending_opened {
+.answerPopup_opened {
   visibility: visible;
   opacity: 1;
   transition: opacity 0.5s linear;
 }
 
-.successfulSending__container {
+.answerPopup__container {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -44,7 +45,7 @@
   transition: 0.3s;
 }
 
-.successfulSending__title {
+.answerPopup__title {
   margin: 0 0 50px;
   font-weight: 500;
   font-size: 50px;
@@ -53,7 +54,7 @@
   transition: 0.3s;
 }
 
-.successfulSending__subtitle {
+.answerPopup__subtitle {
   margin: 0;
   font-weight: 500;
   font-size: 25px;
@@ -63,7 +64,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
-  .successfulSending__container {
+  .answerPopup__container {
     width: 300px;
     height: 200px;
     color: #fff;
@@ -71,13 +72,13 @@
     border-radius: 18px;
   }
 
-  .successfulSending__title {
+  .answerPopup__title {
     margin: 0 0 25px;
     font-size: 32px;
     line-height: 32px;
   }
 
-  .successfulSending__subtitle {
+  .answerPopup__subtitle {
     font-size: 16px;
     line-height: 16px;
   }

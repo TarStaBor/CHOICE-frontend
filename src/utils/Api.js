@@ -52,6 +52,72 @@ export const downloadFile = (resume, _id, company, job) => {
     });
 };
 
+// ----------------Пользователи---------------------
+
+//Регистрация
+
+export const register = (name, email, password) => {
+  return fetch(`${BASE_URL}/signup`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name,
+      email,
+      password,
+    }),
+  })
+    .then((response) => {
+      return getResponseData(response);
+    })
+    .then((data) => {
+      return data;
+    });
+};
+
+//Авторизация
+
+export const authorize = (email, password) => {
+  return fetch(`${BASE_URL}/signin`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  })
+    .then((response) => {
+      return getResponseData(response);
+    })
+    .then((data) => {
+      return data;
+    });
+};
+
+//Получить данные пользователя
+
+export const getUserInfo = (token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return getResponseData(response);
+    })
+    .then((res) => {
+      if (res) {
+        return res;
+      }
+    });
+};
+
 // ----------------Вакансии---------------------
 
 // Получить все вакансии
@@ -59,6 +125,7 @@ export const getJobs = () => {
   return fetch(`${BASE_URL}/jobs`, {
     method: "GET",
     headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
   })
@@ -76,7 +143,8 @@ export const addJob = async (data) => {
     return await axios
       .post(`${BASE_URL}/jobs`, data, {
         headers: {
-          "content-type": "multipart/form-data",
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "multipart/form-data",
         },
       })
       .then((res) => {
@@ -92,6 +160,7 @@ export const getJobById = (_id) => {
   return fetch(`${BASE_URL}/jobs/${_id}`, {
     method: "GET",
     headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
   })
@@ -108,6 +177,7 @@ export const delJob = (_id) => {
   return fetch(`${BASE_URL}/jobs/${_id}`, {
     method: "DELETE",
     headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
   })
@@ -126,6 +196,7 @@ export const getApplicants = () => {
   return fetch(`${BASE_URL}/applicants`, {
     method: "GET",
     headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
   })
@@ -137,37 +208,14 @@ export const getApplicants = () => {
     });
 };
 
-// // Получить отфильтрованные отклики
-// export const getFilterApplicants = (_id) => {
-//   return fetch(`${BASE_URL}/applicants`, {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   })
-//     .then((response) => {
-//       return getResponseData(response);
-//     })
-//     .then((data) => {
-//       return data;
-//     });
-// };
-
 // Добавить отклик
 export const addResponse = async (data) => {
-  try {
-    await axios
-      .post(`${BASE_URL}/applicants`, data, {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      })
-      .then((res) => {
-        return res;
-      });
-  } catch (error) {
-    console.error(error);
-  }
+  return await axios.post(`${BASE_URL}/response`, data, {
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };
 
 // Получить количество откликов
@@ -175,6 +223,7 @@ export const getApplicantsCount = (jobId) => {
   return fetch(`${BASE_URL}/applicants/${jobId}`, {
     method: "GET",
     headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
   })
@@ -191,6 +240,7 @@ export const patchApplicantComment = (comment, _id) => {
   return fetch(`${BASE_URL}/applicants/${_id}`, {
     method: "PATCH",
     headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -212,6 +262,7 @@ export const delApplicant = (_id) => {
   return fetch(`${BASE_URL}/applicants/${_id}`, {
     method: "DELETE",
     headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
   })
@@ -222,112 +273,3 @@ export const delApplicant = (_id) => {
       return data;
     });
 };
-
-// //Авторизация
-
-// export const authorize = (email, password) => {
-//   return fetch(`${BASE_URL}/signin`, {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({
-//       email,
-//       password,
-//     }),
-//   })
-//     .then((response) => {
-//       return getResponseData(response);
-//     })
-//     .then((data) => {
-//       return data;
-//     });
-// };
-
-// //Получить данные пользователя
-
-// export const getUserInfo = (token) => {
-//   return fetch(`${BASE_URL}/users/me`, {
-//     method: "GET",
-//     headers: {
-//       authorization: `Bearer ${localStorage.getItem("token")}`,
-//       "Content-Type": "application/json",
-//     },
-//   })
-//     .then((response) => {
-//       return getResponseData(response);
-//     })
-//     .then((res) => {
-//       if (res) {
-//         return res;
-//       }
-//     });
-// };
-
-// // Добавить фильм в избранные
-
-// export const saveFilm = (card) => {
-//   return fetch(`${BASE_URL}/movies`, {
-//     method: "POST",
-//     credentials: "include",
-//     headers: {
-//       authorization: `Bearer ${localStorage.getItem("token")}`,
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//       country: card.country,
-//       director: card.director,
-//       duration: card.duration,
-//       year: card.year,
-//       description: card.description,
-//       image: `${BEATFILM_URL + card.image.url}`,
-//       trailer: card.trailerLink,
-//       thumbnail: card.trailerLink,
-//       movieId: card.id,
-//       nameRU: card.nameRU,
-//       nameEN: card.nameEN,
-//     }),
-//   })
-//     .then((response) => {
-//       return getResponseData(response);
-//     })
-//     .then((data) => {
-//       return data;
-//     });
-// };
-
-// // Получить избранные фильмы
-
-// export const getFilms = () => {
-//   return fetch(`${BASE_URL}/movies`, {
-//     method: "GET",
-//     credentials: "include",
-//     headers: {
-//       authorization: `Bearer ${localStorage.getItem("token")}`,
-//       "Content-Type": "application/json",
-//     },
-//   })
-//     .then((response) => {
-//       return getResponseData(response);
-//     })
-//     .then((data) => {
-//       return data;
-//     });
-// };
-
-// // Удалить фильм из избранного
-
-// export const deleteFilm = (card) => {
-//   return fetch(`${BASE_URL}/movies/${card._id}`, {
-//     method: "DELETE",
-//     credentials: "include",
-//     headers: {
-//       authorization: `Bearer ${localStorage.getItem("token")}`,
-//       "Content-Type": "application/json",
-//     },
-//   })
-//     .then((response) => {
-//       return getResponseData(response);
-//     })
-//     .then((data) => {
-//       return data;
-//     });
-// };

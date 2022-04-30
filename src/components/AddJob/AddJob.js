@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 import shirt from "../../images/logo-black-and-white.png";
 
 function AddJob(props) {
-  const { handleCreateJob } = props;
+  const { handleCreateJob, loggedIn } = props;
   // Валидация
   const { values, handleChange, errors, isValid } = Validation();
   // Стейт уровня соискателя
@@ -19,7 +19,6 @@ function AddJob(props) {
   const fileInputRef = useRef();
   // Стейт массива тэгов.
   const [tags, setTags] = useState([]);
-  console.log(values.tags);
 
   // Отображение логотипа при загрузке файла
   useEffect(() => {
@@ -77,13 +76,15 @@ function AddJob(props) {
 
   return (
     <>
-      <Header />
+      <Header loggedIn={loggedIn} />
       <section className="addJob">
         <form className="addJob__form" onSubmit={Submit}>
-          <div className="addJob__company">
-            <p className="addJob__input-name">Название компании</p>
+          <fieldset className="addJob__company">
+            <label className="addJob__input-name" htmlFor="company">
+              Название компании
+            </label>
             <input
-              className={`addJob__input ${errors.company && "addJob__input_type_error"}`}
+              className={`addJob__input ${errors.company && "addJob__input_error"}`}
               type="text"
               name="company"
               id="company"
@@ -93,12 +94,15 @@ function AddJob(props) {
               required
               autoComplete="off"
             />
-            <span className="addJob__error-message">{errors.company}</span>
-          </div>
-          <div className="addJob__position">
-            <p className="addJob__input-name">Специализация</p>
+            <span className="addJob__error-message addJob__error-message_type_text">{errors.company}</span>
+          </fieldset>
+
+          <fieldset className="addJob__position">
+            <label className="addJob__input-name" htmlFor="position">
+              Специализация
+            </label>
             <input
-              className={`addJob__input ${errors.position && "addJob__input_type_error"}`}
+              className={`addJob__input ${errors.position && "addJob__input_error"}`}
               type="text"
               name="position"
               id="position"
@@ -108,10 +112,11 @@ function AddJob(props) {
               required
               autoComplete="off"
             />
-            <span className="addJob__error-message">{errors.position}</span>
-          </div>
-          <div className="addJob__level">
-            <p className="addJob__input-name">Уровень</p>
+            <span className="addJob__error-message addJob__error-message_type_text">{errors.position}</span>
+          </fieldset>
+
+          <fieldset className="addJob__level">
+            <label className="addJob__input-name">Уровень</label>
             <div className="addJob__container">
               <input
                 className="addJob__hidden"
@@ -145,12 +150,13 @@ function AddJob(props) {
                 <p className="addJob__button-label-text">DIRECTOR</p>
               </label>
             </div>
-          </div>
+          </fieldset>
 
-          <div className="addJob__tag">
+          <fieldset className="addJob__tag">
             <AddTags tags={tags} setTags={setTags} />
-          </div>
-          <div className="addJob__logo">
+          </fieldset>
+
+          <fieldset className="addJob__logo">
             <label className="addJob__logo-button-label link-opacity">
               <input
                 type="file"
@@ -163,17 +169,19 @@ function AddJob(props) {
               Логотип
             </label>
             <img
-              className={!logo ? "addJob__logo-preview" : "addJob__logo-preview addJob__logo-preview_type_delete"}
+              className={!logo ? "addJob__logo-preview" : "addJob__logo-preview addJob__logo-preview_delete"}
               src={preview}
               alt="Логотип"
               onClick={handleRemoveLogo}
             />
-          </div>
+          </fieldset>
 
-          <div className="addJob__note">
-            <p className="addJob__input-name">Комментарий</p>
+          <fieldset className="addJob__note">
+            <label className="addJob__input-name" htmlFor="note">
+              Комментарий
+            </label>
             <input
-              className={`addJob__input ${errors.note && "addJob__input_type_error"}`}
+              className={`addJob__input ${errors.note && "addJob__input_error"}`}
               type="text"
               name="note"
               id="note"
@@ -183,14 +191,16 @@ function AddJob(props) {
               required
               autoComplete="off"
             />
-            <span className="addJob__error-message">{errors.note}</span>
-          </div>
+            <span className="addJob__error-message addJob__error-message_type_text">{errors.note}</span>
+          </fieldset>
 
-          <div className="addJob__todo">
-            <p className="addJob__input-name">Что делать:</p>
+          <fieldset className="addJob__todo">
+            <label className="addJob__input-name" htmlFor="todo">
+              Что делать:
+            </label>
             <textarea
               wrap="virtual"
-              className={`addJob__textarea ${errors.todo && "addJob__input_type_error"}`}
+              className={`addJob__textarea ${errors.todo && "addJob__input_error"}`}
               type="text"
               name="todo"
               id="todo"
@@ -201,11 +211,14 @@ function AddJob(props) {
               autoComplete="off"
             />
             <span className="addJob__error-message addJob__error-message_type_textarea">{errors.todo}</span>
-          </div>
-          <div className="addJob__why">
-            <p className="addJob__input-name">Почему стоит откликнуться:</p>
+          </fieldset>
+
+          <fieldset className="addJob__why">
+            <label className="addJob__input-name" htmlFor="why">
+              Почему стоит откликнуться:
+            </label>
             <textarea
-              className={`addJob__textarea ${errors.why && "addJob__input_type_error"}`}
+              className={`addJob__textarea ${errors.why && "addJob__input_error"}`}
               type="text"
               name="why"
               id="why"
@@ -216,20 +229,21 @@ function AddJob(props) {
               autoComplete="off"
             />
             <span className="addJob__error-message addJob__error-message_type_textarea">{errors.why}</span>
-          </div>
-          <div className="addJob__submit">
+          </fieldset>
+
+          <fieldset className="addJob__submit">
             <button
               type="submit"
               className={` ${
                 !isValid || !logo || !tags.length
-                  ? "addJob__submit-button addJob__submit-button_type_disabled"
+                  ? "addJob__submit-button addJob__submit-button_disabled"
                   : "addJob__submit-button link-opacity"
               }`}
               disabled={(!isValid || !logo || !tags.length) && "disabled"}
             >
               Добавить
             </button>
-          </div>
+          </fieldset>
         </form>
       </section>
       <Footer />

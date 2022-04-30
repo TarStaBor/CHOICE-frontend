@@ -6,9 +6,11 @@ import information from "../../images/information.svg";
 import levelStyle from "../../utils/LevelStyle";
 import { Validation } from "../../utils/Validation";
 import fileFormatValidation from "../../utils/FileFormatValidation";
-import SuccessfulSending from "../SuccessfulSending/SuccessfulSending";
+import AnswerPopup from "../AnswerPopup/AnswerPopup";
 import Modal from "../Modal/Modal";
-import { FORMATS } from "../../utils/Constants";
+import { FORMATS, REGEXP } from "../../utils/Constants";
+import Error from "../Error/Error";
+
 import * as Api from "../../utils/Api";
 import Preloader from "../Preloader/Preloader";
 
@@ -25,10 +27,15 @@ function Response(props) {
   const [fileIsValid, setFileIsValid] = useState(false);
   // Стейт статуса отображения модального окна с форматами файлов
   const [isModal, setIsModal] = useState(false);
-  // Стейт статуса успешной отправки отклика
-  const [isSuccessfulSending, setIsSuccessfulSending] = useState(false);
+  // Стейт ответа от сервера после отправки отклика
+  const [responseAnswer, setResponseAnswer] = useState("");
+  // Стейт открытия попапа результата отправки
+  const [responsePopup, setResponsePopup] = useState(false);
   // Стейт сообщения невалидного типа файла
   const [filTypeError, setFilTypeError] = useState("");
+
+  // Стейт ошибки при открытии страницы
+  const [isError, setIsError] = useState(false);
 
   const fileInputRef = useRef();
   const { _id } = useParams();
@@ -41,6 +48,7 @@ function Response(props) {
         setData(res);
       })
       .catch((err) => {
+        setIsError(true);
         console.log(err.message);
       })
       .finally(() => {
@@ -92,21 +100,23 @@ function Response(props) {
     Api.addResponse(formData)
 
       .then((res) => {
-        setIsSuccessfulSending(true);
-        console.log(res);
+        setResponseAnswer(res.data);
+        console.log(responseAnswer);
       })
       .catch((err) => {
-        setIsSuccessfulSending(false);
-        console.log(err.message);
+        setResponseAnswer({ title: "Ой!", subTitle: "Мы не получили ваш отклик. Попробуйте позже" });
+        console.log(responseAnswer);
       })
       .finally(() => {
         setPreloader(false);
+        setResponsePopup(true);
       });
   }
 
   return (
     <>
       {isPreloader && <Preloader />}
+      {isError && <Error />}
       {data && (
         <div className="response">
           <form className="response__sections" onSubmit={Submit}>
@@ -125,8 +135,9 @@ function Response(props) {
                 );
               })}
             </div>
-            <div className="response__resume">
-              <div className="response__resume-title">
+
+            <fieldset className="response__resume">
+              <label className="response__resume-title">
                 Добавьте файл с резюме
                 <img
                   src={information}
@@ -136,7 +147,7 @@ function Response(props) {
                   alt=""
                 />
                 <Modal isModal={isModal} setIsModal={setIsModal} />
-              </div>
+              </label>
               {!fileIsValid ? (
                 <>
                   <label className="response__resume-button-label  link-opacity">
@@ -155,23 +166,27 @@ function Response(props) {
               ) : (
                 <img className="response__check" src={check} alt="Файл загружен"></img>
               )}
-            </div>
-            <div className="response__link">
-              <div className="response__link-title">Или оставьте на него ссылку</div>
+            </fieldset>
+
+            <fieldset className="response__link">
+              <label className="response__link-title" htmlFor="link">
+                Или оставьте на него ссылку
+              </label>
               <input
                 type="url"
-                className={`response__link-input ${errors.link && "response__link-input_type_error"}`}
+                className={`response__link-input ${errors.link && "response__link-input_error"}`}
                 name="link"
                 id="link"
                 onChange={handleLinkChange}
                 minLength="2"
                 maxLength="100"
                 autoComplete="off"
+                pattern={REGEXP}
               ></input>
               <span className="response__error-message">{errors.link}</span>
-            </div>
+            </fieldset>
 
-            <div className="response__policy">
+            <fieldset className="response__policy">
               <input
                 type="checkbox"
                 className="response__policy-input"
@@ -180,38 +195,37 @@ function Response(props) {
                 onChange={handleChange}
                 required
               />
-
               <label className="response__policy-label" htmlFor="policy"></label>
-
-              <div className="response__policy-text">
-                <span className="response__policy-text_type_text">Согласен с </span>
-
-                <a href="#" className="response__policy-text_type_link">
+              <div className="response__policy-agreement">
+                <span className="response__policy-agreement_type_text">Согласен с </span>
+                <a
+                  href="https://prime.ru/o-kompanii/soglashenie-dlya-obrabotki-personalnykh-dannykh-i-politika-konfidentsialnosti"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="response__policy-agreement_type_link"
+                >
                   политикой обработки персональных данных
                 </a>
               </div>
-            </div>
-            <div className="response__submit">
+            </fieldset>
+
+            <fieldset className="response__submit">
               <button
                 type="submit"
                 className={` ${
-                  isValid && !isSuccessfulSending && (link.length !== 0 || (values.policy && resume))
+                  isValid && (link.length !== 0 || (values.policy && resume))
                     ? "response__submit-button link-opacity"
-                    : "response__submit-button response__submit-button_type_disabled"
+                    : "response__submit-button response__submit-button_disabled"
                 }`}
-                disabled={
-                  isValid && !isSuccessfulSending && (link.length !== 0 || (!!values.policy && !!resume))
-                    ? ""
-                    : "disabled"
-                }
+                disabled={isValid && (link.length !== 0 || (!!values.policy && !!resume)) ? "" : "disabled"}
               >
                 Откликнуться
               </button>
-            </div>
+            </fieldset>
           </form>
         </div>
       )}
-      <SuccessfulSending isSuccessfulSending={isSuccessfulSending} />
+      {responsePopup && <AnswerPopup responseAnswer={responseAnswer} />}
     </>
   );
 }

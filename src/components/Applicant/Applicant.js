@@ -9,6 +9,7 @@ function Applicant(props) {
   const { comment, company, date, job, link, resume, _id } = props.applicant;
   const delApplicant = props.delApplicant;
   const setPreloader = props.setPreloader;
+  const handleCommentChange = props.handleCommentChange;
 
   // Функция скачивания файла резюме
   function handleDownloadFile() {
@@ -26,19 +27,10 @@ function Applicant(props) {
       });
   }
 
-  function handleCommentChange(e) {
+  // Функция добавления комментария к отклику
+  function commentChange(e) {
     if (e.target.textContent !== comment) {
-      setPreloader(true);
-      Api.patchApplicantComment(e.target.textContent, _id)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        })
-        .finally(() => {
-          setPreloader(false);
-        });
+      handleCommentChange(e.target.textContent, _id);
     }
   }
 
@@ -62,7 +54,7 @@ function Applicant(props) {
               <div
                 contentEditable="true"
                 className="applicant__comment-field"
-                onBlur={handleCommentChange}
+                onBlur={commentChange}
                 suppressContentEditableWarning={true}
               >
                 {comment}
@@ -73,7 +65,7 @@ function Applicant(props) {
                 className={`${
                   resume
                     ? "applicant__download-button link-opacity"
-                    : "applicant__download-button applicant__download-button_type_disabled"
+                    : "applicant__download-button applicant__download-button_disabled"
                 }`}
                 onClick={handleDownloadFile}
                 disabled={resume ? "" : "disabled"}

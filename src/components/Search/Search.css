@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.3s;
 }
 
 .search__search-container {
@@ -19,6 +20,7 @@
   background-color: #fff;
   border: 3px #8b8b8b solid;
   border-radius: 36px;
+  transition: 0.3s;
 }
 
 .search__magnifier {
@@ -26,6 +28,7 @@
   min-width: 20px;
   min-height: 13px;
   transform: rotate(-45deg);
+  transition: 0.3s;
 }
 
 .search__search-input {
@@ -38,6 +41,7 @@
   color: #443b3b;
   border: none;
   outline: none;
+  transition: 0.3s;
 }
 
 .search__findArrow {
@@ -51,6 +55,7 @@
   border: none;
   border-radius: 50%;
   outline: none;
+  transition: 0.3s;
 }
 
 @media screen and (max-width: 1279px) {
@@ -68,7 +73,7 @@
     margin: 0 9px;
     height: 34px;
     background-color: #fff;
-    border: 2px #8b8b8b solid;
+    border-width: 2px;
     border-radius: 19px;
   }
 
