@@ -117,7 +117,7 @@
 
 .addJob__error-message {
   position: absolute;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: Inter, Arial, sans-serif;
   font-size: 14px;
   line-height: 10px;
   color: red;

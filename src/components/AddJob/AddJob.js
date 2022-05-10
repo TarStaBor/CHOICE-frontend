@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddJob.css";
 import { Validation } from "../../utils/Validation";
 import Header from "../Header/Header";
@@ -16,7 +16,7 @@ function AddJob(props) {
   const [logo, setLogo] = useState();
   // Стейт предварительного просмотра логотипа компании
   const [preview, setPreview] = useState();
-  const fileInputRef = useRef();
+  // const fileInputRef = useRef();
   // Стейт массива тэгов.
   const [tags, setTags] = useState([]);
 
@@ -38,8 +38,8 @@ function AddJob(props) {
     const file = e.target.files[0];
     if (file && file.type.substr(0, 5) === "image") {
       setLogo(file);
+      console.log(file);
     } else {
-      console.log("не картинка");
       setPreview(shirt);
       setLogo("");
     }
@@ -71,6 +71,11 @@ function AddJob(props) {
     formData.append("note", values.note);
     formData.append("todo", values.todo);
     formData.append("why", values.why);
+
+    for (let [name, value] of formData) {
+      console.log(`${name} = ${value}`);
+    }
+
     handleCreateJob(formData);
   }
 
@@ -161,7 +166,7 @@ function AddJob(props) {
               <input
                 type="file"
                 accept="image/*"
-                ref={fileInputRef}
+                // ref={fileInputRef}
                 className="addJob__logo-button"
                 name="logo"
                 onChange={handleLogoChange}

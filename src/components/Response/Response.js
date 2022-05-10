@@ -6,6 +6,7 @@ import information from "../../images/information.svg";
 import levelStyle from "../../utils/LevelStyle";
 import { Validation } from "../../utils/Validation";
 import fileFormatValidation from "../../utils/FileFormatValidation";
+import fileSizeValidation from "../../utils/FileSizeValidation";
 import AnswerPopup from "../AnswerPopup/AnswerPopup";
 import Modal from "../Modal/Modal";
 import { FORMATS, REGEXP } from "../../utils/Constants";
@@ -60,13 +61,20 @@ function Response(props) {
   function handleResumeChange(e) {
     const file = e.target.files[0];
     const extention = file.name.split(".").pop();
-    if (fileFormatValidation(file.type, extention)) {
-      setResume(file);
-      setFileIsValid(true);
+    if (fileSizeValidation(file.size)) {
+      if (fileFormatValidation(file.type, extention)) {
+        setResume(file);
+        setFileIsValid(true);
+      } else {
+        setFilTypeError(`Файл формата ${extention} не подходит!`);
+        setFileIsValid(false);
+      }
     } else {
-      setFilTypeError(`Файл формата ${extention} не подходит!`);
+      console.log("Мы тут");
+      setFilTypeError(`Файл должен быть не более 10 Мегабайт!`);
       setFileIsValid(false);
     }
+
     e.target.value = null;
   }
   // Валидация введенного адреса и запись адреса в стейт переменную
@@ -86,10 +94,8 @@ function Response(props) {
     evt.preventDefault();
     setPreloader(true);
     let formData = new FormData();
-    let date = new Date().toLocaleString();
     formData.append("resume", resume);
     formData.append("link", link);
-    formData.append("date", date);
     formData.append("company", data.company);
     formData.append("jobId", _id);
 
@@ -100,12 +106,13 @@ function Response(props) {
     Api.addResponse(formData)
 
       .then((res) => {
-        setResponseAnswer(res.data);
-        console.log(responseAnswer);
+        setResponseAnswer({ title: "Спасибо!", subTitle: "Мы получили ваш отклик" });
       })
       .catch((err) => {
-        setResponseAnswer({ title: "Ой!", subTitle: "Мы не получили ваш отклик. Попробуйте позже" });
-        console.log(responseAnswer);
+        setResponseAnswer({
+          title: "Ой!",
+          subTitle: "Мы не получили ваш отклик. Свяжитесь с нами для решения проблемы",
+        });
       })
       .finally(() => {
         setPreloader(false);
@@ -179,9 +186,9 @@ function Response(props) {
                 id="link"
                 onChange={handleLinkChange}
                 minLength="2"
-                maxLength="100"
+                maxLength="2048"
                 autoComplete="off"
-                pattern={REGEXP}
+                // pattern={REGEXP}
               ></input>
               <span className="response__error-message">{errors.link}</span>
             </fieldset>

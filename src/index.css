@@ -3,14 +3,6 @@
 @import url("./components/Link-opacity/Link-opacity.css");
 @import url("./components/Level/Level.css");
 body {
-  /* height: 100vh; */
-  /* display: block; */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: Gotham, Inter, Arial, sans-serif;
+  background: linear-gradient(90deg, #fcd162 0%, #fa7969 49.89%, rgba(149, 94, 200, 0.99) 100%);
 }

@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 import Preloader from "../Preloader/Preloader";
 
 function Applications(props) {
-  const { data, delJob, getFilterApplicants, isPreloader, setPreloader, loggedIn } = props;
+  const { data, delJob, getFilterApplicants, isPreloader, loggedIn } = props;
   // Стейт содержимого инпута
   const [searchValue, setSearchValue] = useState("");
 
@@ -19,15 +19,7 @@ function Applications(props) {
       <div className="applications">
         {data
           .map((job) => {
-            return (
-              <Application
-                key={job._id}
-                job={job}
-                delJob={delJob}
-                getFilterApplicants={getFilterApplicants}
-                setPreloader={setPreloader}
-              />
-            );
+            return <Application key={job._id} job={job} delJob={delJob} getFilterApplicants={getFilterApplicants} />;
           })
           .reverse()}
       </div>

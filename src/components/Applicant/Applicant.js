@@ -4,9 +4,11 @@ import "./Applicant.css";
 import deleteLogo from "../../images/delete.svg";
 import copy from "../../images/copy.png";
 import * as Api from "../../utils/Api";
+import moment from "moment/min/moment-with-locales";
 
 function Applicant(props) {
-  const { comment, company, date, job, link, resume, _id } = props.applicant;
+  // console.log(props);
+  const { comment, createdAt, job, link, resume, _id } = props.applicant;
   const delApplicant = props.delApplicant;
   const setPreloader = props.setPreloader;
   const handleCommentChange = props.handleCommentChange;
@@ -14,8 +16,7 @@ function Applicant(props) {
   // Функция скачивания файла резюме
   function handleDownloadFile() {
     setPreloader(true);
-    Api.downloadFile(resume, _id, company, job)
-
+    Api.downloadFile(resume, _id, job)
       .then((res) => {
         console.log(res);
       })
@@ -46,7 +47,7 @@ function Applicant(props) {
 
             <div className="applicant__date">
               <p className="applicant__title">Дата отклика:</p>
-              <div className="applicant__field">{date}</div>
+              <div className="applicant__field">{moment.utc(createdAt).local().format("DD.MM.YYYY в HH:mm:ss")}</div>
             </div>
 
             <div className="applicant__comment">

@@ -9,7 +9,7 @@ export default function levelStyle(level) {
     ? "level_type_senior"
     : level === "lead"
     ? "level_type_lead"
-    : level === "lead"
+    : level === "director"
     ? "level_type_director"
     : "";
 }

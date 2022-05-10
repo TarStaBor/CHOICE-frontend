@@ -29,6 +29,7 @@ function AddTags(props) {
     e.preventDefault();
     if (userInput) {
       setTags([...tags, userInput]);
+      console.log(tags);
     }
     setUserInput("");
   }

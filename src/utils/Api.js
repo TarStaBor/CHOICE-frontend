@@ -12,13 +12,12 @@ async function getResponseData(result) {
 }
 
 // Скачать файл
-export const downloadFile = (resume, _id, company, job) => {
-  return fetch(`${BASE_URL}/resumes/${company}/${job}/${_id}/${resume}`, {
+export const downloadFile = (resume, _id, job) => {
+  return fetch(`${BASE_URL}/resumes/${job.company}/${job._id}/${_id}/${resume}`, {
     method: "GET",
   })
-    .then((response) => response.blob())
+    .then((res) => res.blob())
     .then((blob) => {
-      console.log(blob.type);
       const url = window.URL.createObjectURL(new Blob([blob]));
       const link = document.createElement("a");
       link.href = url;
@@ -44,11 +43,13 @@ export const downloadFile = (resume, _id, company, job) => {
           : blob.type === "application/vnd.rar" || blob.type === "application/x-rar-compressed"
           ? ".rar"
           : "txt";
-      console.log(extension);
       link.setAttribute("download", `${resume}${extension}`);
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
+    })
+    .catch((err) => {
+      return err;
     });
 };
 
@@ -69,8 +70,8 @@ export const register = (name, email, password) => {
       password,
     }),
   })
-    .then((response) => {
-      return getResponseData(response);
+    .then((res) => {
+      return getResponseData(res);
     })
     .then((data) => {
       return data;
@@ -90,8 +91,8 @@ export const authorize = (email, password) => {
       password,
     }),
   })
-    .then((response) => {
-      return getResponseData(response);
+    .then((res) => {
+      return getResponseData(res);
     })
     .then((data) => {
       return data;
@@ -108,8 +109,8 @@ export const getUserInfo = (token) => {
       "Content-Type": "application/json",
     },
   })
-    .then((response) => {
-      return getResponseData(response);
+    .then((res) => {
+      return getResponseData(res);
     })
     .then((res) => {
       if (res) {
@@ -129,8 +130,8 @@ export const getJobs = () => {
       "Content-Type": "application/json",
     },
   })
-    .then((response) => {
-      return getResponseData(response);
+    .then((res) => {
+      return getResponseData(res);
     })
     .then((data) => {
       return data;
@@ -157,15 +158,15 @@ export const addJob = async (data) => {
 
 // Получить вакансию по Id
 export const getJobById = (_id) => {
-  return fetch(`${BASE_URL}/jobs/${_id}`, {
+  return fetch(`${BASE_URL}/response/${_id}`, {
     method: "GET",
     headers: {
-      authorization: `Bearer ${localStorage.getItem("token")}`,
+      // authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
   })
-    .then((response) => {
-      return getResponseData(response);
+    .then((res) => {
+      return getResponseData(res);
     })
     .then((data) => {
       return data;
@@ -181,8 +182,8 @@ export const delJob = (_id) => {
       "Content-Type": "application/json",
     },
   })
-    .then((response) => {
-      return getResponseData(response);
+    .then((res) => {
+      return getResponseData(res);
     })
     .then((data) => {
       return data;
@@ -200,8 +201,8 @@ export const getApplicants = () => {
       "Content-Type": "application/json",
     },
   })
-    .then((response) => {
-      return getResponseData(response);
+    .then((res) => {
+      return getResponseData(res);
     })
     .then((data) => {
       return data;
@@ -219,7 +220,7 @@ export const addResponse = async (data) => {
 };
 
 // Получить количество откликов
-export const getApplicantsCount = (jobId) => {
+export const getApplicantsByJobId = (jobId) => {
   return fetch(`${BASE_URL}/applicants/${jobId}`, {
     method: "GET",
     headers: {
@@ -227,8 +228,8 @@ export const getApplicantsCount = (jobId) => {
       "Content-Type": "application/json",
     },
   })
-    .then((response) => {
-      return getResponseData(response);
+    .then((res) => {
+      return getResponseData(res);
     })
     .then((data) => {
       return data;
@@ -247,13 +248,11 @@ export const patchApplicantComment = (comment, _id) => {
       comment,
     }),
   })
-    .then((response) => {
-      return getResponseData(response);
-    })
     .then((res) => {
-      if (res) {
-        return res;
-      }
+      return getResponseData(res);
+    })
+    .then((data) => {
+      return data;
     });
 };
 
@@ -266,8 +265,8 @@ export const delApplicant = (_id) => {
       "Content-Type": "application/json",
     },
   })
-    .then((response) => {
-      return getResponseData(response);
+    .then((res) => {
+      return getResponseData(res);
     })
     .then((data) => {
       return data;

@@ -23,7 +23,6 @@ function Applicants(props) {
 
   // Эффект проверки что после удаления откликов нет
   useEffect(() => {
-    console.log(data);
     if (data.length === 0) {
       navigate("/applications", { replace: false });
       setIsFilter(false);

@@ -10,35 +10,17 @@ import { FRONT_URL } from "../../utils/Constants";
 import levelStyle from "../../utils/LevelStyle";
 
 function Application(props) {
-  const { company, level, logo, note, position, tags, todo, why, _id } = props.job;
+  const { applicants, company, level, logo, note, position, tags, todo, why, _id } = props.job;
   const delJob = props.delJob;
-  const setPreloader = props.setPreloader;
   const getFilterApplicants = props.getFilterApplicants;
 
   // Стейт количества откликов на вакансию
-  const [applicantsCount, setApplicantsCount] = useState("0");
+  // const [applicantsCount, setApplicantsCount] = useState("0");
   // Стейт открытия попапа с вопросом об удалении
   const [isAskPopup, setIsAskPopup] = useState(false);
 
-  // Эффект обновления количества откликов
-  useEffect(() => {
-    setPreloader(true);
-    Api.getApplicantsCount(_id)
-      .then((res) => {
-        // console.log(res);
-        setApplicantsCount(res.length);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      })
-      .finally(() => {
-        setPreloader(false);
-      });
-  }, [_id]);
-
   // Функция фильтрации откликов
   function handleFilter() {
-    console.log("фильтруем по " + _id);
     getFilterApplicants(_id);
   }
 
@@ -69,10 +51,10 @@ function Application(props) {
           <div className="application__company">
             <div className="application__container">
               <p className="application__position">{position}</p>
-              <img className="application__logo" src={`http://${logo}`} alt="Лого компании"></img>
+              <img className="application__logo" src={`http://${logo}`} alt={`Лого компании ${company}`}></img>
               <div className="application__applicants link-opacity" onClick={handleFilter}>
                 <img className="application__applicants-logo" src={applicantsLogo} alt="Отозвалось"></img>
-                <p className="application__applicants-count">{applicantsCount}</p>
+                <p className="application__applicants-count">{applicants}</p>
               </div>
               <p className="application__note">{note}</p>
               <p className="application__name">{company}</p>

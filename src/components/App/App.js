@@ -144,7 +144,7 @@ function App() {
   // Функция получения отфильтрованных откликов
   function getFilterApplicants(_id) {
     setPreloader(true);
-    Api.getApplicantsCount(_id)
+    Api.getApplicantsByJobId(_id)
       .then((res) => {
         setFilterApplicantsData(res);
         setIsFilter(true);
@@ -209,6 +209,7 @@ function App() {
       });
   }
 
+  // Функция изменения комментария
   function handleCommentChange(text, _id) {
     setPreloader(true);
     Api.patchApplicantComment(text, _id)
@@ -217,17 +218,16 @@ function App() {
         setApplicantsData(
           applicantsData.map((item) => {
             if (item._id === _id) {
-              item.comment = res;
+              item.comment = res.comment;
               return item;
             } else {
               return item;
             }
           })
         );
-        console.log(applicantsData);
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(err);
       })
       .finally(() => {
         setPreloader(false);
@@ -237,11 +237,6 @@ function App() {
   // Функция очистки localStorage при выходе
   function handleloggedOutClick(evt) {
     evt.preventDefault();
-    localStorage.removeItem("filterCards");
-    localStorage.removeItem("moviesTumbler");
-    localStorage.removeItem("savedMoviesTumbler");
-    localStorage.removeItem("moviesInputValue");
-    localStorage.removeItem("savedMoviesInputValue");
     localStorage.removeItem("token");
     setLoggedIn(false);
     navigate("/", { replace: false });
@@ -262,7 +257,6 @@ function App() {
                   delJob={delJob}
                   getFilterApplicants={getFilterApplicants}
                   isPreloader={preloader}
-                  setPreloader={setPreloader}
                   handleCommentChange={handleCommentChange}
                   loggedIn={loggedIn}
                 />
