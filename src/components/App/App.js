@@ -49,7 +49,6 @@ function App() {
       })
       .catch((err) => {
         setLoggedIn(false);
-        console.log(err);
       });
   }, []);
 
@@ -95,7 +94,7 @@ function App() {
       .then((res) => {
         if (email === res.email) {
           authorization(email, password);
-          navigate("/movies", { replace: false });
+          navigate("/applications", { replace: false });
         }
       })
       .catch((err) => {
@@ -116,7 +115,7 @@ function App() {
         if (data.token) {
           localStorage.setItem("token", data.token);
           setLoggedIn(true);
-          navigate("/movies", { replace: false });
+          navigate("/applications", { replace: false });
         }
       })
       .catch((err) => {

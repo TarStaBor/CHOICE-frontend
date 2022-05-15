@@ -1,14 +1,14 @@
 {
-  "homepage": "https://TarStaBor.github.io/CHOICE-frontend",
+  "homepage": "https://TarStaBor.github.io",
   "name": "choice-frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
+    "dotenv": "^16.0.1",
     "moment": "^2.29.3",
     "react": "^17.0.2",
     "react-copy-to-clipboard": "^5.1.0",
@@ -23,7 +23,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run build && scp -r ./build/* root@185.117.152.203:/srv/choicejob.ru/front",
+    "deploy-gh-pages": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

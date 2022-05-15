@@ -1,5 +1,6 @@
 import axios from "axios";
-import { BASE_URL } from "./Constants";
+// import { BASE_URL } from "./Constants";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 // метод обработки ответа сервера
 async function getResponseData(result) {
@@ -60,7 +61,6 @@ export const downloadFile = (resume, _id, job) => {
 export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
-    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },

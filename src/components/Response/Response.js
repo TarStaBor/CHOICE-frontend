@@ -129,7 +129,7 @@ function Response(props) {
           <form className="response__sections" onSubmit={Submit}>
             <div className="response__company">
               <div className="response__position">{data.position}</div>
-              <img className="response__logo" src={`http://${data.logo}`} alt="Логотип компании"></img>
+              <img className="response__logo" src={data.logo} alt="Логотип компании"></img>
               <div className="response__name">{data.company}</div>
             </div>
             <div className="response__tags">

@@ -12,6 +12,6 @@ export default function fileFormatValidation(type, extention) {
     type === "application/vnd.rar" ||
     extention === "zip" ||
     extention === "7z" ||
-    extention === "rar"
+    extention === "rar" 
   );
 }

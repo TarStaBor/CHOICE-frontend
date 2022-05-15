@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import "./Application.css";
 import applicantsLogo from "../../images/applicants.svg";
 import deleteLogo from "../../images/delete.svg";
 import copy from "../../images/copy.png";
-import * as Api from "../../utils/Api";
 import AskPopup from "../AskPopup/AskPopup";
-import { FRONT_URL } from "../../utils/Constants";
 import levelStyle from "../../utils/LevelStyle";
 
 function Application(props) {
   const { applicants, company, level, logo, note, position, tags, todo, why, _id } = props.job;
   const delJob = props.delJob;
+  const FRONT_URL = process.env.REACT_APP_FRONT_URL;
   const getFilterApplicants = props.getFilterApplicants;
-
-  // Стейт количества откликов на вакансию
-  // const [applicantsCount, setApplicantsCount] = useState("0");
-  // Стейт открытия попапа с вопросом об удалении
   const [isAskPopup, setIsAskPopup] = useState(false);
 
   // Функция фильтрации откликов
@@ -51,7 +46,7 @@ function Application(props) {
           <div className="application__company">
             <div className="application__container">
               <p className="application__position">{position}</p>
-              <img className="application__logo" src={`http://${logo}`} alt={`Лого компании ${company}`}></img>
+              <img className="application__logo" src={logo} alt={`Лого компании ${company}`}></img>
               <div className="application__applicants link-opacity" onClick={handleFilter}>
                 <img className="application__applicants-logo" src={applicantsLogo} alt="Отозвалось"></img>
                 <p className="application__applicants-count">{applicants}</p>
