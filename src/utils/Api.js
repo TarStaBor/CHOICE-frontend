@@ -1,5 +1,4 @@
 import axios from "axios";
-// import { BASE_URL } from "./Constants";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 // метод обработки ответа сервера

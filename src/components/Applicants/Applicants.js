@@ -22,13 +22,13 @@ function Applicants(props) {
   const navigate = useNavigate();
 
   // Эффект проверки что после удаления откликов нет
-  useEffect(() => {
-    if (data.length === 0) {
-      navigate("/applications", { replace: false });
-      setIsFilter(false);
-      // localStorage.removeItem("filterApplicants");
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data.length === 0) {
+  //     navigate("/applications", { replace: false });
+  //     setIsFilter(false);
+  //     // localStorage.removeItem("filterApplicants");
+  //   }
+  // }, [data]);
 
   // Эффект очистки фильтрованных откликов при уходе со страницы
   useEffect(() => {

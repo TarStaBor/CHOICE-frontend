@@ -58,8 +58,18 @@
   margin: 0;
   font-weight: 500;
   font-size: 25px;
-  line-height: 25px;
+  line-height: 30px;
   color: #292929;
+  transition: 0.3s;
+}
+
+.answerPopup__link {
+  margin: 0;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 30px;
+  color: #0079bf;
+  cursor: pointer;
   transition: 0.3s;
 }
 
@@ -80,6 +90,11 @@
 
   .answerPopup__subtitle {
     font-size: 16px;
-    line-height: 16px;
+    line-height: 20px;
+  }
+
+  .answerPopup__link {
+    font-size: 16px;
+    line-height: 20px;
   }
 }

@@ -111,7 +111,8 @@ function Response(props) {
       .catch((err) => {
         setResponseAnswer({
           title: "Ой!",
-          subTitle: "Мы не получили ваш отклик. Свяжитесь с нами для решения проблемы",
+          subTitle: "Мы не получили ваш отклик. Свяжитесь с нами для решения проблемы в телеграмм чате",
+          link: "t.me/choice_applications",
         });
       })
       .finally(() => {

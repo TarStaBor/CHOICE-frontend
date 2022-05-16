@@ -16,30 +16,34 @@ import Error from "../Error/Error";
 import * as Api from "../../utils/Api";
 
 function App() {
+  const navigate = useNavigate();
+
   // Стейт  регистрации
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
+
   // Стейт актуального пользователя
   const [currentUser, setCurrentUser] = useState({});
+
   // Стейт вакансий
   const [data, setData] = useState([]);
+
   // Стейт откликов
   const [applicantsData, setApplicantsData] = useState([]);
+
   // Стейт отфильтрованных откликов
   const [filterApplicantsData, setFilterApplicantsData] = useState([]);
 
   // Стейт блокировки инпута
   const [blockInput, setBlockInput] = useState(false);
 
-  // Стейт сообщения с ошибкой при обращении к MainApi
+  // Стейт сообщения с ошибкой при регистрации и авторизации
   const [errorMesage, setErrorMesage] = useState("");
 
   // Стейт прелодера
   const [isFilter, setIsFilter] = useState(false);
 
   // Стейт прелодера
-  const [preloader, setPreloader] = useState(true);
-
-  const navigate = useNavigate();
+  const [preloader, setPreloader] = useState(false);
 
   // Эффект проверки авторизации на сайте
   useEffect(() => {
@@ -50,7 +54,20 @@ function App() {
       .catch((err) => {
         setLoggedIn(false);
       });
-  }, []);
+  }, [loggedIn]);
+
+  // Эффект получения информации о пользователе
+  useEffect(() => {
+    if (loggedIn) {
+      Api.getUserInfo()
+        .then((userData) => {
+          setCurrentUser(userData);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [loggedIn]);
 
   // Получение всех вакансий
   useEffect(() => {
@@ -127,19 +144,6 @@ function App() {
       });
   }
 
-  // Эффект получения информации о пользователе
-  useEffect(() => {
-    if (loggedIn) {
-      Api.getUserInfo()
-        .then((userData) => {
-          setCurrentUser(userData);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [loggedIn]);
-
   // Функция получения отфильтрованных откликов
   function getFilterApplicants(_id) {
     setPreloader(true);
@@ -155,6 +159,14 @@ function App() {
       .finally(() => {
         setPreloader(false);
       });
+  }
+
+  // Функция очистки localStorage при выходе
+  function handleloggedOutClick(evt) {
+    evt.preventDefault();
+    localStorage.removeItem("token");
+    setLoggedIn(false);
+    navigate("/", { replace: false });
   }
 
   // Функция удаления вакансиии
@@ -232,15 +244,6 @@ function App() {
         setPreloader(false);
       });
   }
-
-  // Функция очистки localStorage при выходе
-  function handleloggedOutClick(evt) {
-    evt.preventDefault();
-    localStorage.removeItem("token");
-    setLoggedIn(false);
-    navigate("/", { replace: false });
-  }
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <section className="app">
@@ -309,7 +312,7 @@ function App() {
           />
 
           {loggedIn ? (
-            <Route path="/signup" element={<Navigate replace to="/" />} />
+            <Route path="/signup" element={<Navigate replace to="/applications" />} />
           ) : (
             <Route
               exact
@@ -326,7 +329,7 @@ function App() {
           )}
 
           {loggedIn ? (
-            <Route path="/signin" element={<Navigate replace to="/" />} />
+            <Route path="/signin" element={<Navigate replace to="/applications" />} />
           ) : (
             <Route
               exact
