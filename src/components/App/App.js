@@ -224,13 +224,11 @@ function App() {
   function handleCommentChange(text, _id) {
     setPreloader(true);
     Api.patchApplicantComment(text, _id)
-
       .then((res) => {
         setApplicantsData(
           applicantsData.map((item) => {
             if (item._id === _id) {
-              item.comment = res.comment;
-              return item;
+              return { ...item, comment: res };
             } else {
               return item;
             }
