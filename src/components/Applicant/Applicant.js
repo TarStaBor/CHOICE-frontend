@@ -18,7 +18,7 @@ function Applicant(props) {
     setPreloader(true);
     Api.downloadFile(resume, _id, job)
       .then((res) => {
-        console.log(res);
+        console.log(`Скачивание файла ${resume}`);
       })
       .catch((err) => {
         console.log(err.message);
