@@ -9,7 +9,7 @@ function Register(props) {
   const { values, handleChange, errors, isValid } = Validation();
   function Submite(evt) {
     evt.preventDefault();
-    handleSubmit(values.name, values.email, values.password);
+    handleSubmit(values.name, values.email.toLowerCase(), values.password);
   }
 
   return (

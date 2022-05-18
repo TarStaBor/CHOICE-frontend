@@ -10,7 +10,7 @@ function Login(props) {
 
   function Submite(evt) {
     evt.preventDefault();
-    handleSubmit(values.email, values.password);
+    handleSubmit(values.email.toLowerCase(), values.password);
   }
 
   return (
