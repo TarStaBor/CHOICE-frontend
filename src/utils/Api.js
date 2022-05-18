@@ -13,11 +13,13 @@ async function getResponseData(result) {
 
 // Скачать файл
 export const downloadFile = (resume, _id, job) => {
-  return fetch(`${BASE_URL}/resumes/${job.company}/${job._id}/${_id}/${resume}`, {
+  console.log();
+  return fetch(`${BASE_URL}/resumes/${job.company}/${job._id}/${_id}.${resume.split(".").pop()}`, {
     method: "GET",
   })
     .then((res) => res.blob())
     .then((blob) => {
+      console.log(blob);
       const url = window.URL.createObjectURL(new Blob([blob]));
       const link = document.createElement("a");
       link.href = url;
@@ -43,7 +45,7 @@ export const downloadFile = (resume, _id, job) => {
           : blob.type === "application/vnd.rar" || blob.type === "application/x-rar-compressed"
           ? ".rar"
           : "txt";
-      link.setAttribute("download", `${resume}${extension}`);
+      link.setAttribute("download", `${resume.split(".").slice(0, -1).join(".")}${extension}`);
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
