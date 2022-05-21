@@ -9,6 +9,7 @@ import Applications from "../Applications/Applications";
 import Applicants from "../Applicants/Applicants";
 import AddJob from "../AddJob/AddJob";
 import Response from "../Response/Response";
+import Policy from "../Policy/Policy";
 import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
@@ -344,6 +345,7 @@ function App() {
           )}
 
           <Route path="/response/:_id" element={<Response isPreloader={preloader} setPreloader={setPreloader} />} />
+          <Route path="/policy" element={<Policy />} />
 
           <Route path="*" element={<Error />} />
         </Routes>

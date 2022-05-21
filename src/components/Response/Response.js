@@ -11,6 +11,7 @@ import AnswerPopup from "../AnswerPopup/AnswerPopup";
 import Modal from "../Modal/Modal";
 import { FORMATS, REGEXP } from "../../utils/Constants";
 import Error from "../Error/Error";
+import { Link } from "react-router-dom";
 
 import * as Api from "../../utils/Api";
 import Preloader from "../Preloader/Preloader";
@@ -206,14 +207,10 @@ function Response(props) {
               <label className="response__policy-label" htmlFor="policy"></label>
               <div className="response__policy-agreement">
                 <span className="response__policy-agreement_type_text">Согласен с </span>
-                <a
-                  href="https://prime.ru/o-kompanii/soglashenie-dlya-obrabotki-personalnykh-dannykh-i-politika-konfidentsialnosti"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="response__policy-agreement_type_link"
-                >
+
+                <Link className="response__policy-agreement_type_link" to="/policy">
                   политикой обработки персональных данных
-                </a>
+                </Link>
               </div>
             </fieldset>
 
