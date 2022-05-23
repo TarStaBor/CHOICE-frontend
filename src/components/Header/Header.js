@@ -38,9 +38,9 @@ function Header(props) {
         ) : (
           <>
             <div className="header__unauthorize-links">
-              <Link className="header__unauthorize-link" to="/signup">
+              {/* <Link className="header__unauthorize-link" to="/signup">
                 <h2 className="header__link-title link-opacity">Регистрация</h2>
-              </Link>
+              </Link> */}
 
               <Link className="header__unauthorize-link" to="/signin">
                 <button className="header__button link-opacity">Войти</button>
