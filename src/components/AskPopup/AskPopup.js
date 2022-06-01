@@ -2,6 +2,7 @@ import "./AskPopup.css";
 
 function AskPopup(props) {
   const { delJob, _id, setIsAskPopup } = props;
+
   return (
     <>
       <section className="askPopup askPopup_opened">
