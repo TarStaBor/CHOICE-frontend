@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
-//хук управления формой и валидации формы
 
+// Form management and validation hook
 export function Validation() {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
