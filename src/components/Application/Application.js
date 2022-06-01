@@ -10,19 +10,17 @@ import levelStyle from "../../utils/LevelStyle";
 function Application(props) {
   const { applicants, company, level, logo, note, position, tags, todo, why, _id } = props.job;
   const delJob = props.delJob;
-  const FRONT_URL = process.env.REACT_APP_FRONT_URL;
   const getFilterApplicants = props.getFilterApplicants;
+
   const [isAskPopup, setIsAskPopup] = useState(false);
 
-  // Функция фильтрации откликов
-  function handleFilter() {
+  const FRONT_URL = process.env.REACT_APP_FRONT_URL;
+  const levelColor = levelStyle(level);
+
+  function handleFilterApplicants() {
     getFilterApplicants(_id);
   }
 
-  // Определение цвета уровня соискателя
-  const levelColor = levelStyle(level);
-
-  //
   function handleOpenPopup() {
     setIsAskPopup(true);
   }
@@ -47,7 +45,7 @@ function Application(props) {
             <div className="application__container">
               <p className="application__position">{position}</p>
               <img className="application__logo" src={logo} alt={`Лого компании ${company}`}></img>
-              <div className="application__applicants link-opacity" onClick={handleFilter}>
+              <div className="application__applicants link-opacity" onClick={handleFilterApplicants}>
                 <img className="application__applicants-logo" src={applicantsLogo} alt="Отозвалось"></img>
                 <p className="application__applicants-count">{applicants}</p>
               </div>
