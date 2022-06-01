@@ -4,27 +4,23 @@ import cross from "../../images/cross.svg";
 
 function AddTags(props) {
   const { tags, setTags } = props;
-  //Стейт содержимого инпута
+
   const [userInput, setUserInput] = useState("");
 
-  // Функция обновления стейта содержимого инпута
-  function handleChange(e) {
+  function handleInputChange(e) {
     setUserInput(e.currentTarget.value);
   }
 
-  // Функция удаления тэга
   function handleRemoveTag(removeTag) {
     setTags([...tags.filter((tag) => tag !== removeTag)]);
   }
 
-  // Функция добавления тэга по нажатию на Enter
   function handleKeyPress(e) {
     if (e.key === "Enter") {
       handleSubmit(e);
     }
   }
 
-  // Функция добавления тэга
   function handleSubmit(e) {
     e.preventDefault();
     if (userInput) {
@@ -60,7 +56,7 @@ function AddTags(props) {
         minLength="2"
         maxLength="30"
         autoComplete="off"
-        onChange={handleChange}
+        onChange={handleInputChange}
         onKeyDown={handleKeyPress}
       />
     </>
