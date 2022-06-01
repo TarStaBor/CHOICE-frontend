@@ -5,7 +5,7 @@ import check from "../../images/check-mark.svg";
 import information from "../../images/information.svg";
 import levelStyle from "../../utils/LevelStyle";
 import { Validation } from "../../utils/Validation";
-import fileFormatValidation from "../../utils/FileFormatValidation";
+import { fileFormatValidation } from "../../utils/FileFormatValidation";
 import fileSizeValidation from "../../utils/FileSizeValidation";
 import AnswerPopup from "../AnswerPopup/AnswerPopup";
 import Modal from "../Modal/Modal";
