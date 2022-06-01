@@ -35,6 +35,7 @@ function Applicants(props) {
       setFilterApplicantsData([]);
       setIsFilter(false);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
