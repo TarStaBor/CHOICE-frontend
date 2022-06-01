@@ -2,10 +2,10 @@ import "./Search.css";
 import magnifier from "../../images/magnifier.svg";
 
 function Search(props) {
-  const { setSearchValue, searchValue } = props;
+  const { setSearchInputValue, searchInputValue } = props;
 
   function handleEdit(evt) {
-    setSearchValue(evt.target.value);
+    setSearchInputValue(evt.target.value);
   }
   return (
     <>
@@ -14,7 +14,6 @@ function Search(props) {
           className="search__search-container"
           onSubmit={(evt) => {
             evt.preventDefault();
-            // handleFilter(arrayforSearch);
           }}
         >
           <img src={magnifier} className="search__magnifier" alt="Изображение лупы"></img>
@@ -22,7 +21,7 @@ function Search(props) {
             className="search__search-input"
             type="text"
             name="searchValue"
-            value={searchValue}
+            value={searchInputValue}
             required
             onChange={handleEdit}
           ></input>
