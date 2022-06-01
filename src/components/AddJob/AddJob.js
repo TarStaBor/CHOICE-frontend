@@ -8,56 +8,48 @@ import shirt from "../../images/logo-black-and-white.png";
 
 function AddJob(props) {
   const { handleCreateJob, loggedIn } = props;
-  // Валидация
+
   const { values, handleChange, errors, isValid } = Validation();
-  // Стейт уровня соискателя
+
   const [level, setLevel] = useState("intern");
-  // Стейт файла логотипа компании
-  const [logo, setLogo] = useState();
-  // Стейт предварительного просмотра логотипа компании
-  const [preview, setPreview] = useState();
-  // const fileInputRef = useRef();
-  // Стейт массива тэгов.
+  const [logoFile, setLogoFile] = useState();
+  const [previewLogo, setPreviewLogo] = useState();
   const [tags, setTags] = useState([]);
 
-  // Отображение логотипа при загрузке файла
+  // Displaying the logo when uploading a file
   useEffect(() => {
-    if (logo) {
+    if (logoFile) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPreview(reader.result);
+        setPreviewLogo(reader.result);
       };
-      reader.readAsDataURL(logo);
+      reader.readAsDataURL(logoFile);
     } else {
-      setPreview(shirt);
+      setPreviewLogo(shirt);
     }
-  }, [logo]);
+  }, [logoFile]);
 
-  // Валидация загруженного логотипа
+  // Validation of the uploaded logo
   function handleLogoChange(e) {
     const file = e.target.files[0];
     if (file && file.type.substr(0, 5) === "image") {
-      setLogo(file);
-      console.log(file);
+      setLogoFile(file);
     } else {
-      setPreview(shirt);
-      setLogo("");
+      setPreviewLogo(shirt);
+      setLogoFile("");
     }
     e.target.value = null;
   }
 
-  // Функция удаления логотипа
   function handleRemoveLogo() {
-    setPreview(shirt);
-    setLogo("");
+    setPreviewLogo(shirt);
+    setLogoFile("");
   }
 
-  // Функция изменения уровня соискателя
   function handleChangeLevel(e) {
     setLevel(e.target.id);
   }
 
-  // Отправка данных формы
   function Submit(evt) {
     evt.preventDefault();
     let formData = new FormData();
@@ -67,7 +59,7 @@ function AddJob(props) {
     for (let i = 0; i < tags.length; i++) {
       formData.append("tags", tags[i]);
     }
-    formData.append("logo", logo);
+    formData.append("logo", logoFile);
     formData.append("note", values.note);
     formData.append("todo", values.todo);
     formData.append("why", values.why);
@@ -166,7 +158,6 @@ function AddJob(props) {
               <input
                 type="file"
                 accept="image/*"
-                // ref={fileInputRef}
                 className="addJob__logo-button"
                 name="logo"
                 onChange={handleLogoChange}
@@ -174,8 +165,8 @@ function AddJob(props) {
               Логотип
             </label>
             <img
-              className={!logo ? "addJob__logo-preview" : "addJob__logo-preview addJob__logo-preview_delete"}
-              src={preview}
+              className={!logoFile ? "addJob__logo-preview" : "addJob__logo-preview addJob__logo-preview_delete"}
+              src={previewLogo}
               alt="Логотип"
               onClick={handleRemoveLogo}
             />
@@ -240,11 +231,11 @@ function AddJob(props) {
             <button
               type="submit"
               className={` ${
-                !isValid || !logo || !tags.length
+                !isValid || !logoFile || !tags.length
                   ? "addJob__submit-button addJob__submit-button_disabled"
                   : "addJob__submit-button link-opacity"
               }`}
-              disabled={(!isValid || !logo || !tags.length) && "disabled"}
+              disabled={(!isValid || !logoFile || !tags.length) && "disabled"}
             >
               Добавить
             </button>
