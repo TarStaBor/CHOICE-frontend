@@ -1,22 +1,22 @@
-# **Проект: CHOICE-frontend**
+# **Project: CHOICE frontend**
 
-## Данный проект представляет из себя сервис по обработке вакансий и откликов по ним.
-
----
-
-## В функционал проекта входит возможность:
-
-- проходить регистрацию и аутентификацию
-- искать вакансии и отклики по ключевым словам
-- добавлять и удалять вакансии и отклики
-- редактировать свой профиль.
+## This project is a service for processing vacancies and responses.
 
 ---
 
-## IP адресс ➡️ 185.117.152.203
+## The functionality of the project includes the ability to:
 
-## [Ссылка на сервер ⬅️](https://choicejob.ru/)
+- register and log in
+- search for vacancies and responses by keywords
+- add and remove vacancies and responses
+- edit profile
 
 ---
 
-![Иллюстрация к проекту](./src/images/CHOICE-FRONTEND%20image.png)
+## IP address ➡️ 185.5.251.34
+
+## [Link to the website ⬅️](https://choicejobs.ru/)
+
+---
+
+![Illustration for the project](./src/images/CHOICE-FRONTEND%20image.png)
