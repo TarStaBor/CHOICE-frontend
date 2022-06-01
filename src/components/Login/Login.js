@@ -67,12 +67,12 @@ function Login(props) {
           >
             Войти
           </button>
-          {/* <h2 className="login__reg-question">
+          <h2 className="login__reg-question">
             Ещё не зарегистрированы?
             <Link to="/signup" className="login__link link-opacity">
               Регистрация
             </Link>
-          </h2> */}
+          </h2>
         </div>
       </form>
     </section>
