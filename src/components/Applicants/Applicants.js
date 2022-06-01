@@ -18,7 +18,9 @@ function Applicants(props) {
     handleCommentChange,
     loggedIn,
   } = props;
-  const [searchValue, setSearchValue] = useState("");
+
+  const [searchInputValue, setSearchInputValue] = useState("");
+
   // const navigate = useNavigate();
 
   // TODO: Check for no responses
@@ -42,7 +44,7 @@ function Applicants(props) {
     <>
       {isPreloader && <Preloader />}
       <Header loggedIn={loggedIn} />
-      <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+      <Search searchValue={searchInputValue} setSearchValue={setSearchInputValue} />
       {data && (
         <div className="applicants">
           {data
