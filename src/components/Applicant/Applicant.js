@@ -7,13 +7,11 @@ import * as Api from "../../utils/Api";
 import moment from "moment/min/moment-with-locales";
 
 function Applicant(props) {
-  // console.log(props);
   const { comment, createdAt, job, link, resume, _id } = props.applicant;
   const delApplicant = props.delApplicant;
   const setPreloader = props.setPreloader;
   const handleCommentChange = props.handleCommentChange;
 
-  // Функция скачивания файла резюме
   function handleDownloadFile() {
     setPreloader(true);
     Api.downloadFile(resume, _id, job)
@@ -28,7 +26,6 @@ function Applicant(props) {
       });
   }
 
-  // Функция добавления комментария к отклику
   function commentChange(e) {
     if (e.target.textContent !== comment) {
       handleCommentChange(e.target.textContent, _id);
