@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import "./Applicants.css";
 import Header from "../Header/Header";
 import Search from "../Search/Search";
@@ -19,9 +19,9 @@ function Applicants(props) {
     loggedIn,
   } = props;
   const [searchValue, setSearchValue] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  // Эффект проверки что после удаления откликов нет
+  // TODO: Check for no responses
   // useEffect(() => {
   //   if (data.length === 0) {
   //     navigate("/applications", { replace: false });
@@ -30,12 +30,10 @@ function Applicants(props) {
   //   }
   // }, [data]);
 
-  // Эффект очистки фильтрованных откликов при уходе со страницы
   useEffect(() => {
     return () => {
       setFilterApplicantsData([]);
       setIsFilter(false);
-      // localStorage.removeItem("filterApplicants");
     };
   }, []);
 
