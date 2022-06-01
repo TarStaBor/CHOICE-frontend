@@ -9,7 +9,7 @@ import fileFormatValidation from "../../utils/FileFormatValidation";
 import fileSizeValidation from "../../utils/FileSizeValidation";
 import AnswerPopup from "../AnswerPopup/AnswerPopup";
 import Modal from "../Modal/Modal";
-import { FORMATS, REGEXP } from "../../utils/Constants";
+import { FORMATS } from "../../utils/Constants";
 import Error from "../Error/Error";
 import { Link } from "react-router-dom";
 
@@ -19,30 +19,21 @@ import Preloader from "../Preloader/Preloader";
 function Response(props) {
   const { isPreloader, setPreloader } = props;
   const { values, handleChange, errors, isValid } = Validation();
-  // Стейт данных отклика
-  const [data, setData] = useState();
-  // Стейт файла резюме
-  const [resume, setResume] = useState("");
-  // Стейт ссылки на резюме
-  const [link, setLink] = useState("");
-  // Стейт валидности файла
-  const [fileIsValid, setFileIsValid] = useState(false);
-  // Стейт статуса отображения модального окна с форматами файлов
-  const [isModal, setIsModal] = useState(false);
-  // Стейт ответа от сервера после отправки отклика
-  const [responseAnswer, setResponseAnswer] = useState("");
-  // Стейт открытия попапа результата отправки
-  const [responsePopup, setResponsePopup] = useState(false);
-  // Стейт сообщения невалидного типа файла
-  const [filTypeError, setFilTypeError] = useState("");
 
-  // Стейт ошибки при открытии страницы
+  const [data, setData] = useState();
+  const [resumeFile, setResumeFile] = useState("");
+  const [resumeLink, setResumeLink] = useState("");
+  const [fileIsValid, setFileIsValid] = useState(false);
+  const [isModal, setIsModal] = useState(false);
+  const [responseAnswer, setResponseAnswer] = useState("");
+  const [responsePopup, setResponsePopup] = useState(false);
+  const [fileTypeError, setFileTypeError] = useState("");
+  // Error when getting a job
   const [isError, setIsError] = useState(false);
 
   const fileInputRef = useRef();
   const { _id } = useParams();
 
-  // Эффект получения данных о вакансии
   useEffect(() => {
     setPreloader(true);
     Api.getJobById(_id)
@@ -56,56 +47,47 @@ function Response(props) {
       .finally(() => {
         setPreloader(false);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_id]);
 
-  // Валидация загруженного резюме
-  function handleResumeChange(e) {
+  function handleResumeFileChange(e) {
     const file = e.target.files[0];
     const extention = file.name.split(".").pop();
     if (fileSizeValidation(file.size)) {
       if (fileFormatValidation(file.type, extention)) {
-        setResume(file);
+        setResumeFile(file);
         setFileIsValid(true);
       } else {
-        setFilTypeError(`Файл формата ${extention} не подходит!`);
+        setFileTypeError(`Файл формата ${extention} не подходит!`);
         setFileIsValid(false);
       }
     } else {
-      console.log("Мы тут");
-      setFilTypeError(`Файл должен быть не более 10 Мегабайт!`);
+      setFileTypeError(`Файл должен быть не более 10 Мегабайт!`);
       setFileIsValid(false);
     }
 
     e.target.value = null;
   }
-  // Валидация введенного адреса и запись адреса в стейт переменную
-  // для корректной работы валидации при пустом инпуте
-  function handleLinkChange(e) {
+
+  function handleResumeLinkChange(e) {
     handleChange(e);
-    setLink(e.target.value);
+    setResumeLink(e.target.value);
   }
 
-  // Функция отображения модального окна с допустимыми форматами файла
   function handleModalOpen() {
     setIsModal(!isModal);
   }
 
-  // Отправка данных формы
   function Submit(evt) {
     evt.preventDefault();
     setPreloader(true);
     let formData = new FormData();
-    formData.append("resume", resume);
-    formData.append("link", link);
+    formData.append("resume", resumeFile);
+    formData.append("link", resumeLink);
     formData.append("company", data.company);
     formData.append("jobId", _id);
 
-    // for (let key of formData.keys()) {
-    //   console.log(key, formData.get(key));
-    // }
-
     Api.addResponse(formData)
-
       .then((res) => {
         setResponseAnswer({ title: "Спасибо!", subTitle: "Мы получили ваш отклик" });
       })
@@ -166,11 +148,11 @@ function Response(props) {
                       ref={fileInputRef}
                       className="response__resume-button"
                       name="logo"
-                      onChange={handleResumeChange}
+                      onChange={handleResumeFileChange}
                     ></input>
                     Загрузить
                   </label>
-                  <span className="response__fileValidError-message">{filTypeError}</span>
+                  <span className="response__fileValidError-message">{fileTypeError}</span>
                 </>
               ) : (
                 <img className="response__check" src={check} alt="Файл загружен"></img>
@@ -186,11 +168,10 @@ function Response(props) {
                 className={`response__link-input ${errors.link && "response__link-input_error"}`}
                 name="link"
                 id="link"
-                onChange={handleLinkChange}
+                onChange={handleResumeLinkChange}
                 minLength="2"
                 maxLength="2048"
                 autoComplete="off"
-                // pattern={REGEXP}
               ></input>
               <span className="response__error-message">{errors.link}</span>
             </fieldset>
@@ -218,11 +199,11 @@ function Response(props) {
               <button
                 type="submit"
                 className={` ${
-                  isValid && (link.length !== 0 || (values.policy && resume))
+                  isValid && (resumeLink.length !== 0 || (values.policy && resumeFile))
                     ? "response__submit-button link-opacity"
                     : "response__submit-button response__submit-button_disabled"
                 }`}
-                disabled={isValid && (link.length !== 0 || (!!values.policy && !!resume)) ? "" : "disabled"}
+                disabled={isValid && (resumeLink.length !== 0 || (!!values.policy && !!resumeFile)) ? "" : "disabled"}
               >
                 Откликнуться
               </button>
