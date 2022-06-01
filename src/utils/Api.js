@@ -1,7 +1,8 @@
 import axios from "axios";
+import { fileFormatExtantion } from "../utils/FileFormatValidation";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-// метод обработки ответа сервера
+// Response processing
 async function getResponseData(result) {
   const res = await result.json();
   if (result.ok) {
@@ -11,40 +12,16 @@ async function getResponseData(result) {
   }
 }
 
-// Скачать файл
 export const downloadFile = (resume, _id, job) => {
-  console.log();
   return fetch(`${BASE_URL}/resumes/${job.company}/${job._id}/${_id}.${resume.split(".").pop()}`, {
     method: "GET",
   })
     .then((res) => res.blob())
     .then((blob) => {
-      console.log(blob);
       const url = window.URL.createObjectURL(new Blob([blob]));
       const link = document.createElement("a");
       link.href = url;
-      const extension =
-        blob.type === "application/msword"
-          ? ".doc"
-          : blob.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-          ? ".docx"
-          : blob.type === "application/pdf"
-          ? ".pdf"
-          : blob.type === "application/vnd.ms-powerpoint"
-          ? ".ppt"
-          : blob.type === "application/vnd.openxmlformats-officedocument.presentationml.presentation"
-          ? ".pptx"
-          : blob.type === "image/jpeg"
-          ? ".jpg"
-          : blob.type === "image/png"
-          ? ".png"
-          : blob.type === "application/zip"
-          ? ".zip"
-          : blob.type === "application/x-7z-compressed"
-          ? ".7z"
-          : blob.type === "application/vnd.rar" || blob.type === "application/x-rar-compressed"
-          ? ".rar"
-          : "txt";
+      const extension = fileFormatExtantion(blob.type);
       link.setAttribute("download", `${resume.split(".").slice(0, -1).join(".")}${extension}`);
       document.body.appendChild(link);
       link.click();
@@ -55,9 +32,7 @@ export const downloadFile = (resume, _id, job) => {
     });
 };
 
-// ----------------Пользователи---------------------
-
-//Регистрация
+// ----------USERS----------
 
 export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -79,8 +54,6 @@ export const register = (name, email, password) => {
     });
 };
 
-//Авторизация
-
 export const authorize = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
@@ -100,8 +73,6 @@ export const authorize = (email, password) => {
     });
 };
 
-//Получить данные пользователя
-
 export const getUserInfo = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
@@ -120,9 +91,8 @@ export const getUserInfo = (token) => {
     });
 };
 
-// ----------------Вакансии---------------------
+// ----------JOBS----------
 
-// Получить все вакансии
 export const getJobs = () => {
   return fetch(`${BASE_URL}/jobs`, {
     method: "GET",
@@ -139,7 +109,6 @@ export const getJobs = () => {
     });
 };
 
-// Добавить вакансию
 export const addJob = async (data) => {
   try {
     return await axios
@@ -157,12 +126,10 @@ export const addJob = async (data) => {
   }
 };
 
-// Получить вакансию по Id
 export const getJobById = (_id) => {
   return fetch(`${BASE_URL}/response/${_id}`, {
     method: "GET",
     headers: {
-      // authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
     },
   })
@@ -174,7 +141,6 @@ export const getJobById = (_id) => {
     });
 };
 
-// Удалить вакансию
 export const delJob = (_id) => {
   return fetch(`${BASE_URL}/jobs/${_id}`, {
     method: "DELETE",
@@ -191,9 +157,8 @@ export const delJob = (_id) => {
     });
 };
 
-// ----------------Отклики---------------------
+// ----------APPLICANTS----------
 
-// Получить все отклики
 export const getApplicants = () => {
   return fetch(`${BASE_URL}/applicants`, {
     method: "GET",
@@ -210,7 +175,6 @@ export const getApplicants = () => {
     });
 };
 
-// Добавить отклик
 export const addResponse = async (data) => {
   return await axios.post(`${BASE_URL}/response`, data, {
     headers: {
@@ -220,7 +184,6 @@ export const addResponse = async (data) => {
   });
 };
 
-// Получить количество откликов
 export const getApplicantsByJobId = (jobId) => {
   return fetch(`${BASE_URL}/applicants/${jobId}`, {
     method: "GET",
@@ -237,7 +200,6 @@ export const getApplicantsByJobId = (jobId) => {
     });
 };
 
-// изменить комментарий отклика
 export const patchApplicantComment = (comment, _id) => {
   return fetch(`${BASE_URL}/applicants/${_id}`, {
     method: "PATCH",
@@ -257,7 +219,6 @@ export const patchApplicantComment = (comment, _id) => {
     });
 };
 
-// Удалить отклик
 export const delApplicant = (_id) => {
   return fetch(`${BASE_URL}/applicants/${_id}`, {
     method: "DELETE",

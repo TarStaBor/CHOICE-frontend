@@ -1,4 +1,4 @@
-export default function fileFormatValidation(type, extention) {
+export function fileFormatValidation(type, extention) {
   return (
     type === "application/msword" ||
     type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
@@ -12,6 +12,30 @@ export default function fileFormatValidation(type, extention) {
     type === "application/vnd.rar" ||
     extention === "zip" ||
     extention === "7z" ||
-    extention === "rar" 
+    extention === "rar"
   );
+}
+
+export function fileFormatExtantion(extention) {
+  return extention === "application/msword"
+    ? ".doc"
+    : extention === "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    ? ".docx"
+    : extention === "application/pdf"
+    ? ".pdf"
+    : extention === "application/vnd.ms-powerpoint"
+    ? ".ppt"
+    : extention === "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+    ? ".pptx"
+    : extention === "image/jpeg"
+    ? ".jpg"
+    : extention === "image/png"
+    ? ".png"
+    : extention === "application/zip"
+    ? ".zip"
+    : extention === "application/x-7z-compressed"
+    ? ".7z"
+    : extention === "application/vnd.rar" || extention === "application/x-rar-compressed"
+    ? ".rar"
+    : "txt";
 }
