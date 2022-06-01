@@ -8,14 +8,14 @@ import Preloader from "../Preloader/Preloader";
 
 function Applications(props) {
   const { data, delJob, getFilterApplicants, isPreloader, loggedIn } = props;
-  // Стейт содержимого инпута
-  const [searchValue, setSearchValue] = useState("");
+
+  const [searchInputValue, setSearchInputValue] = useState("");
 
   return (
     <>
       {isPreloader && <Preloader />}
       <Header loggedIn={loggedIn} />
-      <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+      <Search searchValue={searchInputValue} setSearchValue={setSearchInputValue} />
       <div className="applications">
         {data
           .map((job) => {
