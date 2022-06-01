@@ -23,6 +23,7 @@ function Profile(props) {
 
   const { values, handleChange, errors, isValid } = Validation();
 
+  // TODO: make profile editing
   // function handleEdit(e) {
   //   e.preventDefault();
   //   setEdit(true);
