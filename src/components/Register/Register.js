@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import "./Register.css";
-import logo from "../../images/applicants.svg";
+import logo from "../../images/logo.png";
 import { Validation } from "../../utils/Validation";
-import Preloader from "../Preloader/Preloader";
 
 function Register(props) {
-  const { errorMesage, handleSubmit, isPreloader, blockInput } = props;
+  const { errorMesage, handleSubmit, blockInput } = props;
   const { values, handleChange, errors, isValid } = Validation();
   function Submite(evt) {
     evt.preventDefault();
@@ -14,7 +13,6 @@ function Register(props) {
 
   return (
     <section className="register">
-      {isPreloader && <Preloader />}
       <form className="register__form" onSubmit={Submite}>
         <div className="register__header">
           <Link className="register__link" to="/">

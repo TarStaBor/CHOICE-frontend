@@ -3,8 +3,8 @@
   box-sizing: border-box;
   margin: 50px 60px;
   background-color: #fff;
-  border: 3px solid #8b8b8b;
-  border-radius: 36px;
+  border: 1px solid #a3c7d9;
+  border-radius: 10px;
   transition: 0.3s;
 }
 
@@ -104,11 +104,16 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
-  background: #f2f2e6;
-  border: 2px solid #8b8b8b;
-  border-radius: 20px;
-
+  background: #d7f6ff;
+  border: 1px solid #a3c7d9;
+  border-radius: 10px;
   transition: 0.3s;
+}
+
+.addJob__input:focus {
+  outline: none;
+  border: 1px solid #0082c3;
+  box-shadow: 0 0 10px #0082c3;
 }
 
 .addJob__input_error {
@@ -148,8 +153,7 @@
   cursor: pointer;
   color: #292929;
   background: #efefef;
-  border-radius: 13px;
-
+  border-radius: 10px;
   transition: 0.3s;
   user-select: none;
 }
@@ -165,7 +169,6 @@
 .addJob__button-label:hover {
   color: #101010;
   background: #d6d6d6;
-
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.32);
 }
 
@@ -247,9 +250,9 @@
   font-weight: 500;
   font-size: 20px;
   text-align: center;
-  background-color: #5bc8d7;
-  border: 2px solid #8b8b8b;
-  border-radius: 20px;
+  background: linear-gradient(#ffe539 0%, #ff6464 100%);
+  border: 1px solid #a3c7d9;
+  border-radius: 10px;
   transition: 0.3s;
 }
 
@@ -262,6 +265,7 @@
   height: 150px;
   box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
   transition: 0.3s;
+  border-radius: 10px;
 }
 
 .addJob__logo-preview_delete {
@@ -277,10 +281,16 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 25px;
-  background: #f2f2e6;
-  border: 2px solid #8b8b8b;
+  background: #d7f6ff;
+  border: 1px solid #a3c7d9;
   border-radius: 10px;
   transition: 0.3s;
+}
+
+.addJob__textarea:focus {
+  outline: none;
+  border: 1px solid #0082c3;
+  box-shadow: 0 0 10px #0082c3;
 }
 
 .addJob__submit-button {
@@ -289,15 +299,15 @@
   height: 40px;
   font-weight: 500;
   font-size: 20px;
-  background-color: #5bc8d7;
-  border: 2px solid #8b8b8b;
-  border-radius: 36px;
+  background: linear-gradient(#ffe539 0%, #ff6464 100%);
+  border: 1px solid #a3c7d9;
+  border-radius: 10px;
   transition: 0.3s;
 }
 
 .addJob__submit-button_disabled {
   color: #c2c2c2;
-  background-color: #f8f8f8;
+  background: #f8f8f8;
   transition: 0.3s;
 }
 
@@ -355,7 +365,7 @@
   .addJob {
     margin: 25px 9px;
     border-width: 2px;
-    border-radius: 18px;
+    border-radius: 8px;
   }
 
   .addJob__form {
@@ -378,6 +388,7 @@
     font-size: 14px;
     line-height: 14px;
     border-width: 1px;
+    border-radius: 6px;
   }
 
   .addJob__container {
@@ -394,6 +405,7 @@
     height: 30px;
     font-size: 16px;
     border-width: 1px;
+    border-radius: 10px;
   }
 
   .addJob__logo-preview {
@@ -407,6 +419,8 @@
     font-size: 14px;
     line-height: 18px;
     border-width: 1px;
+    border-radius: 6px;
+    padding-top: 5px;
   }
 
   .addJob__error-message {
@@ -427,5 +441,6 @@
     height: 30px;
     font-size: 16px;
     border-width: 1px;
+    border-radius: 6px;
   }
 }

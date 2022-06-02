@@ -19,34 +19,16 @@ import * as Api from "../../utils/Api";
 function App() {
   const navigate = useNavigate();
 
-  // Стейт  регистрации
   const [loggedIn, setLoggedIn] = useState(true);
-
-  // Стейт актуального пользователя
   const [currentUser, setCurrentUser] = useState({});
-
-  // Стейт вакансий
   const [data, setData] = useState([]);
-
-  // Стейт откликов
   const [applicantsData, setApplicantsData] = useState([]);
-
-  // Стейт отфильтрованных откликов
   const [filterApplicantsData, setFilterApplicantsData] = useState([]);
-
-  // Стейт блокировки инпута
   const [blockInput, setBlockInput] = useState(false);
-
-  // Стейт сообщения с ошибкой при регистрации и авторизации
   const [errorMesage, setErrorMesage] = useState("");
-
-  // Стейт прелодера
   const [isFilter, setIsFilter] = useState(false);
-
-  // Стейт прелодера
   const [preloader, setPreloader] = useState(false);
 
-  // Эффект проверки авторизации на сайте
   useEffect(() => {
     Api.getUserInfo(localStorage.token)
       .then(() => {
@@ -57,7 +39,6 @@ function App() {
       });
   }, [loggedIn]);
 
-  // Эффект получения информации о пользователе
   useEffect(() => {
     if (loggedIn) {
       Api.getUserInfo()
@@ -70,7 +51,6 @@ function App() {
     }
   }, [loggedIn]);
 
-  // Получение всех вакансий
   useEffect(() => {
     if (loggedIn) {
       setPreloader(true);
@@ -87,7 +67,6 @@ function App() {
     }
   }, [loggedIn]);
 
-  // Получение всех откликов
   useEffect(() => {
     if (loggedIn) {
       setPreloader(true);
@@ -104,7 +83,6 @@ function App() {
     }
   }, [loggedIn]);
 
-  // Функция запроса к АПИ на регистрацию
   function registration(name, email, password) {
     setPreloader(true);
     setBlockInput(true);
@@ -124,7 +102,6 @@ function App() {
       });
   }
 
-  // Функция запроса к АПИ на авторизацию
   function authorization(email, password) {
     setPreloader(true);
     setBlockInput(true);
@@ -145,7 +122,6 @@ function App() {
       });
   }
 
-  // Функция получения отфильтрованных откликов
   function getFilterApplicants(_id) {
     setPreloader(true);
     Api.getApplicantsByJobId(_id)
@@ -162,7 +138,6 @@ function App() {
       });
   }
 
-  // Функция очистки localStorage при выходе
   function handleloggedOutClick(evt) {
     evt.preventDefault();
     localStorage.removeItem("token");
@@ -170,7 +145,6 @@ function App() {
     navigate("/", { replace: false });
   }
 
-  // Функция удаления вакансиии
   function delJob(_id, company) {
     setPreloader(true);
     Api.delJob(_id, company)
@@ -186,7 +160,6 @@ function App() {
       });
   }
 
-  // Функция удаления отклика
   function delApplicant(_id) {
     setPreloader(true);
     Api.delApplicant(_id)
@@ -203,7 +176,6 @@ function App() {
       });
   }
 
-  // Функция создания вакансии
   function handleCreateJob(formData) {
     setPreloader(true);
     Api.addJob(formData)
@@ -221,7 +193,6 @@ function App() {
       });
   }
 
-  // Функция изменения комментария
   function handleCommentChange(text, _id) {
     setPreloader(true);
     Api.patchApplicantComment(text, _id)
@@ -295,15 +266,15 @@ function App() {
             element={
               <ProtectedRoute loggedIn={loggedIn}>
                 <Profile
-                  // setEdit={setEdit}
-                  // handleUpdateUser={handleUpdateUser}
                   handleloggedOutClick={handleloggedOutClick}
-                  // setSuccessEditProfile={setSuccessEditProfile}
-                  // edit={edit}
-                  errorMesage={errorMesage}
                   loggedIn={loggedIn}
                   isPreloader={preloader}
                   blockInput={blockInput}
+                  // edit={edit}
+                  // setEdit={setEdit}
+                  // handleUpdateUser={handleUpdateUser}
+                  // setSuccessEditProfile={setSuccessEditProfile}
+                  // errorMesage={errorMesage}
                   // successEditProfile={successEditProfile}
                 />
               </ProtectedRoute>
@@ -316,14 +287,7 @@ function App() {
             <Route
               exact
               path="/signup"
-              element={
-                <Register
-                  errorMesage={errorMesage}
-                  handleSubmit={registration}
-                  // isPreloader={preloader}
-                  blockInput={blockInput}
-                />
-              }
+              element={<Register errorMesage={errorMesage} handleSubmit={registration} blockInput={blockInput} />}
             />
           )}
 
@@ -333,14 +297,7 @@ function App() {
             <Route
               exact
               path="/signin"
-              element={
-                <Login
-                  errorMesage={errorMesage}
-                  handleSubmit={authorization}
-                  // isPreloader={preloader}
-                  blockInput={blockInput}
-                />
-              }
+              element={<Login errorMesage={errorMesage} handleSubmit={authorization} blockInput={blockInput} />}
             />
           )}
 

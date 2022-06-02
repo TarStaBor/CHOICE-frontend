@@ -1,10 +1,10 @@
 .header {
   display: flex;
   align-items: center;
-  height: 74px;
+  height: 50px;
   font-family: Gotham;
-  background: linear-gradient(#38919d, #5bc8d7);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(#0082c3, #63cbff);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   transition: 0.3s;
 }
 
@@ -19,8 +19,8 @@
 }
 
 .header__logo {
-  width: 60px;
-  height: 51px;
+  width: 28px;
+  height: 24px;
   transition: 0.3s;
 }
 
@@ -48,24 +48,19 @@
   width: 95px;
   height: 100%;
   font-weight: 500;
-  font-size: 12px;
-  line-height: 20px;
+  font-size: 10px;
+  line-height: 16px;
   text-align: center;
   text-decoration: none;
   color: #fff;
-  background-color: #188998;
-  border-left: 2px #c4c4c4 solid;
+  text-transform: uppercase;
   transition: 0.3s;
 }
 
 .header__link_active {
   font-weight: bold;
-  background-color: #43b599;
-  transition: 0.3s;
-}
-
-.header__link:last-of-type {
-  border-right: 2px #c4c4c4 solid;
+  background: linear-gradient(#ffe539, #ff6464);
+  color: #292929;
   transition: 0.3s;
 }
 
@@ -81,27 +76,45 @@
 }
 
 .header__link-title {
+  position: relative;
   display: flex;
   justify-self: flex-end;
   align-self: flex-end;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
   line-height: 16px;
-  color: #fff;
+  text-transform: uppercase;
+  overflow: hidden;
+  background: linear-gradient(to right, #0b3950, #0b3950 50%, #fff 50%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+  text-decoration: none;
+}
+
+.header__link-title {
+  transition: background-position 275ms ease;
+}
+.header__link-title:hover {
+  background-position: 0 100%;
 }
 
 .header__button {
   width: 80px;
   height: 30px;
   color: #292929;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 14px;
   line-height: 14px;
-  background: linear-gradient(90deg, rgba(149, 94, 200, 0.99) 0%, #fa7969 49.89%, #fcd162 100%);
-  border: 2px solid #292929;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 15px;
+  background: linear-gradient(#ffe539 0%, #ff6464 100%);
+  border: 1px solid #3c5663;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  text-transform: uppercase;
 }
 
 @media screen and (max-width: 1279px) {
@@ -122,7 +135,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .header {
-    height: 50px;
+    height: 40px;
   }
 
   .header__company {
@@ -131,8 +144,8 @@
   }
 
   .header__logo {
-    width: 40px;
-    height: 34px;
+    width: 17px;
+    height: 15px;
   }
 
   .header__company-name {
@@ -147,32 +160,30 @@
 
   .header__link {
     width: 57px;
-    font-weight: 500;
-    font-size: 10px;
-    line-height: 16px;
+    font-weight: 600;
+    font-size: 8px;
+    line-height: 12px;
     border-left-width: 1px;
-  }
-
-  .header__link:last-of-type {
-    border-right-width: 1px;
   }
 
   .header__unauthorize-links {
     width: 100%;
     justify-content: space-evenly;
+    margin-bottom: 2px;
   }
 
   .header__link-title {
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 12px;
+    line-height: 12px;
     color: #fff;
   }
 
   .header__button {
     width: 60px;
-    height: 25px;
-    font-size: 12px;
+    height: 20px;
+    font-size: 10px;
     line-height: 12px;
     border-width: 1px;
+    border-radius: 6px;
   }
 }

@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import "./Login.css";
-import logo from "../../images/applicants.svg";
+import logo from "../../images/logo.png";
 import { Validation } from "../../utils/Validation";
-import Preloader from "../Preloader/Preloader";
 
 function Login(props) {
-  const { errorMesage, handleSubmit, isPreloader, blockInput } = props;
+  const { errorMesage, handleSubmit, blockInput } = props;
   const { values, handleChange, errors, isValid } = Validation();
 
   function Submite(evt) {
@@ -15,7 +14,6 @@ function Login(props) {
 
   return (
     <section className="login">
-      {isPreloader && <Preloader />}
       <form className="login__form" onSubmit={Submite}>
         <div className="login__header">
           <Link className="login__link" to="/">

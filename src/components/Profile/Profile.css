@@ -3,8 +3,7 @@
   flex-direction: column;
   width: 100%;
   height: calc(100vh - 74px);
-  background-color: #292929;
-  color: #fff;
+  color: #292929;
 }
 
 .profile__form {
@@ -15,6 +14,7 @@
   width: 410px;
   height: 100%;
   text-align: start;
+  transition: 0.3s;
 }
 
 .profile__container {
@@ -52,7 +52,7 @@
   font-weight: normal;
   font-size: 11px;
   line-height: 13px;
-  color: #fff;
+  color: #292929;
 }
 
 .profile__error-text {
@@ -73,11 +73,11 @@
   height: 47px;
   text-align: end;
   font-style: normal;
-  font-weight: normal;
-  font-size: 11px;
+  font-weight: 500;
+  font-size: 13px;
   line-height: 13px;
-  background-color: #292929;
-  color: #fff;
+  background-color: transparent;
+  color: #292929;
   outline: none;
 }
 
@@ -107,7 +107,6 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
-  background-color: #292929;
   color: #228cbb;
   border: none;
 }
@@ -117,7 +116,6 @@
   font-weight: normal;
   font-size: 13px;
   line-height: 16px;
-  background-color: #292929;
   color: #fff;
   border: none;
 }
@@ -144,7 +142,7 @@
   font-size: 14px;
   line-height: 17px;
   background-color: #228cbb;
-  color: #fff;
+  color: #292929;
   border-radius: 3px;
   border: none;
   user-select: none;
@@ -156,14 +154,17 @@
 }
 
 .profile__exit-button {
-  margin: 16px 0 0;
+  margin: 16px auto 0;
+  height: 30px;
+  width: 200px;
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
-  background-color: #292929;
-  color: #ee3465;
-  border: none;
+  background: linear-gradient(#ffe539 0%, #ff6464 100%);
+  color: #292929;
+  border: 1px solid #424242;
+  border-radius: 10px;
 }
 
 @media screen and (max-width: 1279px) {

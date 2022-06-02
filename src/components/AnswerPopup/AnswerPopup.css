@@ -13,12 +13,7 @@
   font-family: Gotham;
   text-align: center;
   color: #292929;
-  background: linear-gradient(
-    90deg,
-    rgba(252, 209, 98, 0.8) 0%,
-    rgba(250, 121, 105, 0.8) 49.89%,
-    rgba(149, 94, 200, 0.8) 100%
-  );
+  background: rgba(0, 0, 0, 0.5);
   opacity: 0;
   transition: visibility 1s, opacity 0.5s linear;
 }
@@ -35,21 +30,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 500px;
-  height: 300px;
+  width: 380px;
+  height: 250px;
   color: #fff;
   background: #f2f2e6;
-  border: 5px solid #292929;
-  border-radius: 36px;
-  box-shadow: 0px 0px 12px 9px #292929;
+  border: 1px solid #292929;
+  border-radius: 10px;
+  box-shadow: 0px 0px 9px 3px #292929;
   transition: 0.3s;
 }
 
 .answerPopup__title {
-  margin: 0 0 50px;
+  margin: 0 0 30px;
   font-weight: 500;
-  font-size: 50px;
-  line-height: 20px;
+  font-size: 40px;
+  line-height: 40px;
   color: #292929;
   transition: 0.3s;
 }
@@ -57,8 +52,8 @@
 .answerPopup__subtitle {
   margin: 0;
   font-weight: 500;
-  font-size: 25px;
-  line-height: 30px;
+  font-size: 20px;
+  line-height: 20px;
   color: #292929;
   transition: 0.3s;
 }
@@ -66,8 +61,8 @@
 .answerPopup__link {
   margin: 0;
   font-weight: 500;
-  font-size: 25px;
-  line-height: 30px;
+  font-size: 20px;
+  line-height: 20px;
   color: #0079bf;
   cursor: pointer;
   transition: 0.3s;
@@ -76,10 +71,10 @@
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .answerPopup__container {
     width: 300px;
-    height: 200px;
+    height: 180px;
     color: #fff;
-    border: 3px solid #292929;
-    border-radius: 18px;
+    border: 1px solid #292929;
+    border-radius: 10px;
   }
 
   .answerPopup__title {

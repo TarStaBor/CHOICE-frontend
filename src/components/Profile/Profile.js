@@ -7,15 +7,15 @@ import Preloader from "../Preloader/Preloader";
 
 function Profile(props) {
   const {
-    // setEdit,
-    // handleUpdateUser,
     handleloggedOutClick,
-    // setSuccessEditProfile,
-    edit,
-    // errorMesage,
     loggedIn,
     isPreloader,
     blockInput,
+    edit,
+    // setEdit,
+    // handleUpdateUser,
+    // setSuccessEditProfile,
+    // errorMesage,
     // successEditProfile,
   } = props;
 

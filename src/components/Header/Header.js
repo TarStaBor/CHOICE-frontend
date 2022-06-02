@@ -20,13 +20,13 @@ function Header(props) {
         {loggedIn ? (
           <>
             <NavLink className={activeButton} to="/applications">
-              Все вакансии
+              Вакансии
             </NavLink>
             <NavLink className={activeButton} to="/applicants">
               Отклики
             </NavLink>
             <NavLink className={activeButton} to="/add-job">
-              Новая вакансия
+              Создать вакансию
             </NavLink>
             <NavLink to="/profile" className={activeButton}>
               Аккаунт
@@ -36,12 +36,12 @@ function Header(props) {
           <>
             <div className="header__unauthorize-links">
               {process.env.REACT_APP_REGISTRATION && (
-                <Link className="header__unauthorize-link" to="/signup">
-                  <h2 className="header__link-title link-opacity">Регистрация</h2>
+                <Link className="header__unauthorize-link" to="/signin">
+                  <button className="header__button link-opacity">Войти</button>
                 </Link>
               )}
-              <Link className="header__unauthorize-link" to="/signin">
-                <button className="header__button link-opacity">Войти</button>
+              <Link className="header__unauthorize-link" to="/signup">
+                <h2 className="header__link-title link-opacity">Регистрация</h2>
               </Link>
             </div>
           </>

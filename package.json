@@ -23,6 +23,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
+    "deploy": "npm run build && scp -r ./build/* root@185.117.152.203:/srv/choicejob.ru/front",
+    "deploy-Y.Prakticum": "npm run build && scp -r ./build/* tarstabor@185.5.251.34:/srv/choicejob.ru/front",
     "deploy-gh-pages": "gh-pages -d build"
   },
   "eslintConfig": {

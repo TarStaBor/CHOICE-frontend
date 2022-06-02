@@ -4,5 +4,6 @@
 @import url("./components/Level/Level.css");
 body {
   font-family: Gotham, Inter, Arial, sans-serif;
-  background: linear-gradient(90deg, #fcd162 0%, #fa7969 49.89%, rgba(149, 94, 200, 0.99) 100%);
+  background: linear-gradient(180deg, #c5c5c5 0%, #ffffff 49.89%, #c5c5c5 100%);
+  /* background: linear-gradient(90deg, #fcd162 0%, #fa7969 49.89%, rgba(149, 94, 200, 0.99) 100%); */
 }

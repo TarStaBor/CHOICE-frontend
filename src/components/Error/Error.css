@@ -61,9 +61,9 @@
   font-weight: normal;
   font-size: 17px;
   line-height: 17px;
-  background-color: transparent;
-  border: 2px #443b3b solid;
-  border-radius: 18px;
+  background: linear-gradient(#ffe539 0%, #ff6464 100%);
+  border: 1px #443b3b solid;
+  border-radius: 10px;
   color: #443b3b;
 }
 

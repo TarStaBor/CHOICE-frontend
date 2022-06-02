@@ -24,6 +24,8 @@ function Search(props) {
             value={searchInputValue}
             required
             onChange={handleEdit}
+            placeholder="Поиск..."
+            plac
           ></input>
           <button className="search__findArrow link-opacity" type="submit"></button>
         </form>

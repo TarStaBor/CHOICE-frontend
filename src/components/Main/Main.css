@@ -3,12 +3,149 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: calc(100vh - 174px);
-  font-family: Gotham;
+  min-height: calc(100vh - 100px);
+}
+
+.main__title {
+  margin: 30px 0 20px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 12px;
+  color: #202020;
+  transition: 0.3s;
+}
+
+.main__subtitle {
+  margin: 0 0 20px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+  color: #202020;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.main__container {
+  box-sizing: border-box;
+  margin: 10px 20px;
+  background-color: #d7f6ff;
+  border: 1px solid #a3c7d9;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.main__text {
+  margin: 10px;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #292929;
+  transition: 0.3s;
+}
+
+.main__text-title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: #292929;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+
+.main__menu-image {
+  position: relative;
+  top: 3px;
+  height: 16px;
+  margin: 0 0 0 5px;
+  border: 1px #a3c7d9 solid;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.main__applicants-image {
+  box-sizing: border-box;
+  position: relative;
+  top: 4px;
+  height: 18px;
+  margin: 0 5px;
+  padding: 1px;
+  border: 1px #a3c7d9 solid;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.main__addTag-image {
+  position: relative;
+  top: 4px;
+  height: 18px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.main__deleteLogo-image {
+  position: relative;
+  top: 4px;
+  height: 18px;
+  transform: rotate(-45deg);
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .main {
-    min-height: calc(100vh - 150px);
+    min-height: calc(100vh - 70px);
+  }
+
+  .main__title {
+    margin: 15px 0 15px;
+    font-size: 18px;
+    line-height: 18px;
+  }
+  .main__subtitle {
+    margin: 0 0 10px;
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  .main__container {
+    margin: 5px 9px;
+    border-radius: 6px;
+  }
+
+  .main__text {
+    margin: 8px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .main__text-title {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .main__menu-image {
+    height: 12px;
+    border-radius: 2px;
+  }
+
+  .main__applicants-image {
+    top: 2px;
+    height: 12px;
+    padding: 1px;
+    border-radius: 2px;
+  }
+  .main__addTag-image {
+    top: 2px;
+    height: 12px;
+  }
+
+  .main__deleteLogo-image {
+    top: 2px;
+    height: 12px;
   }
 }

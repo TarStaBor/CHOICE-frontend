@@ -1,9 +1,9 @@
 .applications {
-  min-height: calc(100vh - 346px);
+  min-height: calc(100vh - 200px);
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .applications {
-    min-height: calc(100vh - 228px);
+    min-height: calc(100vh - 148px);
   }
 }

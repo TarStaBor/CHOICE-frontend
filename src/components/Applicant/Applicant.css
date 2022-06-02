@@ -7,11 +7,11 @@
 .applicant__sections {
   position: relative;
   margin-bottom: 10px;
-  padding: 20px;
+  padding: 15px;
   color: #443b3b;
   background-color: #fff;
-  border: 3px solid #8b8b8b;
-  border-radius: 36px;
+  border: 1px solid #a3c7d9;
+  border-radius: 10px;
 }
 
 .applicant__card {
@@ -20,9 +20,9 @@
   column-gap: 25px;
   row-gap: 20px;
   padding: 13px;
-  background-color: #f2f2e6;
-  border: 1px solid #8b8b8b;
-  border-radius: 18px;
+  background-color: #d7f6ff;
+  border: 1px solid #a3c7d9;
+  border-radius: 8px;
   transition: 0.3s;
 }
 
@@ -53,7 +53,7 @@
   font-size: 16px;
   line-height: 16px;
   background: #ffffff;
-  border: 1px solid #8b8b8b;
+  border: 1px solid #a3c7d9;
   border-radius: 5px;
   transition: 0.3s;
 }
@@ -83,7 +83,7 @@
   text-align: start;
   line-height: 16px;
   background: #ffffff;
-  border: 1px solid #8b8b8b;
+  border: 1px solid #a3c7d9;
   border-radius: 5px;
 }
 
@@ -102,15 +102,15 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
-  background-color: #5bc8d7;
-  border: 1px solid #8b8b8b;
-  border-radius: 10px;
+  background: linear-gradient(#ffe539 0%, #ff6464 100%);
+  border: 1px solid #a3c7d9;
+  border-radius: 6px;
   transition: 0.3s;
 }
 
 .applicant__download-button_disabled {
-  color: #8b8b8b;
-  background-color: #f8f8f8;
+  color: #6b6b6b;
+  background: #dedede;
 }
 
 .applicant__link {
@@ -141,7 +141,7 @@
 
 .applicant__delete-button {
   position: absolute;
-  right: -40px;
+  right: -50px;
   top: calc(50% - 10px);
   width: 20px;
   height: 20px;
@@ -149,8 +149,8 @@
 }
 
 .applicant__delete-logo {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
   transform: rotate(-45deg);
   opacity: 0.4;
   transition: opacity 1s;
@@ -191,15 +191,15 @@
 
   .applicant__sections {
     padding: 12px;
-    border-width: 2px;
-    border-radius: 18px;
+    border-width: 1px;
+    border-radius: 8px;
   }
 
   .applicant__card {
     grid-template-columns: 1fr;
     row-gap: 10px;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 6px;
   }
 
   .applicant__id {

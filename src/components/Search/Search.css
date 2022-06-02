@@ -1,7 +1,7 @@
 .search {
   font-family: Gotham;
   margin: 0 auto;
-  height: 172px;
+  height: 100px;
   color: #443b3b;
   transition: 0.3s;
   display: flex;
@@ -16,17 +16,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 66px;
+  height: 40px;
   background-color: #fff;
-  border: 3px #8b8b8b solid;
-  border-radius: 36px;
+  border: 1px #a3c7d9 solid;
+  border-radius: 10px;
   transition: 0.3s;
 }
 
 .search__magnifier {
-  margin-left: 31px;
-  min-width: 20px;
-  min-height: 13px;
+  margin-left: 15px;
+  min-width: 16px;
+  min-height: 10px;
   transform: rotate(-45deg);
   transition: 0.3s;
 }
@@ -36,7 +36,7 @@
   width: 100%;
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 20px;
   color: #443b3b;
   border: none;
@@ -49,9 +49,9 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  margin-right: 20px;
-  min-width: 34px;
-  height: 34px;
+  margin-right: 15px;
+  min-width: 25px;
+  height: 25px;
   border: none;
   border-radius: 50%;
   outline: none;
@@ -73,8 +73,8 @@
     margin: 0 9px;
     height: 34px;
     background-color: #fff;
-    border-width: 2px;
-    border-radius: 19px;
+    border-width: 1px;
+    border-radius: 8px;
   }
 
   .search__magnifier {
@@ -85,8 +85,8 @@
 
   .search__search-input {
     margin: 0 15px 0 10px;
-    font-size: 15px;
-    line-height: 15px;
+    font-size: 12px;
+    line-height: 12px;
   }
 
   .search__findArrow {

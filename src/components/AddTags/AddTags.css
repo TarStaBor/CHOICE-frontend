@@ -17,7 +17,7 @@
   height: 15px;
   margin: 0 20px 0 20px;
   padding: 1px;
-  border: 2px #8b8b8b solid;
+  border: 1px #a3c7d9 solid;
   border-radius: 4px;
   background-color: #e2e2e2;
   transition: 0.3s;
@@ -35,14 +35,14 @@
   box-sizing: border-box;
   margin-left: 10px;
   padding: 0 10px;
-  border: 2px solid #8b8b8b;
-  border-radius: 36px;
+  border: 1px solid #a3c7d9;
+  border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .addTags__tag:hover {
-  background: rgb(239, 170, 170);
+  background: #f48f9a;
   transition: 0.3s;
 }
 
@@ -91,5 +91,6 @@
   .addTags__tag {
     font-size: 10px;
     border-width: 1px;
+    border-radius: 6px;
   }
 }

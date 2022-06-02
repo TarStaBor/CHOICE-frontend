@@ -4,68 +4,25 @@
   align-items: center;
   font-family: Gotham;
   width: 100%;
-  height: 100px;
+  height: 50px;
   margin: 0;
   color: #fff;
-  background: linear-gradient(#242856, #c31767);
-  box-shadow: 0px -3px 15px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(#0082c3, #004d74);
+  box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.4);
 }
-
-.footer__company {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 176px;
-  height: 51px;
-  margin: 0 60px;
-  text-decoration: none;
+.footer__year {
+  margin: 0 0 0 20px;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
   color: #fff;
-  transition: 0.3s;
-}
-
-.footer__logo {
-  width: 60px;
-  height: 51px;
-  transition: 0.3s;
-}
-
-.footer__company-name {
-  margin: 0 0 0 15px;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 24px;
-  text-align: center;
-  transition: 0.3s;
 }
 
 @media screen and (max-width: 1279px) {
-  .footer__company {
-    margin: 0 30px;
-  }
-
-  .footer__company-name {
-    margin-left: 10px;
-  }
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .footer {
-    height: 100px;
-  }
-
-  .footer__company {
-    width: 107px;
-    margin: 0 9px;
-  }
-
-  .footer__logo {
-    width: 40px;
-    height: 34px;
-  }
-
-  .footer__company-name {
-    margin-left: 5px;
-    font-size: 15px;
-    line-height: 15px;
+    height: 30px;
   }
 }
